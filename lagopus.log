@@ -1,0 +1,876 @@
+* Connected established with 192.168.1.7.:lagopus.tamalin.org NOTICE AUTH :*** Looking up your hostname...
+:lagopus.tamalin.org NOTICE AUTH :*** Found your hostname
+PING :1C5B7406
+:lagopus.tamalin.org 001 greenbot :Welcome to the Tamalin IRC Network greenbot!greenbot@vulpes.lan
+:lagopus.tamalin.org 002 greenbot :Your host is lagopus.tamalin.org, running version Unreal3.2.10.2
+:lagopus.tamalin.org 003 greenbot :This server was created Mon May 19 2014 at 22:07:41 EDT
+:lagopus.tamalin.org 004 greenbot lagopus.tamalin.org Unreal3.2.10.2 iowghraAsORTVSxNCWqBzvdHtGpI lvhopsmntikrRcaqOALQbSeIKVfMCuzNTGjZ
+:lagopus.tamalin.org 005 greenbot CMDS=KNOCK,MAP,DCCALLOW,USERIP,STARTTLS UHNAMES NAMESX SAFELIST HCN MAXCHANNELS=30 CHANLIMIT=#:30 MAXLIST=b:60,e:60,I:60 NICKLEN=30 CHANNELLEN=32 TOPICLEN=307 KICKLEN=307 AWAYLEN=307 :are supported by this server
+:lagopus.tamalin.org 005 greenbot MAXTARGETS=20 WALLCHOPS WATCH=128 WATCHOPTS=A SILENCE=15 MODES=12 CHANTYPES=# PREFIX=(qaohv)~&@%+ CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NETWORK=Tamalin CASEMAPPING=ascii EXTBAN=~,qjncrRa ELIST=MNUCT :are supported by this server
+:lagopus.tamalin.org 005 greenbot STATUSMSG=~&@%+ EXCEPTS INVEX :are supported by this server
+:lagopus.tamalin.org 251 greenbot :There are 1 users and 11 invisible on 2 servers
+:lagopus.tamalin.org 252 greenbot 10 :operator(s) online
+:lagopus.tamalin.org 254 greenbot 2 :channels formed
+:lagopus.tamalin.org 255 greenbot :I have 3 clients and 1 servers
+:lagopus.tamalin.org 265 greenbot 3 4 :Current local users 3, max 4
+:lagopus.tamalin.org 266 greenbot 12 12 :Current global users 12, max 12
+:lagopus.tamalin.org 375 greenbot :- lagopus.tamalin.org Message of the Day - 
+:lagopus.tamalin.org 372 greenbot :- 23/5/2014 17:27
+:lagopus.tamalin.org 372 greenbot :- ################################################
+:lagopus.tamalin.org 372 greenbot :- WELCOME TO THE LAGOPUS IRC SERVER (LAGOPUS.TAMALIN.ORG).
+:lagopus.tamalin.org 372 greenbot :- This server is for testing purposes so it may not be stable!
+:lagopus.tamalin.org 372 greenbot :- Quytelda <admin@tamalin.org> runs this server;
+:lagopus.tamalin.org 372 greenbot :- This IRC network has no operators.
+:lagopus.tamalin.org 372 greenbot :- ################################################
+:lagopus.tamalin.org 376 greenbot :End of /MOTD command.
+:greenbot MODE greenbot :+ix
+:greenbot!greenbot@faise-50934D94.lan JOIN :#tamalin
+:lagopus.tamalin.org 332 greenbot #tamalin :Tamalin 2
+:lagopus.tamalin.org 333 greenbot #tamalin greenfox 1404099490
+:lagopus.tamalin.org 353 greenbot = #tamalin :greenbot ~quytelda echobot @ChanServ 
+:lagopus.tamalin.org 366 greenbot #tamalin :End of /NAMES list.
+:NickServ!NickServ@services.tamalin.org NOTICE greenbot :Welcome to tamalin.org, greenbot! Here on tamalin.org, we provide services to enable the registration of nicknames and channels! For details, type /msg NickServ help and /msg ChanServ help.
+:greenbot!greenbot@faise-50934D94.lan JOIN :#green
+:lagopus.tamalin.org 353 greenbot = #green :~greenbot 
+:lagopus.tamalin.org 366 greenbot #green :End of /NAMES list.
+:quytelda!quytelda@faise-50934D94.lan MODE #tamalin -a quytelda
+:quytelda!quytelda@faise-50934D94.lan MODE #tamalin +o greenbot
+:ChanServ!ChanServ@services.tamalin.org MODE #tamalin -o greenbot
+:quytelda!quytelda@faise-50934D94.lan MODE #tamalin +a greenbot
+PING :lagopus.tamalin.org
+:lagopus.tamalin.org PONG lagopus.tamalin.org :lagopus.tamalin.org
+:quytelda!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`quit
+ERROR :Closing Link: greenbot[vulpes.lan] (Quit: Received QUIT from quytelda!quytelda@faise-50934D94.lan.)
+* Connection lost ([Failure instance: Traceback (failure with no frames): <class 'twisted.internet.error.ConnectionDone'>: Connection was closed cleanly.
+]).* Connected established with 192.168.1.7.
+:lagopus.tamalin.org NOTICE AUTH :*** Looking up your hostname...
+:lagopus.tamalin.org NOTICE AUTH :*** Found your hostname
+PING :BDEEA949
+:lagopus.tamalin.org 001 greenbot :Welcome to the Tamalin IRC Network greenbot!greenbot@vulpes.lan
+:lagopus.tamalin.org 002 greenbot :Your host is lagopus.tamalin.org, running version Unreal3.2.10.2
+:lagopus.tamalin.org 003 greenbot :This server was created Mon May 19 2014 at 22:07:41 EDT
+:lagopus.tamalin.org 004 greenbot lagopus.tamalin.org Unreal3.2.10.2 iowghraAsORTVSxNCWqBzvdHtGpI lvhopsmntikrRcaqOALQbSeIKVfMCuzNTGjZ
+:lagopus.tamalin.org 005 greenbot CMDS=KNOCK,MAP,DCCALLOW,USERIP,STARTTLS UHNAMES NAMESX SAFELIST HCN MAXCHANNELS=30 CHANLIMIT=#:30 MAXLIST=b:60,e:60,I:60 NICKLEN=30 CHANNELLEN=32 TOPICLEN=307 KICKLEN=307 AWAYLEN=307 :are supported by this server
+:lagopus.tamalin.org 005 greenbot MAXTARGETS=20 WALLCHOPS WATCH=128 WATCHOPTS=A SILENCE=15 MODES=12 CHANTYPES=# PREFIX=(qaohv)~&@%+ CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NETWORK=Tamalin CASEMAPPING=ascii EXTBAN=~,qjncrRa ELIST=MNUCT :are supported by this server
+:lagopus.tamalin.org 005 greenbot STATUSMSG=~&@%+ EXCEPTS INVEX :are supported by this server
+:lagopus.tamalin.org 251 greenbot :There are 1 users and 11 invisible on 2 servers
+:lagopus.tamalin.org 252 greenbot 10 :operator(s) online
+:lagopus.tamalin.org 254 greenbot 2 :channels formed
+:lagopus.tamalin.org 255 greenbot :I have 3 clients and 1 servers
+:lagopus.tamalin.org 265 greenbot 3 4 :Current local users 3, max 4
+:lagopus.tamalin.org 266 greenbot 12 12 :Current global users 12, max 12
+:lagopus.tamalin.org 375 greenbot :- lagopus.tamalin.org Message of the Day - 
+:lagopus.tamalin.org 372 greenbot :- 23/5/2014 17:27
+:lagopus.tamalin.org 372 greenbot :- ################################################
+:lagopus.tamalin.org 372 greenbot :- WELCOME TO THE LAGOPUS IRC SERVER (LAGOPUS.TAMALIN.ORG).
+:lagopus.tamalin.org 372 greenbot :- This server is for testing purposes so it may not be stable!
+:lagopus.tamalin.org 372 greenbot :- Quytelda <admin@tamalin.org> runs this server;
+:lagopus.tamalin.org 372 greenbot :- This IRC network has no operators.
+:lagopus.tamalin.org 372 greenbot :- ################################################
+:lagopus.tamalin.org 376 greenbot :End of /MOTD command.
+:greenbot MODE greenbot :+ix
+:greenbot!greenbot@faise-50934D94.lan JOIN :#tamalin
+:lagopus.tamalin.org 332 greenbot #tamalin :Tamalin 2
+:lagopus.tamalin.org 333 greenbot #tamalin greenfox 1404099490
+:lagopus.tamalin.org 353 greenbot = #tamalin :greenbot ~quytelda echobot @ChanServ 
+:lagopus.tamalin.org 366 greenbot #tamalin :End of /NAMES list.
+:NickServ!NickServ@services.tamalin.org NOTICE greenbot :Welcome to tamalin.org, greenbot! Here on tamalin.org, we provide services to enable the registration of nicknames and channels! For details, type /msg NickServ help and /msg ChanServ help.
+:greenbot!greenbot@faise-50934D94.lan JOIN :#green
+:lagopus.tamalin.org 353 greenbot = #green :~greenbot 
+:lagopus.tamalin.org 366 greenbot #green :End of /NAMES list.
+:quytelda!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`admins
+* Connection lost ([Failure instance: Traceback (failure with no frames): <class 'twisted.internet.error.ConnectionLost'>: Connection to the other side was lost in a non-clean fashion: Connection lost.
+]).
+* Connected established with 192.168.1.7.
+:lagopus.tamalin.org NOTICE AUTH :*** Looking up your hostname...
+:lagopus.tamalin.org NOTICE AUTH :*** Found your hostname (cached)
+PING :BA138059
+:lagopus.tamalin.org 001 greenbot :Welcome to the Tamalin IRC Network greenbot!greenbot@vulpes.lan
+:lagopus.tamalin.org 002 greenbot :Your host is lagopus.tamalin.org, running version Unreal3.2.10.2
+:lagopus.tamalin.org 003 greenbot :This server was created Mon May 19 2014 at 22:07:41 EDT
+:lagopus.tamalin.org 004 greenbot lagopus.tamalin.org Unreal3.2.10.2 iowghraAsORTVSxNCWqBzvdHtGpI lvhopsmntikrRcaqOALQbSeIKVfMCuzNTGjZ
+:lagopus.tamalin.org 005 greenbot CMDS=KNOCK,MAP,DCCALLOW,USERIP,STARTTLS UHNAMES NAMESX SAFELIST HCN MAXCHANNELS=30 CHANLIMIT=#:30 MAXLIST=b:60,e:60,I:60 NICKLEN=30 CHANNELLEN=32 TOPICLEN=307 KICKLEN=307 AWAYLEN=307 :are supported by this server
+:lagopus.tamalin.org 005 greenbot MAXTARGETS=20 WALLCHOPS WATCH=128 WATCHOPTS=A SILENCE=15 MODES=12 CHANTYPES=# PREFIX=(qaohv)~&@%+ CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NETWORK=Tamalin CASEMAPPING=ascii EXTBAN=~,qjncrRa ELIST=MNUCT :are supported by this server
+:lagopus.tamalin.org 005 greenbot STATUSMSG=~&@%+ EXCEPTS INVEX :are supported by this server
+:lagopus.tamalin.org 251 greenbot :There are 1 users and 11 invisible on 2 servers
+:lagopus.tamalin.org 252 greenbot 10 :operator(s) online
+:lagopus.tamalin.org 254 greenbot 2 :channels formed
+:lagopus.tamalin.org 255 greenbot :I have 3 clients and 1 servers
+:lagopus.tamalin.org 265 greenbot 3 4 :Current local users 3, max 4
+:lagopus.tamalin.org 266 greenbot 12 12 :Current global users 12, max 12
+:lagopus.tamalin.org 375 greenbot :- lagopus.tamalin.org Message of the Day - 
+:lagopus.tamalin.org 372 greenbot :- 23/5/2014 17:27
+:lagopus.tamalin.org 372 greenbot :- ################################################
+:lagopus.tamalin.org 372 greenbot :- WELCOME TO THE LAGOPUS IRC SERVER (LAGOPUS.TAMALIN.ORG).
+:lagopus.tamalin.org 372 greenbot :- This server is for testing purposes so it may not be stable!
+:lagopus.tamalin.org 372 greenbot :- Quytelda <admin@tamalin.org> runs this server;
+:lagopus.tamalin.org 372 greenbot :- This IRC network has no operators.
+:lagopus.tamalin.org 372 greenbot :- ################################################
+:lagopus.tamalin.org 376 greenbot :End of /MOTD command.
+:greenbot MODE greenbot :+ix
+:greenbot!greenbot@faise-50934D94.lan JOIN :#tamalin
+:lagopus.tamalin.org 332 greenbot #tamalin :Tamalin 2
+:lagopus.tamalin.org 333 greenbot #tamalin greenfox 1404099490
+:lagopus.tamalin.org 353 greenbot = #tamalin :greenbot ~quytelda echobot @ChanServ 
+:lagopus.tamalin.org 366 greenbot #tamalin :End of /NAMES list.
+:NickServ!NickServ@services.tamalin.org NOTICE greenbot :Welcome to tamalin.org, greenbot! Here on tamalin.org, we provide services to enable the registration of nicknames and channels! For details, type /msg NickServ help and /msg ChanServ help.
+:greenbot!greenbot@faise-50934D94.lan JOIN :#green
+:lagopus.tamalin.org 353 greenbot = #green :~greenbot 
+:lagopus.tamalin.org 366 greenbot #green :End of /NAMES list.
+:quytelda!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`admins
+:quytelda!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`auth passwor
+* Connection lost ([Failure instance: Traceback (failure with no frames): <class 'twisted.internet.error.ConnectionLost'>: Connection to the other side was lost in a non-clean fashion: Connection lost.
+]).
+* Connected established with 192.168.1.7.
+:lagopus.tamalin.org NOTICE AUTH :*** Looking up your hostname...
+:lagopus.tamalin.org NOTICE AUTH :*** Found your hostname (cached)
+PING :B707B45F
+:lagopus.tamalin.org 001 greenbot :Welcome to the Tamalin IRC Network greenbot!greenbot@vulpes.lan
+:lagopus.tamalin.org 002 greenbot :Your host is lagopus.tamalin.org, running version Unreal3.2.10.2
+:lagopus.tamalin.org 003 greenbot :This server was created Mon May 19 2014 at 22:07:41 EDT
+:lagopus.tamalin.org 004 greenbot lagopus.tamalin.org Unreal3.2.10.2 iowghraAsORTVSxNCWqBzvdHtGpI lvhopsmntikrRcaqOALQbSeIKVfMCuzNTGjZ
+:lagopus.tamalin.org 005 greenbot CMDS=KNOCK,MAP,DCCALLOW,USERIP,STARTTLS UHNAMES NAMESX SAFELIST HCN MAXCHANNELS=30 CHANLIMIT=#:30 MAXLIST=b:60,e:60,I:60 NICKLEN=30 CHANNELLEN=32 TOPICLEN=307 KICKLEN=307 AWAYLEN=307 :are supported by this server
+:lagopus.tamalin.org 005 greenbot MAXTARGETS=20 WALLCHOPS WATCH=128 WATCHOPTS=A SILENCE=15 MODES=12 CHANTYPES=# PREFIX=(qaohv)~&@%+ CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NETWORK=Tamalin CASEMAPPING=ascii EXTBAN=~,qjncrRa ELIST=MNUCT :are supported by this server
+:lagopus.tamalin.org 005 greenbot STATUSMSG=~&@%+ EXCEPTS INVEX :are supported by this server
+:lagopus.tamalin.org 251 greenbot :There are 1 users and 11 invisible on 2 servers
+:lagopus.tamalin.org 252 greenbot 10 :operator(s) online
+:lagopus.tamalin.org 254 greenbot 2 :channels formed
+:lagopus.tamalin.org 255 greenbot :I have 3 clients and 1 servers
+:lagopus.tamalin.org 265 greenbot 3 4 :Current local users 3, max 4
+:lagopus.tamalin.org 266 greenbot 12 12 :Current global users 12, max 12
+:lagopus.tamalin.org 375 greenbot :- lagopus.tamalin.org Message of the Day - 
+:lagopus.tamalin.org 372 greenbot :- 23/5/2014 17:27
+:lagopus.tamalin.org 372 greenbot :- ################################################
+:lagopus.tamalin.org 372 greenbot :- WELCOME TO THE LAGOPUS IRC SERVER (LAGOPUS.TAMALIN.ORG).
+:lagopus.tamalin.org 372 greenbot :- This server is for testing purposes so it may not be stable!
+:lagopus.tamalin.org 372 greenbot :- Quytelda <admin@tamalin.org> runs this server;
+:lagopus.tamalin.org 372 greenbot :- This IRC network has no operators.
+:lagopus.tamalin.org 372 greenbot :- ################################################
+:lagopus.tamalin.org 376 greenbot :End of /MOTD command.
+:greenbot MODE greenbot :+ix
+:greenbot!greenbot@faise-50934D94.lan JOIN :#tamalin
+:lagopus.tamalin.org 332 greenbot #tamalin :Tamalin 2
+:lagopus.tamalin.org 333 greenbot #tamalin greenfox 1404099490
+:lagopus.tamalin.org 353 greenbot = #tamalin :greenbot ~quytelda echobot @ChanServ 
+:lagopus.tamalin.org 366 greenbot #tamalin :End of /NAMES list.
+:NickServ!NickServ@services.tamalin.org NOTICE greenbot :Welcome to tamalin.org, greenbot! Here on tamalin.org, we provide services to enable the registration of nicknames and channels! For details, type /msg NickServ help and /msg ChanServ help.
+:greenbot!greenbot@faise-50934D94.lan JOIN :#green
+:lagopus.tamalin.org 353 greenbot = #green :~greenbot 
+:lagopus.tamalin.org 366 greenbot #green :End of /NAMES list.
+:quytelda!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`auth passwor
+:quytelda!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`auth password
+:quytelda!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`auth password
+:quytelda!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`admins
+PING :lagopus.tamalin.org
+:lagopus.tamalin.org PONG lagopus.tamalin.org :lagopus.tamalin.org
+* Connection lost ([Failure instance: Traceback (failure with no frames): <class 'twisted.internet.error.ConnectionLost'>: Connection to the other side was lost in a non-clean fashion: Connection lost.
+]).
+* Connected established with 192.168.1.7.
+:lagopus.tamalin.org NOTICE AUTH :*** Looking up your hostname...
+:lagopus.tamalin.org NOTICE AUTH :*** Found your hostname (cached)
+PING :394F2D34
+:lagopus.tamalin.org 001 greenbot :Welcome to the Tamalin IRC Network greenbot!greenbot@vulpes.lan
+:lagopus.tamalin.org 002 greenbot :Your host is lagopus.tamalin.org, running version Unreal3.2.10.2
+:lagopus.tamalin.org 003 greenbot :This server was created Mon May 19 2014 at 22:07:41 EDT
+:lagopus.tamalin.org 004 greenbot lagopus.tamalin.org Unreal3.2.10.2 iowghraAsORTVSxNCWqBzvdHtGpI lvhopsmntikrRcaqOALQbSeIKVfMCuzNTGjZ
+:lagopus.tamalin.org 005 greenbot CMDS=KNOCK,MAP,DCCALLOW,USERIP,STARTTLS UHNAMES NAMESX SAFELIST HCN MAXCHANNELS=30 CHANLIMIT=#:30 MAXLIST=b:60,e:60,I:60 NICKLEN=30 CHANNELLEN=32 TOPICLEN=307 KICKLEN=307 AWAYLEN=307 :are supported by this server
+:lagopus.tamalin.org 005 greenbot MAXTARGETS=20 WALLCHOPS WATCH=128 WATCHOPTS=A SILENCE=15 MODES=12 CHANTYPES=# PREFIX=(qaohv)~&@%+ CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NETWORK=Tamalin CASEMAPPING=ascii EXTBAN=~,qjncrRa ELIST=MNUCT :are supported by this server
+:lagopus.tamalin.org 005 greenbot STATUSMSG=~&@%+ EXCEPTS INVEX :are supported by this server
+:lagopus.tamalin.org 251 greenbot :There are 1 users and 11 invisible on 2 servers
+:lagopus.tamalin.org 252 greenbot 10 :operator(s) online
+:lagopus.tamalin.org 254 greenbot 2 :channels formed
+:lagopus.tamalin.org 255 greenbot :I have 3 clients and 1 servers
+:lagopus.tamalin.org 265 greenbot 3 4 :Current local users 3, max 4
+:lagopus.tamalin.org 266 greenbot 12 12 :Current global users 12, max 12
+:lagopus.tamalin.org 375 greenbot :- lagopus.tamalin.org Message of the Day - 
+:lagopus.tamalin.org 372 greenbot :- 23/5/2014 17:27
+:lagopus.tamalin.org 372 greenbot :- ################################################
+:lagopus.tamalin.org 372 greenbot :- WELCOME TO THE LAGOPUS IRC SERVER (LAGOPUS.TAMALIN.ORG).
+:lagopus.tamalin.org 372 greenbot :- This server is for testing purposes so it may not be stable!
+:lagopus.tamalin.org 372 greenbot :- Quytelda <admin@tamalin.org> runs this server;
+:lagopus.tamalin.org 372 greenbot :- This IRC network has no operators.
+:lagopus.tamalin.org 372 greenbot :- ################################################
+:lagopus.tamalin.org 376 greenbot :End of /MOTD command.
+:greenbot MODE greenbot :+ix
+:greenbot!greenbot@faise-50934D94.lan JOIN :#tamalin
+:lagopus.tamalin.org 332 greenbot #tamalin :Tamalin 2
+:lagopus.tamalin.org 333 greenbot #tamalin greenfox 1404099490
+:lagopus.tamalin.org 353 greenbot = #tamalin :greenbot ~quytelda echobot @ChanServ 
+:lagopus.tamalin.org 366 greenbot #tamalin :End of /NAMES list.
+:NickServ!NickServ@services.tamalin.org NOTICE greenbot :Welcome to tamalin.org, greenbot! Here on tamalin.org, we provide services to enable the registration of nicknames and channels! For details, type /msg NickServ help and /msg ChanServ help.
+:greenbot!greenbot@faise-50934D94.lan JOIN :#green
+:lagopus.tamalin.org 353 greenbot = #green :~greenbot 
+:lagopus.tamalin.org 366 greenbot #green :End of /NAMES list.
+:quytelda!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`status
+:quytelda!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`auth password
+:quytelda!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`status
+* Connection lost ([Failure instance: Traceback (failure with no frames): <class 'twisted.internet.error.ConnectionLost'>: Connection to the other side was lost in a non-clean fashion: Connection lost.
+]).
+* Connected established with 192.168.1.7.
+:lagopus.tamalin.org NOTICE AUTH :*** Looking up your hostname...
+:lagopus.tamalin.org NOTICE AUTH :*** Found your hostname (cached)
+PING :ED3BE872
+:lagopus.tamalin.org 001 greenbot :Welcome to the Tamalin IRC Network greenbot!greenbot@vulpes.lan
+:lagopus.tamalin.org 002 greenbot :Your host is lagopus.tamalin.org, running version Unreal3.2.10.2
+:lagopus.tamalin.org 003 greenbot :This server was created Mon May 19 2014 at 22:07:41 EDT
+:lagopus.tamalin.org 004 greenbot lagopus.tamalin.org Unreal3.2.10.2 iowghraAsORTVSxNCWqBzvdHtGpI lvhopsmntikrRcaqOALQbSeIKVfMCuzNTGjZ
+:lagopus.tamalin.org 005 greenbot CMDS=KNOCK,MAP,DCCALLOW,USERIP,STARTTLS UHNAMES NAMESX SAFELIST HCN MAXCHANNELS=30 CHANLIMIT=#:30 MAXLIST=b:60,e:60,I:60 NICKLEN=30 CHANNELLEN=32 TOPICLEN=307 KICKLEN=307 AWAYLEN=307 :are supported by this server
+:lagopus.tamalin.org 005 greenbot MAXTARGETS=20 WALLCHOPS WATCH=128 WATCHOPTS=A SILENCE=15 MODES=12 CHANTYPES=# PREFIX=(qaohv)~&@%+ CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NETWORK=Tamalin CASEMAPPING=ascii EXTBAN=~,qjncrRa ELIST=MNUCT :are supported by this server
+:lagopus.tamalin.org 005 greenbot STATUSMSG=~&@%+ EXCEPTS INVEX :are supported by this server
+:lagopus.tamalin.org 251 greenbot :There are 1 users and 11 invisible on 2 servers
+:lagopus.tamalin.org 252 greenbot 10 :operator(s) online
+:lagopus.tamalin.org 254 greenbot 2 :channels formed
+:lagopus.tamalin.org 255 greenbot :I have 3 clients and 1 servers
+:lagopus.tamalin.org 265 greenbot 3 4 :Current local users 3, max 4
+:lagopus.tamalin.org 266 greenbot 12 12 :Current global users 12, max 12
+:lagopus.tamalin.org 375 greenbot :- lagopus.tamalin.org Message of the Day - 
+:lagopus.tamalin.org 372 greenbot :- 23/5/2014 17:27
+:lagopus.tamalin.org 372 greenbot :- ################################################
+:lagopus.tamalin.org 372 greenbot :- WELCOME TO THE LAGOPUS IRC SERVER (LAGOPUS.TAMALIN.ORG).
+:lagopus.tamalin.org 372 greenbot :- This server is for testing purposes so it may not be stable!
+:lagopus.tamalin.org 372 greenbot :- Quytelda <admin@tamalin.org> runs this server;
+:lagopus.tamalin.org 372 greenbot :- This IRC network has no operators.
+:lagopus.tamalin.org 372 greenbot :- ################################################
+:lagopus.tamalin.org 376 greenbot :End of /MOTD command.
+:greenbot MODE greenbot :+ix
+:greenbot!greenbot@faise-50934D94.lan JOIN :#tamalin
+:lagopus.tamalin.org 332 greenbot #tamalin :Tamalin 2
+:lagopus.tamalin.org 333 greenbot #tamalin greenfox 1404099490
+:lagopus.tamalin.org 353 greenbot = #tamalin :greenbot ~quytelda echobot @ChanServ 
+:lagopus.tamalin.org 366 greenbot #tamalin :End of /NAMES list.
+:NickServ!NickServ@services.tamalin.org NOTICE greenbot :Welcome to tamalin.org, greenbot! Here on tamalin.org, we provide services to enable the registration of nicknames and channels! For details, type /msg NickServ help and /msg ChanServ help.
+:greenbot!greenbot@faise-50934D94.lan JOIN :#green
+:lagopus.tamalin.org 353 greenbot = #green :~greenbot 
+:lagopus.tamalin.org 366 greenbot #green :End of /NAMES list.
+:quytelda!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`status
+:quytelda!quytelda@faise-50934D94.lan NICK :greenfox
+* Connection lost ([Failure instance: Traceback (failure with no frames): <class 'twisted.internet.error.ConnectionLost'>: Connection to the other side was lost in a non-clean fashion: Connection lost.
+]).
+* Connected established with 192.168.1.7.
+:lagopus.tamalin.org NOTICE AUTH :*** Looking up your hostname...
+:lagopus.tamalin.org NOTICE AUTH :*** Found your hostname (cached)
+PING :6A9A45A
+:lagopus.tamalin.org 001 greenbot :Welcome to the Tamalin IRC Network greenbot!greenbot@vulpes.lan
+:lagopus.tamalin.org 002 greenbot :Your host is lagopus.tamalin.org, running version Unreal3.2.10.2
+:lagopus.tamalin.org 003 greenbot :This server was created Mon May 19 2014 at 22:07:41 EDT
+:lagopus.tamalin.org 004 greenbot lagopus.tamalin.org Unreal3.2.10.2 iowghraAsORTVSxNCWqBzvdHtGpI lvhopsmntikrRcaqOALQbSeIKVfMCuzNTGjZ
+:lagopus.tamalin.org 005 greenbot CMDS=KNOCK,MAP,DCCALLOW,USERIP,STARTTLS UHNAMES NAMESX SAFELIST HCN MAXCHANNELS=30 CHANLIMIT=#:30 MAXLIST=b:60,e:60,I:60 NICKLEN=30 CHANNELLEN=32 TOPICLEN=307 KICKLEN=307 AWAYLEN=307 :are supported by this server
+:lagopus.tamalin.org 005 greenbot MAXTARGETS=20 WALLCHOPS WATCH=128 WATCHOPTS=A SILENCE=15 MODES=12 CHANTYPES=# PREFIX=(qaohv)~&@%+ CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NETWORK=Tamalin CASEMAPPING=ascii EXTBAN=~,qjncrRa ELIST=MNUCT :are supported by this server
+:lagopus.tamalin.org 005 greenbot STATUSMSG=~&@%+ EXCEPTS INVEX :are supported by this server
+:lagopus.tamalin.org 251 greenbot :There are 1 users and 11 invisible on 2 servers
+:lagopus.tamalin.org 252 greenbot 10 :operator(s) online
+:lagopus.tamalin.org 254 greenbot 2 :channels formed
+:lagopus.tamalin.org 255 greenbot :I have 3 clients and 1 servers
+:lagopus.tamalin.org 265 greenbot 3 4 :Current local users 3, max 4
+:lagopus.tamalin.org 266 greenbot 12 12 :Current global users 12, max 12
+:lagopus.tamalin.org 375 greenbot :- lagopus.tamalin.org Message of the Day - 
+:lagopus.tamalin.org 372 greenbot :- 23/5/2014 17:27
+:lagopus.tamalin.org 372 greenbot :- ################################################
+:lagopus.tamalin.org 372 greenbot :- WELCOME TO THE LAGOPUS IRC SERVER (LAGOPUS.TAMALIN.ORG).
+:lagopus.tamalin.org 372 greenbot :- This server is for testing purposes so it may not be stable!
+:lagopus.tamalin.org 372 greenbot :- Quytelda <admin@tamalin.org> runs this server;
+:lagopus.tamalin.org 372 greenbot :- This IRC network has no operators.
+:lagopus.tamalin.org 372 greenbot :- ################################################
+:lagopus.tamalin.org 376 greenbot :End of /MOTD command.
+:greenbot MODE greenbot :+ix
+:greenbot!greenbot@faise-50934D94.lan JOIN :#tamalin
+:lagopus.tamalin.org 332 greenbot #tamalin :Tamalin 2
+:lagopus.tamalin.org 333 greenbot #tamalin greenfox 1404099490
+:lagopus.tamalin.org 353 greenbot = #tamalin :greenbot ~greenfox echobot @ChanServ 
+:lagopus.tamalin.org 366 greenbot #tamalin :End of /NAMES list.
+:NickServ!NickServ@services.tamalin.org NOTICE greenbot :Welcome to tamalin.org, greenbot! Here on tamalin.org, we provide services to enable the registration of nicknames and channels! For details, type /msg NickServ help and /msg ChanServ help.
+:greenbot!greenbot@faise-50934D94.lan JOIN :#green
+:lagopus.tamalin.org 353 greenbot = #green :~greenbot 
+:lagopus.tamalin.org 366 greenbot #green :End of /NAMES list.
+:greenfox!quytelda@faise-50934D94.lan NICK :quytelda
+PING :lagopus.tamalin.org
+:lagopus.tamalin.org PONG lagopus.tamalin.org :lagopus.tamalin.org
+* Connection lost ([Failure instance: Traceback (failure with no frames): <class 'twisted.internet.error.ConnectionLost'>: Connection to the other side was lost in a non-clean fashion: Connection lost.
+]).
+* Connected established with 192.168.1.7.
+:lagopus.tamalin.org NOTICE AUTH :*** Looking up your hostname...
+:lagopus.tamalin.org NOTICE AUTH :*** Found your hostname
+PING :316D7EC1
+:lagopus.tamalin.org 001 greenbot :Welcome to the Tamalin IRC Network greenbot!greenbot@vulpes.lan
+:lagopus.tamalin.org 002 greenbot :Your host is lagopus.tamalin.org, running version Unreal3.2.10.2
+:lagopus.tamalin.org 003 greenbot :This server was created Mon May 19 2014 at 22:07:41 EDT
+:lagopus.tamalin.org 004 greenbot lagopus.tamalin.org Unreal3.2.10.2 iowghraAsORTVSxNCWqBzvdHtGpI lvhopsmntikrRcaqOALQbSeIKVfMCuzNTGjZ
+:lagopus.tamalin.org 005 greenbot CMDS=KNOCK,MAP,DCCALLOW,USERIP,STARTTLS UHNAMES NAMESX SAFELIST HCN MAXCHANNELS=30 CHANLIMIT=#:30 MAXLIST=b:60,e:60,I:60 NICKLEN=30 CHANNELLEN=32 TOPICLEN=307 KICKLEN=307 AWAYLEN=307 :are supported by this server
+:lagopus.tamalin.org 005 greenbot MAXTARGETS=20 WALLCHOPS WATCH=128 WATCHOPTS=A SILENCE=15 MODES=12 CHANTYPES=# PREFIX=(qaohv)~&@%+ CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NETWORK=Tamalin CASEMAPPING=ascii EXTBAN=~,qjncrRa ELIST=MNUCT :are supported by this server
+:lagopus.tamalin.org 005 greenbot STATUSMSG=~&@%+ EXCEPTS INVEX :are supported by this server
+:lagopus.tamalin.org 251 greenbot :There are 1 users and 11 invisible on 2 servers
+:lagopus.tamalin.org 252 greenbot 10 :operator(s) online
+:lagopus.tamalin.org 254 greenbot 2 :channels formed
+:lagopus.tamalin.org 255 greenbot :I have 3 clients and 1 servers
+:lagopus.tamalin.org 265 greenbot 3 4 :Current local users 3, max 4
+:lagopus.tamalin.org 266 greenbot 12 12 :Current global users 12, max 12
+:lagopus.tamalin.org 375 greenbot :- lagopus.tamalin.org Message of the Day - 
+:lagopus.tamalin.org 372 greenbot :- 23/5/2014 17:27
+:lagopus.tamalin.org 372 greenbot :- ################################################
+:lagopus.tamalin.org 372 greenbot :- WELCOME TO THE LAGOPUS IRC SERVER (LAGOPUS.TAMALIN.ORG).
+:lagopus.tamalin.org 372 greenbot :- This server is for testing purposes so it may not be stable!
+:lagopus.tamalin.org 372 greenbot :- Quytelda <admin@tamalin.org> runs this server;
+:lagopus.tamalin.org 372 greenbot :- This IRC network has no operators.
+:lagopus.tamalin.org 372 greenbot :- ################################################
+:lagopus.tamalin.org 376 greenbot :End of /MOTD command.
+:greenbot MODE greenbot :+ix
+:greenbot!greenbot@faise-50934D94.lan JOIN :#tamalin
+:lagopus.tamalin.org 332 greenbot #tamalin :Tamalin 2
+:lagopus.tamalin.org 333 greenbot #tamalin greenfox 1404099490
+:lagopus.tamalin.org 353 greenbot = #tamalin :greenbot ~quytelda echobot @ChanServ 
+:lagopus.tamalin.org 366 greenbot #tamalin :End of /NAMES list.
+:NickServ!NickServ@services.tamalin.org NOTICE greenbot :Welcome to tamalin.org, greenbot! Here on tamalin.org, we provide services to enable the registration of nicknames and channels! For details, type /msg NickServ help and /msg ChanServ help.
+:greenbot!greenbot@faise-50934D94.lan JOIN :#green
+:lagopus.tamalin.org 353 greenbot = #green :~greenbot 
+:lagopus.tamalin.org 366 greenbot #green :End of /NAMES list.
+:quytelda!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`admins
+:quytelda!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`auth password
+:quytelda!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`admins
+:quytelda!quytelda@faise-50934D94.lan NICK :greenfox
+:greenfox!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`admins
+PING :lagopus.tamalin.org
+:lagopus.tamalin.org PONG lagopus.tamalin.org :lagopus.tamalin.org
+PING :lagopus.tamalin.org
+:lagopus.tamalin.org PONG lagopus.tamalin.org :lagopus.tamalin.org
+* Connection lost ([Failure instance: Traceback (failure with no frames): <class 'twisted.internet.error.ConnectionLost'>: Connection to the other side was lost in a non-clean fashion: Connection lost.
+]).
+* Connected established with 192.168.1.7.
+:lagopus.tamalin.org NOTICE AUTH :*** Looking up your hostname...
+:lagopus.tamalin.org NOTICE AUTH :*** Found your hostname (cached)
+PING :BE481359
+:lagopus.tamalin.org 001 greenbot :Welcome to the Tamalin IRC Network greenbot!greenbot@vulpes.lan
+:lagopus.tamalin.org 002 greenbot :Your host is lagopus.tamalin.org, running version Unreal3.2.10.2
+:lagopus.tamalin.org 003 greenbot :This server was created Mon May 19 2014 at 22:07:41 EDT
+:lagopus.tamalin.org 004 greenbot lagopus.tamalin.org Unreal3.2.10.2 iowghraAsORTVSxNCWqBzvdHtGpI lvhopsmntikrRcaqOALQbSeIKVfMCuzNTGjZ
+:lagopus.tamalin.org 005 greenbot CMDS=KNOCK,MAP,DCCALLOW,USERIP,STARTTLS UHNAMES NAMESX SAFELIST HCN MAXCHANNELS=30 CHANLIMIT=#:30 MAXLIST=b:60,e:60,I:60 NICKLEN=30 CHANNELLEN=32 TOPICLEN=307 KICKLEN=307 AWAYLEN=307 :are supported by this server
+:lagopus.tamalin.org 005 greenbot MAXTARGETS=20 WALLCHOPS WATCH=128 WATCHOPTS=A SILENCE=15 MODES=12 CHANTYPES=# PREFIX=(qaohv)~&@%+ CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NETWORK=Tamalin CASEMAPPING=ascii EXTBAN=~,qjncrRa ELIST=MNUCT :are supported by this server
+:lagopus.tamalin.org 005 greenbot STATUSMSG=~&@%+ EXCEPTS INVEX :are supported by this server
+:lagopus.tamalin.org 251 greenbot :There are 1 users and 11 invisible on 2 servers
+:lagopus.tamalin.org 252 greenbot 10 :operator(s) online
+:lagopus.tamalin.org 254 greenbot 2 :channels formed
+:lagopus.tamalin.org 255 greenbot :I have 3 clients and 1 servers
+:lagopus.tamalin.org 265 greenbot 3 4 :Current local users 3, max 4
+:lagopus.tamalin.org 266 greenbot 12 12 :Current global users 12, max 12
+:lagopus.tamalin.org 375 greenbot :- lagopus.tamalin.org Message of the Day - 
+:lagopus.tamalin.org 372 greenbot :- 23/5/2014 17:27
+:lagopus.tamalin.org 372 greenbot :- ################################################
+:lagopus.tamalin.org 372 greenbot :- WELCOME TO THE LAGOPUS IRC SERVER (LAGOPUS.TAMALIN.ORG).
+:lagopus.tamalin.org 372 greenbot :- This server is for testing purposes so it may not be stable!
+:lagopus.tamalin.org 372 greenbot :- Quytelda <admin@tamalin.org> runs this server;
+:lagopus.tamalin.org 372 greenbot :- This IRC network has no operators.
+:lagopus.tamalin.org 372 greenbot :- ################################################
+:lagopus.tamalin.org 376 greenbot :End of /MOTD command.
+:greenbot MODE greenbot :+ix
+:greenbot!greenbot@faise-50934D94.lan JOIN :#tamalin
+:lagopus.tamalin.org 332 greenbot #tamalin :Tamalin 2
+:lagopus.tamalin.org 333 greenbot #tamalin greenfox 1404099490
+:lagopus.tamalin.org 353 greenbot = #tamalin :greenbot ~greenfox echobot @ChanServ 
+:lagopus.tamalin.org 366 greenbot #tamalin :End of /NAMES list.
+:NickServ!NickServ@services.tamalin.org NOTICE greenbot :Welcome to tamalin.org, greenbot! Here on tamalin.org, we provide services to enable the registration of nicknames and channels! For details, type /msg NickServ help and /msg ChanServ help.
+:greenbot!greenbot@faise-50934D94.lan JOIN :#green
+:lagopus.tamalin.org 353 greenbot = #green :~greenbot 
+:lagopus.tamalin.org 366 greenbot #green :End of /NAMES list.
+:greenfox!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`admins
+:greenfox!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`quit
+:greenfox!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`admins
+:greenfox!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`auth password
+:greenfox!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`quit
+ERROR :Closing Link: greenbot[vulpes.lan] (Quit: Received QUIT from greenfox!quytelda@faise-50934D94.lan.)
+* Connection lost ([Failure instance: Traceback (failure with no frames): <class 'twisted.internet.error.ConnectionDone'>: Connection was closed cleanly.
+]).
+* Connected established with 192.168.1.7.
+:lagopus.tamalin.org NOTICE AUTH :*** Looking up your hostname...
+:lagopus.tamalin.org NOTICE AUTH :*** Found your hostname (cached)
+PING :FDC6735B
+:lagopus.tamalin.org 001 greenbot :Welcome to the Tamalin IRC Network greenbot!greenbot@vulpes.lan
+:lagopus.tamalin.org 002 greenbot :Your host is lagopus.tamalin.org, running version Unreal3.2.10.2
+:lagopus.tamalin.org 003 greenbot :This server was created Mon May 19 2014 at 22:07:41 EDT
+:lagopus.tamalin.org 004 greenbot lagopus.tamalin.org Unreal3.2.10.2 iowghraAsORTVSxNCWqBzvdHtGpI lvhopsmntikrRcaqOALQbSeIKVfMCuzNTGjZ
+:lagopus.tamalin.org 005 greenbot CMDS=KNOCK,MAP,DCCALLOW,USERIP,STARTTLS UHNAMES NAMESX SAFELIST HCN MAXCHANNELS=30 CHANLIMIT=#:30 MAXLIST=b:60,e:60,I:60 NICKLEN=30 CHANNELLEN=32 TOPICLEN=307 KICKLEN=307 AWAYLEN=307 :are supported by this server
+:lagopus.tamalin.org 005 greenbot MAXTARGETS=20 WALLCHOPS WATCH=128 WATCHOPTS=A SILENCE=15 MODES=12 CHANTYPES=# PREFIX=(qaohv)~&@%+ CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NETWORK=Tamalin CASEMAPPING=ascii EXTBAN=~,qjncrRa ELIST=MNUCT :are supported by this server
+:lagopus.tamalin.org 005 greenbot STATUSMSG=~&@%+ EXCEPTS INVEX :are supported by this server
+:lagopus.tamalin.org 251 greenbot :There are 1 users and 11 invisible on 2 servers
+:lagopus.tamalin.org 252 greenbot 10 :operator(s) online
+:lagopus.tamalin.org 254 greenbot 2 :channels formed
+:lagopus.tamalin.org 255 greenbot :I have 3 clients and 1 servers
+:lagopus.tamalin.org 265 greenbot 3 4 :Current local users 3, max 4
+:lagopus.tamalin.org 266 greenbot 12 12 :Current global users 12, max 12
+:lagopus.tamalin.org 375 greenbot :- lagopus.tamalin.org Message of the Day - 
+:lagopus.tamalin.org 372 greenbot :- 23/5/2014 17:27
+:lagopus.tamalin.org 372 greenbot :- ################################################
+:lagopus.tamalin.org 372 greenbot :- WELCOME TO THE LAGOPUS IRC SERVER (LAGOPUS.TAMALIN.ORG).
+:lagopus.tamalin.org 372 greenbot :- This server is for testing purposes so it may not be stable!
+:lagopus.tamalin.org 372 greenbot :- Quytelda <admin@tamalin.org> runs this server;
+:lagopus.tamalin.org 372 greenbot :- This IRC network has no operators.
+:lagopus.tamalin.org 372 greenbot :- ################################################
+:lagopus.tamalin.org 376 greenbot :End of /MOTD command.
+:greenbot MODE greenbot :+ix
+:greenbot!greenbot@faise-50934D94.lan JOIN :#tamalin
+:lagopus.tamalin.org 332 greenbot #tamalin :Tamalin 2
+:lagopus.tamalin.org 333 greenbot #tamalin greenfox 1404099490
+:lagopus.tamalin.org 353 greenbot = #tamalin :greenbot ~greenfox echobot @ChanServ 
+:lagopus.tamalin.org 366 greenbot #tamalin :End of /NAMES list.
+:NickServ!NickServ@services.tamalin.org NOTICE greenbot :Welcome to tamalin.org, greenbot! Here on tamalin.org, we provide services to enable the registration of nicknames and channels! For details, type /msg NickServ help and /msg ChanServ help.
+:greenbot!greenbot@faise-50934D94.lan JOIN :#green
+:lagopus.tamalin.org 353 greenbot = #green :~greenbot 
+:lagopus.tamalin.org 366 greenbot #green :End of /NAMES list.
+:greenfox!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`admins
+:greenfox!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`quit
+* Connection lost ([Failure instance: Traceback (failure with no frames): <class 'twisted.internet.error.ConnectionLost'>: Connection to the other side was lost in a non-clean fashion: Connection lost.
+]).
+* Connected established with 192.168.1.7.
+:lagopus.tamalin.org NOTICE AUTH :*** Looking up your hostname...
+:lagopus.tamalin.org NOTICE AUTH :*** Found your hostname (cached)
+PING :7D8A1432
+:lagopus.tamalin.org 001 greenbot :Welcome to the Tamalin IRC Network greenbot!greenbot@vulpes.lan
+:lagopus.tamalin.org 002 greenbot :Your host is lagopus.tamalin.org, running version Unreal3.2.10.2
+:lagopus.tamalin.org 003 greenbot :This server was created Mon May 19 2014 at 22:07:41 EDT
+:lagopus.tamalin.org 004 greenbot lagopus.tamalin.org Unreal3.2.10.2 iowghraAsORTVSxNCWqBzvdHtGpI lvhopsmntikrRcaqOALQbSeIKVfMCuzNTGjZ
+:lagopus.tamalin.org 005 greenbot CMDS=KNOCK,MAP,DCCALLOW,USERIP,STARTTLS UHNAMES NAMESX SAFELIST HCN MAXCHANNELS=30 CHANLIMIT=#:30 MAXLIST=b:60,e:60,I:60 NICKLEN=30 CHANNELLEN=32 TOPICLEN=307 KICKLEN=307 AWAYLEN=307 :are supported by this server
+:lagopus.tamalin.org 005 greenbot MAXTARGETS=20 WALLCHOPS WATCH=128 WATCHOPTS=A SILENCE=15 MODES=12 CHANTYPES=# PREFIX=(qaohv)~&@%+ CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NETWORK=Tamalin CASEMAPPING=ascii EXTBAN=~,qjncrRa ELIST=MNUCT :are supported by this server
+:lagopus.tamalin.org 005 greenbot STATUSMSG=~&@%+ EXCEPTS INVEX :are supported by this server
+:lagopus.tamalin.org 251 greenbot :There are 1 users and 11 invisible on 2 servers
+:lagopus.tamalin.org 252 greenbot 10 :operator(s) online
+:lagopus.tamalin.org 254 greenbot 2 :channels formed
+:lagopus.tamalin.org 255 greenbot :I have 3 clients and 1 servers
+:lagopus.tamalin.org 265 greenbot 3 4 :Current local users 3, max 4
+:lagopus.tamalin.org 266 greenbot 12 12 :Current global users 12, max 12
+:lagopus.tamalin.org 375 greenbot :- lagopus.tamalin.org Message of the Day - 
+:lagopus.tamalin.org 372 greenbot :- 23/5/2014 17:27
+:lagopus.tamalin.org 372 greenbot :- ################################################
+:lagopus.tamalin.org 372 greenbot :- WELCOME TO THE LAGOPUS IRC SERVER (LAGOPUS.TAMALIN.ORG).
+:lagopus.tamalin.org 372 greenbot :- This server is for testing purposes so it may not be stable!
+:lagopus.tamalin.org 372 greenbot :- Quytelda <admin@tamalin.org> runs this server;
+:lagopus.tamalin.org 372 greenbot :- This IRC network has no operators.
+:lagopus.tamalin.org 372 greenbot :- ################################################
+:lagopus.tamalin.org 376 greenbot :End of /MOTD command.
+:greenbot MODE greenbot :+ix
+:greenbot!greenbot@faise-50934D94.lan JOIN :#tamalin
+:lagopus.tamalin.org 332 greenbot #tamalin :Tamalin 2
+:lagopus.tamalin.org 333 greenbot #tamalin greenfox 1404099490
+:lagopus.tamalin.org 353 greenbot = #tamalin :greenbot ~greenfox echobot @ChanServ 
+:lagopus.tamalin.org 366 greenbot #tamalin :End of /NAMES list.
+:NickServ!NickServ@services.tamalin.org NOTICE greenbot :Welcome to tamalin.org, greenbot! Here on tamalin.org, we provide services to enable the registration of nicknames and channels! For details, type /msg NickServ help and /msg ChanServ help.
+:greenbot!greenbot@faise-50934D94.lan JOIN :#green
+:lagopus.tamalin.org 353 greenbot = #green :~greenbot 
+:lagopus.tamalin.org 366 greenbot #green :End of /NAMES list.
+:greenfox!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`quit
+:greenfox!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`raw hi
+:greenfox!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`auth password
+:greenfox!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`admins
+:greenfox!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`raw part #tamalin
+:greenfox!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`quit
+ERROR :Closing Link: greenbot[vulpes.lan] (Quit: Received QUIT from greenfox!quytelda@faise-50934D94.lan.)
+* Connection lost ([Failure instance: Traceback (failure with no frames): <class 'twisted.internet.error.ConnectionDone'>: Connection was closed cleanly.
+]).
+* Connected established with 192.168.1.7.
+:lagopus.tamalin.org NOTICE AUTH :*** Looking up your hostname...
+:lagopus.tamalin.org NOTICE AUTH :*** Found your hostname
+PING :1350A21C
+:lagopus.tamalin.org 001 greenbot :Welcome to the Tamalin IRC Network greenbot!greenbot@vulpes.lan
+:lagopus.tamalin.org 002 greenbot :Your host is lagopus.tamalin.org, running version Unreal3.2.10.2
+:lagopus.tamalin.org 003 greenbot :This server was created Mon May 19 2014 at 22:07:41 EDT
+:lagopus.tamalin.org 004 greenbot lagopus.tamalin.org Unreal3.2.10.2 iowghraAsORTVSxNCWqBzvdHtGpI lvhopsmntikrRcaqOALQbSeIKVfMCuzNTGjZ
+:lagopus.tamalin.org 005 greenbot CMDS=KNOCK,MAP,DCCALLOW,USERIP,STARTTLS UHNAMES NAMESX SAFELIST HCN MAXCHANNELS=30 CHANLIMIT=#:30 MAXLIST=b:60,e:60,I:60 NICKLEN=30 CHANNELLEN=32 TOPICLEN=307 KICKLEN=307 AWAYLEN=307 :are supported by this server
+:lagopus.tamalin.org 005 greenbot MAXTARGETS=20 WALLCHOPS WATCH=128 WATCHOPTS=A SILENCE=15 MODES=12 CHANTYPES=# PREFIX=(qaohv)~&@%+ CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NETWORK=Tamalin CASEMAPPING=ascii EXTBAN=~,qjncrRa ELIST=MNUCT :are supported by this server
+:lagopus.tamalin.org 005 greenbot STATUSMSG=~&@%+ EXCEPTS INVEX :are supported by this server
+:lagopus.tamalin.org 251 greenbot :There are 1 users and 11 invisible on 2 servers
+:lagopus.tamalin.org 252 greenbot 10 :operator(s) online
+:lagopus.tamalin.org 254 greenbot 2 :channels formed
+:lagopus.tamalin.org 255 greenbot :I have 3 clients and 1 servers
+:lagopus.tamalin.org 265 greenbot 3 4 :Current local users 3, max 4
+:lagopus.tamalin.org 266 greenbot 12 12 :Current global users 12, max 12
+:lagopus.tamalin.org 375 greenbot :- lagopus.tamalin.org Message of the Day - 
+:lagopus.tamalin.org 372 greenbot :- 23/5/2014 17:27
+:lagopus.tamalin.org 372 greenbot :- ################################################
+:lagopus.tamalin.org 372 greenbot :- WELCOME TO THE LAGOPUS IRC SERVER (LAGOPUS.TAMALIN.ORG).
+:lagopus.tamalin.org 372 greenbot :- This server is for testing purposes so it may not be stable!
+:lagopus.tamalin.org 372 greenbot :- Quytelda <admin@tamalin.org> runs this server;
+:lagopus.tamalin.org 372 greenbot :- This IRC network has no operators.
+:lagopus.tamalin.org 372 greenbot :- ################################################
+:lagopus.tamalin.org 376 greenbot :End of /MOTD command.
+:greenbot MODE greenbot :+ix
+:greenbot!greenbot@faise-50934D94.lan JOIN :#tamalin
+:lagopus.tamalin.org 332 greenbot #tamalin :Tamalin 2
+:lagopus.tamalin.org 333 greenbot #tamalin greenfox 1404099490
+:lagopus.tamalin.org 353 greenbot = #tamalin :greenbot ~greenfox echobot @ChanServ 
+:lagopus.tamalin.org 366 greenbot #tamalin :End of /NAMES list.
+:NickServ!NickServ@services.tamalin.org NOTICE greenbot :Welcome to tamalin.org, greenbot! Here on tamalin.org, we provide services to enable the registration of nicknames and channels! For details, type /msg NickServ help and /msg ChanServ help.
+:greenbot!greenbot@faise-50934D94.lan JOIN :#green
+:lagopus.tamalin.org 353 greenbot = #green :~greenbot 
+:lagopus.tamalin.org 366 greenbot #green :End of /NAMES list.
+:greenfox!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`raw part #tamalin
+:greenfox!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`auth password
+:greenfox!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`raw part #tamalin
+:greenbot!greenbot@faise-50934D94.lan PART #tamalin
+:greenfox!quytelda@faise-50934D94.lan PRIVMSG greenbot :raw join #tamalin
+:greenbot!greenbot@faise-50934D94.lan JOIN :#tamalin
+:lagopus.tamalin.org 332 greenbot #tamalin :Tamalin 2
+:lagopus.tamalin.org 333 greenbot #tamalin greenfox 1404099490
+:lagopus.tamalin.org 353 greenbot = #tamalin :greenbot ~greenfox echobot @ChanServ 
+:lagopus.tamalin.org 366 greenbot #tamalin :End of /NAMES list.
+:lagopus.tamalin.org PONG lagopus.tamalin.org :lagopus.tamalin.org
+* Connection lost ([Failure instance: Traceback (failure with no frames): <class 'twisted.internet.error.ConnectionLost'>: Connection to the other side was lost in a non-clean fashion: Connection lost.
+]).
+* Connected established with 192.168.1.7.
+:lagopus.tamalin.org NOTICE AUTH :*** Looking up your hostname...
+:lagopus.tamalin.org NOTICE AUTH :*** Found your hostname
+PING :C4468F0C
+:lagopus.tamalin.org 001 greenbot :Welcome to the Tamalin IRC Network greenbot!greenbot@vulpes.lan
+:lagopus.tamalin.org 002 greenbot :Your host is lagopus.tamalin.org, running version Unreal3.2.10.2
+:lagopus.tamalin.org 003 greenbot :This server was created Mon May 19 2014 at 22:07:41 EDT
+:lagopus.tamalin.org 004 greenbot lagopus.tamalin.org Unreal3.2.10.2 iowghraAsORTVSxNCWqBzvdHtGpI lvhopsmntikrRcaqOALQbSeIKVfMCuzNTGjZ
+:lagopus.tamalin.org 005 greenbot CMDS=KNOCK,MAP,DCCALLOW,USERIP,STARTTLS UHNAMES NAMESX SAFELIST HCN MAXCHANNELS=30 CHANLIMIT=#:30 MAXLIST=b:60,e:60,I:60 NICKLEN=30 CHANNELLEN=32 TOPICLEN=307 KICKLEN=307 AWAYLEN=307 :are supported by this server
+:lagopus.tamalin.org 005 greenbot MAXTARGETS=20 WALLCHOPS WATCH=128 WATCHOPTS=A SILENCE=15 MODES=12 CHANTYPES=# PREFIX=(qaohv)~&@%+ CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NETWORK=Tamalin CASEMAPPING=ascii EXTBAN=~,qjncrRa ELIST=MNUCT :are supported by this server
+:lagopus.tamalin.org 005 greenbot STATUSMSG=~&@%+ EXCEPTS INVEX :are supported by this server
+:lagopus.tamalin.org 251 greenbot :There are 1 users and 10 invisible on 2 servers
+:lagopus.tamalin.org 252 greenbot 9 :operator(s) online
+:lagopus.tamalin.org 254 greenbot 1 :channels formed
+:lagopus.tamalin.org 255 greenbot :I have 2 clients and 1 servers
+:lagopus.tamalin.org 265 greenbot 2 4 :Current local users 2, max 4
+:lagopus.tamalin.org 266 greenbot 11 12 :Current global users 11, max 12
+:lagopus.tamalin.org 375 greenbot :- lagopus.tamalin.org Message of the Day - 
+:lagopus.tamalin.org 372 greenbot :- 23/5/2014 17:27
+:lagopus.tamalin.org 372 greenbot :- ################################################
+:lagopus.tamalin.org 372 greenbot :- WELCOME TO THE LAGOPUS IRC SERVER (LAGOPUS.TAMALIN.ORG).
+:lagopus.tamalin.org 372 greenbot :- This server is for testing purposes so it may not be stable!
+:lagopus.tamalin.org 372 greenbot :- Quytelda <admin@tamalin.org> runs this server;
+:lagopus.tamalin.org 372 greenbot :- This IRC network has no operators.
+:lagopus.tamalin.org 372 greenbot :- ################################################
+:lagopus.tamalin.org 376 greenbot :End of /MOTD command.
+:greenbot MODE greenbot :+ix
+:greenbot!greenbot@faise-50934D94.lan JOIN :#tamalin
+:lagopus.tamalin.org 332 greenbot #tamalin :Tamalin 2
+:lagopus.tamalin.org 333 greenbot #tamalin greenfox 1404099490
+:lagopus.tamalin.org 353 greenbot = #tamalin :greenbot echobot @ChanServ 
+:lagopus.tamalin.org 366 greenbot #tamalin :End of /NAMES list.
+:NickServ!NickServ@services.tamalin.org NOTICE greenbot :Welcome to tamalin.org, greenbot! Here on tamalin.org, we provide services to enable the registration of nicknames and channels! For details, type /msg NickServ help and /msg ChanServ help.
+:greenbot!greenbot@faise-50934D94.lan JOIN :#green
+:lagopus.tamalin.org 353 greenbot = #green :~greenbot 
+:lagopus.tamalin.org 366 greenbot #green :End of /NAMES list.
+:quytelda!quytelda@faise-50934D94.lan JOIN :#tamalin
+:quytelda!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`link
+:quytelda!quytelda@faise-50934D94.lan PRIVMSG greenbot :link
+:quytelda!quytelda@faise-50934D94.lan PRIVMSG greenbot :link #tamalin
+:quytelda!quytelda@faise-50934D94.lan PRIVMSG greenbot :link #tam
+:lagopus.tamalin.org PONG lagopus.tamalin.org :lagopus.tamalin.org
+PING :lagopus.tamalin.org
+:lagopus.tamalin.org PONG lagopus.tamalin.org :lagopus.tamalin.org
+PING :lagopus.tamalin.org
+:lagopus.tamalin.org PONG lagopus.tamalin.org :lagopus.tamalin.org
+PING :lagopus.tamalin.org
+:lagopus.tamalin.org PONG lagopus.tamalin.org :lagopus.tamalin.org
+PING :lagopus.tamalin.org
+:lagopus.tamalin.org PONG lagopus.tamalin.org :lagopus.tamalin.org
+PING :lagopus.tamalin.org
+:lagopus.tamalin.org PONG lagopus.tamalin.org :lagopus.tamalin.org
+PING :lagopus.tamalin.org
+:lagopus.tamalin.org PONG lagopus.tamalin.org :lagopus.tamalin.org
+* Connection lost ([Failure instance: Traceback (failure with no frames): <class 'twisted.internet.error.ConnectionLost'>: Connection to the other side was lost in a non-clean fashion: Connection lost.
+]).
+* Connected established with 192.168.1.7.
+:lagopus.tamalin.org NOTICE AUTH :*** Looking up your hostname...
+:lagopus.tamalin.org NOTICE AUTH :*** Found your hostname
+PING :9EFB726
+:lagopus.tamalin.org 001 greenbot :Welcome to the Tamalin IRC Network greenbot!greenbot@vulpes.lan
+:lagopus.tamalin.org 002 greenbot :Your host is lagopus.tamalin.org, running version Unreal3.2.10.2
+:lagopus.tamalin.org 003 greenbot :This server was created Mon May 19 2014 at 22:07:41 EDT
+:lagopus.tamalin.org 004 greenbot lagopus.tamalin.org Unreal3.2.10.2 iowghraAsORTVSxNCWqBzvdHtGpI lvhopsmntikrRcaqOALQbSeIKVfMCuzNTGjZ
+:lagopus.tamalin.org 005 greenbot CMDS=KNOCK,MAP,DCCALLOW,USERIP,STARTTLS UHNAMES NAMESX SAFELIST HCN MAXCHANNELS=30 CHANLIMIT=#:30 MAXLIST=b:60,e:60,I:60 NICKLEN=30 CHANNELLEN=32 TOPICLEN=307 KICKLEN=307 AWAYLEN=307 :are supported by this server
+:lagopus.tamalin.org 005 greenbot MAXTARGETS=20 WALLCHOPS WATCH=128 WATCHOPTS=A SILENCE=15 MODES=12 CHANTYPES=# PREFIX=(qaohv)~&@%+ CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NETWORK=Tamalin CASEMAPPING=ascii EXTBAN=~,qjncrRa ELIST=MNUCT :are supported by this server
+:lagopus.tamalin.org 005 greenbot STATUSMSG=~&@%+ EXCEPTS INVEX :are supported by this server
+:lagopus.tamalin.org 251 greenbot :There are 1 users and 11 invisible on 2 servers
+:lagopus.tamalin.org 252 greenbot 9 :operator(s) online
+:lagopus.tamalin.org 254 greenbot 1 :channels formed
+:lagopus.tamalin.org 255 greenbot :I have 3 clients and 1 servers
+:lagopus.tamalin.org 265 greenbot 3 4 :Current local users 3, max 4
+:lagopus.tamalin.org 266 greenbot 12 12 :Current global users 12, max 12
+:lagopus.tamalin.org 375 greenbot :- lagopus.tamalin.org Message of the Day - 
+:lagopus.tamalin.org 372 greenbot :- 23/5/2014 17:27
+:lagopus.tamalin.org 372 greenbot :- ################################################
+:lagopus.tamalin.org 372 greenbot :- WELCOME TO THE LAGOPUS IRC SERVER (LAGOPUS.TAMALIN.ORG).
+:lagopus.tamalin.org 372 greenbot :- This server is for testing purposes so it may not be stable!
+:lagopus.tamalin.org 372 greenbot :- Quytelda <admin@tamalin.org> runs this server;
+:lagopus.tamalin.org 372 greenbot :- This IRC network has no operators.
+:lagopus.tamalin.org 372 greenbot :- ################################################
+:lagopus.tamalin.org 376 greenbot :End of /MOTD command.
+:greenbot MODE greenbot :+ix
+:greenbot!greenbot@faise-50934D94.lan JOIN :#tamalin
+:lagopus.tamalin.org 332 greenbot #tamalin :Tamalin 2
+:lagopus.tamalin.org 333 greenbot #tamalin greenfox 1404099490
+:lagopus.tamalin.org 353 greenbot = #tamalin :greenbot quytelda echobot @ChanServ 
+:lagopus.tamalin.org 366 greenbot #tamalin :End of /NAMES list.
+:NickServ!NickServ@services.tamalin.org NOTICE greenbot :Welcome to tamalin.org, greenbot! Here on tamalin.org, we provide services to enable the registration of nicknames and channels! For details, type /msg NickServ help and /msg ChanServ help.
+:greenbot!greenbot@faise-50934D94.lan JOIN :#green
+:lagopus.tamalin.org 353 greenbot = #green :~greenbot 
+:lagopus.tamalin.org 366 greenbot #green :End of /NAMES list.
+:quytelda!quytelda@faise-50934D94.lan PRIVMSG #tamalin :testing
+[00:00:00]:quytelda!quytelda@faise-50934D94.lan PRIVMSG #tamalin :Hiya
+:quytelda!quytelda@faise-50934D94.lan PART #tamalin
+:quytelda!quytelda@faise-50934D94.lan JOIN :#tamalin
+:quytelda!quytelda@faise-50934D94.lan NICK :greenfox
+:ChanServ!ChanServ@services.tamalin.org MODE #tamalin +qo greenfox greenfox
+PING :lagopus.tamalin.org
+:lagopus.tamalin.org PONG lagopus.tamalin.org :lagopus.tamalin.org
+PING :lagopus.tamalin.org
+:lagopus.tamalin.org PONG lagopus.tamalin.org :lagopus.tamalin.org
+:greenfox!quytelda@faise-50934D94.lan QUIT :Quit: Leaving
+* Connection lost ([Failure instance: Traceback (failure with no frames): <class 'twisted.internet.error.ConnectionLost'>: Connection to the other side was lost in a non-clean fashion: Connection lost.
+]).
+* Connected established with 192.168.1.7.
+* Connection lost ([Failure instance: Traceback (failure with no frames): <type 'exceptions.UnboundLocalError'>: local variable 'time' referenced before assignment
+]).
+* Connected established with 192.168.1.7.
+[20:49:14] :lagopus.tamalin.org NOTICE AUTH :*** Looking up your hostname...
+[20:49:14] :lagopus.tamalin.org NOTICE AUTH :*** Found your hostname (cached)
+[20:49:15] PING :157EFDF9
+[20:49:15] :lagopus.tamalin.org 001 greenbot :Welcome to the Tamalin IRC Network greenbot!greenbot@vulpes.lan
+[20:49:15] :lagopus.tamalin.org 002 greenbot :Your host is lagopus.tamalin.org, running version Unreal3.2.10.2
+[20:49:15] :lagopus.tamalin.org 003 greenbot :This server was created Mon May 19 2014 at 22:07:41 EDT
+[20:49:15] :lagopus.tamalin.org 004 greenbot lagopus.tamalin.org Unreal3.2.10.2 iowghraAsORTVSxNCWqBzvdHtGpI lvhopsmntikrRcaqOALQbSeIKVfMCuzNTGjZ
+[20:49:15] :lagopus.tamalin.org 005 greenbot CMDS=KNOCK,MAP,DCCALLOW,USERIP,STARTTLS UHNAMES NAMESX SAFELIST HCN MAXCHANNELS=30 CHANLIMIT=#:30 MAXLIST=b:60,e:60,I:60 NICKLEN=30 CHANNELLEN=32 TOPICLEN=307 KICKLEN=307 AWAYLEN=307 :are supported by this server
+[20:49:15] :lagopus.tamalin.org 005 greenbot MAXTARGETS=20 WALLCHOPS WATCH=128 WATCHOPTS=A SILENCE=15 MODES=12 CHANTYPES=# PREFIX=(qaohv)~&@%+ CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NETWORK=Tamalin CASEMAPPING=ascii EXTBAN=~,qjncrRa ELIST=MNUCT :are supported by this server
+[20:49:15] :lagopus.tamalin.org 005 greenbot STATUSMSG=~&@%+ EXCEPTS INVEX :are supported by this server
+[20:49:15] :lagopus.tamalin.org 251 greenbot :There are 1 users and 10 invisible on 2 servers
+[20:49:15] :lagopus.tamalin.org 252 greenbot 9 :operator(s) online
+[20:49:15] :lagopus.tamalin.org 254 greenbot 1 :channels formed
+[20:49:15] :lagopus.tamalin.org 255 greenbot :I have 2 clients and 1 servers
+[20:49:15] :lagopus.tamalin.org 265 greenbot 2 4 :Current local users 2, max 4
+[20:49:15] :lagopus.tamalin.org 266 greenbot 11 12 :Current global users 11, max 12
+[20:49:15] :lagopus.tamalin.org 375 greenbot :- lagopus.tamalin.org Message of the Day - 
+[20:49:15] :lagopus.tamalin.org 372 greenbot :- 23/5/2014 17:27
+[20:49:15] :lagopus.tamalin.org 372 greenbot :- ################################################
+[20:49:15] :lagopus.tamalin.org 372 greenbot :- WELCOME TO THE LAGOPUS IRC SERVER (LAGOPUS.TAMALIN.ORG).
+[20:49:15] :lagopus.tamalin.org 372 greenbot :- This server is for testing purposes so it may not be stable!
+[20:49:15] :lagopus.tamalin.org 372 greenbot :- Quytelda <admin@tamalin.org> runs this server;
+[20:49:15] :lagopus.tamalin.org 372 greenbot :- This IRC network has no operators.
+[20:49:15] :lagopus.tamalin.org 372 greenbot :- ################################################
+[20:49:15] :lagopus.tamalin.org 376 greenbot :End of /MOTD command.
+[20:49:15] :greenbot MODE greenbot :+ix
+[20:49:15] :greenbot!greenbot@faise-50934D94.lan JOIN :#tamalin
+[20:49:15] :lagopus.tamalin.org 332 greenbot #tamalin :Tamalin 2
+[20:49:15] :lagopus.tamalin.org 333 greenbot #tamalin greenfox 1404099490
+[20:49:15] :lagopus.tamalin.org 353 greenbot = #tamalin :greenbot echobot @ChanServ 
+[20:49:15] :lagopus.tamalin.org 366 greenbot #tamalin :End of /NAMES list.
+[20:49:15] :NickServ!NickServ@services.tamalin.org NOTICE greenbot :Welcome to tamalin.org, greenbot! Here on tamalin.org, we provide services to enable the registration of nicknames and channels! For details, type /msg NickServ help and /msg ChanServ help.
+[20:49:15] :greenbot!greenbot@faise-50934D94.lan JOIN :#green
+[20:49:15] :lagopus.tamalin.org 353 greenbot = #green :~greenbot 
+[20:49:15] :lagopus.tamalin.org 366 greenbot #green :End of /NAMES list.
+[20:49:23] :greenfox!quytelda@faise-50934D94.lan JOIN :#tamalin
+[20:49:28] :greenfox!quytelda@faise-50934D94.lan PRIVMSG #tamalin :hi
+[20:50:48] PING :lagopus.tamalin.org
+[20:51:15] :lagopus.tamalin.org PONG lagopus.tamalin.org :lagopus.tamalin.org
+[20:52:51] PING :lagopus.tamalin.org
+[20:53:15] :lagopus.tamalin.org PONG lagopus.tamalin.org :lagopus.tamalin.org
+* Connection lost ([Failure instance: Traceback (failure with no frames): <class 'twisted.internet.error.ConnectionLost'>: Connection to the other side was lost in a non-clean fashion: Connection lost.
+]).
+* Connected established with 192.168.1.7.
+[20:54:22] :lagopus.tamalin.org NOTICE AUTH :*** Looking up your hostname...
+[20:54:22] :lagopus.tamalin.org NOTICE AUTH :*** Found your hostname (cached)
+[20:54:23] PING :358B5E50
+[20:54:23] :lagopus.tamalin.org 001 greenbot :Welcome to the Tamalin IRC Network greenbot!greenbot@vulpes.lan
+[20:54:23] :lagopus.tamalin.org 002 greenbot :Your host is lagopus.tamalin.org, running version Unreal3.2.10.2
+[20:54:23] :lagopus.tamalin.org 003 greenbot :This server was created Mon May 19 2014 at 22:07:41 EDT
+[20:54:23] :lagopus.tamalin.org 004 greenbot lagopus.tamalin.org Unreal3.2.10.2 iowghraAsORTVSxNCWqBzvdHtGpI lvhopsmntikrRcaqOALQbSeIKVfMCuzNTGjZ
+[20:54:23] :lagopus.tamalin.org 005 greenbot CMDS=KNOCK,MAP,DCCALLOW,USERIP,STARTTLS UHNAMES NAMESX SAFELIST HCN MAXCHANNELS=30 CHANLIMIT=#:30 MAXLIST=b:60,e:60,I:60 NICKLEN=30 CHANNELLEN=32 TOPICLEN=307 KICKLEN=307 AWAYLEN=307 :are supported by this server
+[20:54:23] :lagopus.tamalin.org 005 greenbot MAXTARGETS=20 WALLCHOPS WATCH=128 WATCHOPTS=A SILENCE=15 MODES=12 CHANTYPES=# PREFIX=(qaohv)~&@%+ CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NETWORK=Tamalin CASEMAPPING=ascii EXTBAN=~,qjncrRa ELIST=MNUCT :are supported by this server
+[20:54:23] :lagopus.tamalin.org 005 greenbot STATUSMSG=~&@%+ EXCEPTS INVEX :are supported by this server
+[20:54:23] :lagopus.tamalin.org 251 greenbot :There are 1 users and 11 invisible on 2 servers
+[20:54:23] :lagopus.tamalin.org 252 greenbot 9 :operator(s) online
+[20:54:23] :lagopus.tamalin.org 254 greenbot 1 :channels formed
+[20:54:23] :lagopus.tamalin.org 255 greenbot :I have 3 clients and 1 servers
+[20:54:23] :lagopus.tamalin.org 265 greenbot 3 4 :Current local users 3, max 4
+[20:54:23] :lagopus.tamalin.org 266 greenbot 12 12 :Current global users 12, max 12
+[20:54:23] :lagopus.tamalin.org 375 greenbot :- lagopus.tamalin.org Message of the Day - 
+[20:54:23] :lagopus.tamalin.org 372 greenbot :- 23/5/2014 17:27
+[20:54:23] :lagopus.tamalin.org 372 greenbot :- ################################################
+[20:54:23] :lagopus.tamalin.org 372 greenbot :- WELCOME TO THE LAGOPUS IRC SERVER (LAGOPUS.TAMALIN.ORG).
+[20:54:23] :lagopus.tamalin.org 372 greenbot :- This server is for testing purposes so it may not be stable!
+[20:54:23] :lagopus.tamalin.org 372 greenbot :- Quytelda <admin@tamalin.org> runs this server;
+[20:54:23] :lagopus.tamalin.org 372 greenbot :- This IRC network has no operators.
+[20:54:23] :lagopus.tamalin.org 372 greenbot :- ################################################
+[20:54:23] :lagopus.tamalin.org 376 greenbot :End of /MOTD command.
+[20:54:23] :greenbot MODE greenbot :+ix
+[20:54:23] :greenbot!greenbot@faise-50934D94.lan JOIN :#tamalin
+[20:54:23] :lagopus.tamalin.org 332 greenbot #tamalin :Tamalin 2
+[20:54:23] :lagopus.tamalin.org 333 greenbot #tamalin greenfox 1404099490
+[20:54:23] :lagopus.tamalin.org 353 greenbot = #tamalin :greenbot greenfox echobot @ChanServ 
+[20:54:23] :lagopus.tamalin.org 366 greenbot #tamalin :End of /NAMES list.
+[20:54:23] :NickServ!NickServ@services.tamalin.org NOTICE greenbot :Welcome to tamalin.org, greenbot! Here on tamalin.org, we provide services to enable the registration of nicknames and channels! For details, type /msg NickServ help and /msg ChanServ help.
+[20:54:23] :greenbot!greenbot@faise-50934D94.lan JOIN :#green
+[20:54:23] :lagopus.tamalin.org 353 greenbot = #green :~greenbot 
+[20:54:23] :lagopus.tamalin.org 366 greenbot #green :End of /NAMES list.
+[20:54:23] :greenbot!greenbot@faise-50934D94.lan JOIN :#opers
+[20:54:23] :lagopus.tamalin.org 353 greenbot = #opers :~greenbot 
+[20:54:23] :lagopus.tamalin.org 366 greenbot #opers :End of /NAMES list.
+* Connection lost ([Failure instance: Traceback (failure with no frames): <class 'twisted.internet.error.ConnectionLost'>: Connection to the other side was lost in a non-clean fashion: Connection lost.
+]).
+* Connected established with 192.168.1.7.
+[21:01:28] :lagopus.tamalin.org NOTICE AUTH :*** Looking up your hostname...
+[21:01:28] :lagopus.tamalin.org NOTICE AUTH :*** Found your hostname
+[21:01:28] PING :BECB0699
+[21:01:28] :lagopus.tamalin.org 001 greenbot :Welcome to the Tamalin IRC Network greenbot!greenbot@vulpes.lan
+[21:01:28] :lagopus.tamalin.org 002 greenbot :Your host is lagopus.tamalin.org, running version Unreal3.2.10.2
+[21:01:28] :lagopus.tamalin.org 003 greenbot :This server was created Mon May 19 2014 at 22:07:41 EDT
+[21:01:28] :lagopus.tamalin.org 004 greenbot lagopus.tamalin.org Unreal3.2.10.2 iowghraAsORTVSxNCWqBzvdHtGpI lvhopsmntikrRcaqOALQbSeIKVfMCuzNTGjZ
+[21:01:28] :lagopus.tamalin.org 005 greenbot CMDS=KNOCK,MAP,DCCALLOW,USERIP,STARTTLS UHNAMES NAMESX SAFELIST HCN MAXCHANNELS=30 CHANLIMIT=#:30 MAXLIST=b:60,e:60,I:60 NICKLEN=30 CHANNELLEN=32 TOPICLEN=307 KICKLEN=307 AWAYLEN=307 :are supported by this server
+[21:01:28] :lagopus.tamalin.org 005 greenbot MAXTARGETS=20 WALLCHOPS WATCH=128 WATCHOPTS=A SILENCE=15 MODES=12 CHANTYPES=# PREFIX=(qaohv)~&@%+ CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NETWORK=Tamalin CASEMAPPING=ascii EXTBAN=~,qjncrRa ELIST=MNUCT :are supported by this server
+[21:01:28] :lagopus.tamalin.org 005 greenbot STATUSMSG=~&@%+ EXCEPTS INVEX :are supported by this server
+[21:01:28] :lagopus.tamalin.org 251 greenbot :There are 1 users and 11 invisible on 2 servers
+[21:01:28] :lagopus.tamalin.org 252 greenbot 9 :operator(s) online
+[21:01:28] :lagopus.tamalin.org 254 greenbot 1 :channels formed
+[21:01:28] :lagopus.tamalin.org 255 greenbot :I have 3 clients and 1 servers
+[21:01:28] :lagopus.tamalin.org 265 greenbot 3 4 :Current local users 3, max 4
+[21:01:28] :lagopus.tamalin.org 266 greenbot 12 12 :Current global users 12, max 12
+[21:01:28] :lagopus.tamalin.org 375 greenbot :- lagopus.tamalin.org Message of the Day - 
+[21:01:28] :lagopus.tamalin.org 372 greenbot :- 23/5/2014 17:27
+[21:01:28] :lagopus.tamalin.org 372 greenbot :- ################################################
+[21:01:28] :lagopus.tamalin.org 372 greenbot :- WELCOME TO THE LAGOPUS IRC SERVER (LAGOPUS.TAMALIN.ORG).
+[21:01:28] :lagopus.tamalin.org 372 greenbot :- This server is for testing purposes so it may not be stable!
+[21:01:28] :lagopus.tamalin.org 372 greenbot :- Quytelda <admin@tamalin.org> runs this server;
+[21:01:28] :lagopus.tamalin.org 372 greenbot :- This IRC network has no operators.
+[21:01:28] :lagopus.tamalin.org 372 greenbot :- ################################################
+[21:01:28] :lagopus.tamalin.org 376 greenbot :End of /MOTD command.
+[21:01:28] :greenbot MODE greenbot :+ix
+[21:01:28] :greenbot!greenbot@faise-50934D94.lan JOIN :#tamalin
+[21:01:28] :lagopus.tamalin.org 332 greenbot #tamalin :Tamalin 2
+[21:01:28] :lagopus.tamalin.org 333 greenbot #tamalin greenfox 1404099490
+[21:01:28] :lagopus.tamalin.org 353 greenbot = #tamalin :greenbot greenfox echobot @ChanServ 
+[21:01:28] :lagopus.tamalin.org 366 greenbot #tamalin :End of /NAMES list.
+[21:01:28] :NickServ!NickServ@services.tamalin.org NOTICE greenbot :Welcome to tamalin.org, greenbot! Here on tamalin.org, we provide services to enable the registration of nicknames and channels! For details, type /msg NickServ help and /msg ChanServ help.
+[21:01:28] :greenbot!greenbot@faise-50934D94.lan JOIN :#green
+[21:01:28] :lagopus.tamalin.org 353 greenbot = #green :~greenbot 
+[21:01:28] :lagopus.tamalin.org 366 greenbot #green :End of /NAMES list.
+[21:01:28] :greenbot!greenbot@faise-50934D94.lan JOIN :#opers
+[21:01:28] :lagopus.tamalin.org 353 greenbot = #opers :~greenbot 
+[21:01:28] :lagopus.tamalin.org 366 greenbot #opers :End of /NAMES list.
+[21:01:34] :greenfox!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`help
+* Connection lost ([Failure instance: Traceback (failure with no frames): <class 'twisted.internet.error.ConnectionLost'>: Connection to the other side was lost in a non-clean fashion: Connection lost.
+]).
+* Connected established with 192.168.1.7.
+[21:01:57] :lagopus.tamalin.org NOTICE AUTH :*** Looking up your hostname...
+[21:01:57] :lagopus.tamalin.org NOTICE AUTH :*** Found your hostname (cached)
+[21:01:57] PING :8B861437
+[21:01:57] :lagopus.tamalin.org 001 greenbot :Welcome to the Tamalin IRC Network greenbot!greenbot@vulpes.lan
+[21:01:57] :lagopus.tamalin.org 002 greenbot :Your host is lagopus.tamalin.org, running version Unreal3.2.10.2
+[21:01:57] :lagopus.tamalin.org 003 greenbot :This server was created Mon May 19 2014 at 22:07:41 EDT
+[21:01:57] :lagopus.tamalin.org 004 greenbot lagopus.tamalin.org Unreal3.2.10.2 iowghraAsORTVSxNCWqBzvdHtGpI lvhopsmntikrRcaqOALQbSeIKVfMCuzNTGjZ
+[21:01:57] :lagopus.tamalin.org 005 greenbot CMDS=KNOCK,MAP,DCCALLOW,USERIP,STARTTLS UHNAMES NAMESX SAFELIST HCN MAXCHANNELS=30 CHANLIMIT=#:30 MAXLIST=b:60,e:60,I:60 NICKLEN=30 CHANNELLEN=32 TOPICLEN=307 KICKLEN=307 AWAYLEN=307 :are supported by this server
+[21:01:57] :lagopus.tamalin.org 005 greenbot MAXTARGETS=20 WALLCHOPS WATCH=128 WATCHOPTS=A SILENCE=15 MODES=12 CHANTYPES=# PREFIX=(qaohv)~&@%+ CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NETWORK=Tamalin CASEMAPPING=ascii EXTBAN=~,qjncrRa ELIST=MNUCT :are supported by this server
+[21:01:57] :lagopus.tamalin.org 005 greenbot STATUSMSG=~&@%+ EXCEPTS INVEX :are supported by this server
+[21:01:57] :lagopus.tamalin.org 251 greenbot :There are 1 users and 11 invisible on 2 servers
+[21:01:57] :lagopus.tamalin.org 252 greenbot 9 :operator(s) online
+[21:01:57] :lagopus.tamalin.org 254 greenbot 1 :channels formed
+[21:01:57] :lagopus.tamalin.org 255 greenbot :I have 3 clients and 1 servers
+[21:01:57] :lagopus.tamalin.org 265 greenbot 3 4 :Current local users 3, max 4
+[21:01:57] :lagopus.tamalin.org 266 greenbot 12 12 :Current global users 12, max 12
+[21:01:57] :lagopus.tamalin.org 375 greenbot :- lagopus.tamalin.org Message of the Day - 
+[21:01:57] :lagopus.tamalin.org 372 greenbot :- 23/5/2014 17:27
+[21:01:57] :lagopus.tamalin.org 372 greenbot :- ################################################
+[21:01:57] :lagopus.tamalin.org 372 greenbot :- WELCOME TO THE LAGOPUS IRC SERVER (LAGOPUS.TAMALIN.ORG).
+[21:01:57] :lagopus.tamalin.org 372 greenbot :- This server is for testing purposes so it may not be stable!
+[21:01:57] :lagopus.tamalin.org 372 greenbot :- Quytelda <admin@tamalin.org> runs this server;
+[21:01:57] :lagopus.tamalin.org 372 greenbot :- This IRC network has no operators.
+[21:01:57] :lagopus.tamalin.org 372 greenbot :- ################################################
+[21:01:57] :lagopus.tamalin.org 376 greenbot :End of /MOTD command.
+[21:01:57] :greenbot MODE greenbot :+ix
+[21:01:57] :greenbot!greenbot@faise-50934D94.lan JOIN :#tamalin
+[21:01:57] :lagopus.tamalin.org 332 greenbot #tamalin :Tamalin 2
+[21:01:57] :lagopus.tamalin.org 333 greenbot #tamalin greenfox 1404099490
+[21:01:57] :lagopus.tamalin.org 353 greenbot = #tamalin :greenbot greenfox echobot @ChanServ 
+[21:01:57] :lagopus.tamalin.org 366 greenbot #tamalin :End of /NAMES list.
+[21:01:57] :NickServ!NickServ@services.tamalin.org NOTICE greenbot :Welcome to tamalin.org, greenbot! Here on tamalin.org, we provide services to enable the registration of nicknames and channels! For details, type /msg NickServ help and /msg ChanServ help.
+[21:01:57] :greenbot!greenbot@faise-50934D94.lan JOIN :#green
+[21:01:57] :lagopus.tamalin.org 353 greenbot = #green :~greenbot 
+[21:01:57] :lagopus.tamalin.org 366 greenbot #green :End of /NAMES list.
+[21:01:57] :greenbot!greenbot@faise-50934D94.lan JOIN :#opers
+[21:01:57] :lagopus.tamalin.org 353 greenbot = #opers :~greenbot 
+[21:01:57] :lagopus.tamalin.org 366 greenbot #opers :End of /NAMES list.
+[21:02:04] :greenfox!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`help
+[21:03:42] PING :lagopus.tamalin.org
+* Connection lost ([Failure instance: Traceback (failure with no frames): <class 'twisted.internet.error.ConnectionLost'>: Connection to the other side was lost in a non-clean fashion: Connection lost.
+]).
+* Connected established with 192.168.1.7.
+[21:03:55] :lagopus.tamalin.org NOTICE AUTH :*** Looking up your hostname...
+[21:03:55] :lagopus.tamalin.org NOTICE AUTH :*** Found your hostname (cached)
+[21:03:55] PING :93FB16E1
+[21:03:55] :lagopus.tamalin.org 001 greenbot :Welcome to the Tamalin IRC Network greenbot!greenbot@vulpes.lan
+[21:03:55] :lagopus.tamalin.org 002 greenbot :Your host is lagopus.tamalin.org, running version Unreal3.2.10.2
+[21:03:55] :lagopus.tamalin.org 003 greenbot :This server was created Mon May 19 2014 at 22:07:41 EDT
+[21:03:55] :lagopus.tamalin.org 004 greenbot lagopus.tamalin.org Unreal3.2.10.2 iowghraAsORTVSxNCWqBzvdHtGpI lvhopsmntikrRcaqOALQbSeIKVfMCuzNTGjZ
+[21:03:55] :lagopus.tamalin.org 005 greenbot CMDS=KNOCK,MAP,DCCALLOW,USERIP,STARTTLS UHNAMES NAMESX SAFELIST HCN MAXCHANNELS=30 CHANLIMIT=#:30 MAXLIST=b:60,e:60,I:60 NICKLEN=30 CHANNELLEN=32 TOPICLEN=307 KICKLEN=307 AWAYLEN=307 :are supported by this server
+[21:03:55] :lagopus.tamalin.org 005 greenbot MAXTARGETS=20 WALLCHOPS WATCH=128 WATCHOPTS=A SILENCE=15 MODES=12 CHANTYPES=# PREFIX=(qaohv)~&@%+ CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NETWORK=Tamalin CASEMAPPING=ascii EXTBAN=~,qjncrRa ELIST=MNUCT :are supported by this server
+[21:03:55] :lagopus.tamalin.org 005 greenbot STATUSMSG=~&@%+ EXCEPTS INVEX :are supported by this server
+[21:03:55] :lagopus.tamalin.org 251 greenbot :There are 1 users and 11 invisible on 2 servers
+[21:03:55] :lagopus.tamalin.org 252 greenbot 9 :operator(s) online
+[21:03:55] :lagopus.tamalin.org 254 greenbot 1 :channels formed
+[21:03:55] :lagopus.tamalin.org 255 greenbot :I have 3 clients and 1 servers
+[21:03:55] :lagopus.tamalin.org 265 greenbot 3 4 :Current local users 3, max 4
+[21:03:55] :lagopus.tamalin.org 266 greenbot 12 12 :Current global users 12, max 12
+[21:03:55] :lagopus.tamalin.org 375 greenbot :- lagopus.tamalin.org Message of the Day - 
+[21:03:55] :lagopus.tamalin.org 372 greenbot :- 23/5/2014 17:27
+[21:03:55] :lagopus.tamalin.org 372 greenbot :- ################################################
+[21:03:55] :lagopus.tamalin.org 372 greenbot :- WELCOME TO THE LAGOPUS IRC SERVER (LAGOPUS.TAMALIN.ORG).
+[21:03:55] :lagopus.tamalin.org 372 greenbot :- This server is for testing purposes so it may not be stable!
+[21:03:55] :lagopus.tamalin.org 372 greenbot :- Quytelda <admin@tamalin.org> runs this server;
+[21:03:55] :lagopus.tamalin.org 372 greenbot :- This IRC network has no operators.
+[21:03:55] :lagopus.tamalin.org 372 greenbot :- ################################################
+[21:03:55] :lagopus.tamalin.org 376 greenbot :End of /MOTD command.
+[21:03:55] :greenbot MODE greenbot :+ix
+[21:03:55] :greenbot!greenbot@faise-50934D94.lan JOIN :#tamalin
+[21:03:55] :lagopus.tamalin.org 332 greenbot #tamalin :Tamalin 2
+[21:03:55] :lagopus.tamalin.org 333 greenbot #tamalin greenfox 1404099490
+[21:03:55] :lagopus.tamalin.org 353 greenbot = #tamalin :greenbot greenfox echobot @ChanServ 
+[21:03:55] :lagopus.tamalin.org 366 greenbot #tamalin :End of /NAMES list.
+[21:03:55] :greenbot!greenbot@faise-50934D94.lan JOIN :#green
+[21:03:55] :lagopus.tamalin.org 353 greenbot = #green :~greenbot 
+[21:03:55] :lagopus.tamalin.org 366 greenbot #green :End of /NAMES list.
+[21:03:55] :greenbot!greenbot@faise-50934D94.lan JOIN :#opers
+[21:03:55] :lagopus.tamalin.org 353 greenbot = #opers :~greenbot 
+[21:03:55] :lagopus.tamalin.org 366 greenbot #opers :End of /NAMES list.
+[21:03:55] :NickServ!NickServ@services.tamalin.org NOTICE greenbot :Welcome to tamalin.org, greenbot! Here on tamalin.org, we provide services to enable the registration of nicknames and channels! For details, type /msg NickServ help and /msg ChanServ help.
+[21:04:12] :greenfox!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`help
+* Connection lost ([Failure instance: Traceback (failure with no frames): <class 'twisted.internet.error.ConnectionLost'>: Connection to the other side was lost in a non-clean fashion: Connection lost.
+]).
+* Connected established with 192.168.1.7.
+[21:04:46] :lagopus.tamalin.org NOTICE AUTH :*** Looking up your hostname...
+[21:04:46] :lagopus.tamalin.org NOTICE AUTH :*** Found your hostname (cached)
+[21:04:47] PING :D119755
+[21:04:48] :lagopus.tamalin.org 001 greenbot :Welcome to the Tamalin IRC Network greenbot!greenbot@vulpes.lan
+[21:04:48] :lagopus.tamalin.org 002 greenbot :Your host is lagopus.tamalin.org, running version Unreal3.2.10.2
+[21:04:48] :lagopus.tamalin.org 003 greenbot :This server was created Mon May 19 2014 at 22:07:41 EDT
+[21:04:48] :lagopus.tamalin.org 004 greenbot lagopus.tamalin.org Unreal3.2.10.2 iowghraAsORTVSxNCWqBzvdHtGpI lvhopsmntikrRcaqOALQbSeIKVfMCuzNTGjZ
+[21:04:48] :lagopus.tamalin.org 005 greenbot CMDS=KNOCK,MAP,DCCALLOW,USERIP,STARTTLS UHNAMES NAMESX SAFELIST HCN MAXCHANNELS=30 CHANLIMIT=#:30 MAXLIST=b:60,e:60,I:60 NICKLEN=30 CHANNELLEN=32 TOPICLEN=307 KICKLEN=307 AWAYLEN=307 :are supported by this server
+[21:04:48] :lagopus.tamalin.org 005 greenbot MAXTARGETS=20 WALLCHOPS WATCH=128 WATCHOPTS=A SILENCE=15 MODES=12 CHANTYPES=# PREFIX=(qaohv)~&@%+ CHANMODES=beI,kfL,lj,psmntirRcOAQKVCuzNSMTGZ NETWORK=Tamalin CASEMAPPING=ascii EXTBAN=~,qjncrRa ELIST=MNUCT :are supported by this server
+[21:04:48] :lagopus.tamalin.org 005 greenbot STATUSMSG=~&@%+ EXCEPTS INVEX :are supported by this server
+[21:04:48] :lagopus.tamalin.org 251 greenbot :There are 1 users and 11 invisible on 2 servers
+[21:04:48] :lagopus.tamalin.org 252 greenbot 9 :operator(s) online
+[21:04:48] :lagopus.tamalin.org 254 greenbot 1 :channels formed
+[21:04:48] :lagopus.tamalin.org 255 greenbot :I have 3 clients and 1 servers
+[21:04:48] :lagopus.tamalin.org 265 greenbot 3 4 :Current local users 3, max 4
+[21:04:48] :lagopus.tamalin.org 266 greenbot 12 12 :Current global users 12, max 12
+[21:04:48] :lagopus.tamalin.org 375 greenbot :- lagopus.tamalin.org Message of the Day - 
+[21:04:48] :lagopus.tamalin.org 372 greenbot :- 23/5/2014 17:27
+[21:04:48] :lagopus.tamalin.org 372 greenbot :- ################################################
+[21:04:48] :lagopus.tamalin.org 372 greenbot :- WELCOME TO THE LAGOPUS IRC SERVER (LAGOPUS.TAMALIN.ORG).
+[21:04:48] :lagopus.tamalin.org 372 greenbot :- This server is for testing purposes so it may not be stable!
+[21:04:48] :lagopus.tamalin.org 372 greenbot :- Quytelda <admin@tamalin.org> runs this server;
+[21:04:48] :lagopus.tamalin.org 372 greenbot :- This IRC network has no operators.
+[21:04:48] :lagopus.tamalin.org 372 greenbot :- ################################################
+[21:04:48] :lagopus.tamalin.org 376 greenbot :End of /MOTD command.
+[21:04:48] :greenbot MODE greenbot :+ix
+[21:04:48] :greenbot!greenbot@faise-50934D94.lan JOIN :#tamalin
+[21:04:48] :lagopus.tamalin.org 332 greenbot #tamalin :Tamalin 2
+[21:04:48] :lagopus.tamalin.org 333 greenbot #tamalin greenfox 1404099490
+[21:04:48] :lagopus.tamalin.org 353 greenbot = #tamalin :greenbot greenfox echobot @ChanServ 
+[21:04:48] :lagopus.tamalin.org 366 greenbot #tamalin :End of /NAMES list.
+[21:04:48] :NickServ!NickServ@services.tamalin.org NOTICE greenbot :Welcome to tamalin.org, greenbot! Here on tamalin.org, we provide services to enable the registration of nicknames and channels! For details, type /msg NickServ help and /msg ChanServ help.
+[21:04:48] :greenbot!greenbot@faise-50934D94.lan JOIN :#green
+[21:04:48] :lagopus.tamalin.org 353 greenbot = #green :~greenbot 
+[21:04:48] :lagopus.tamalin.org 366 greenbot #green :End of /NAMES list.
+[21:04:48] :greenbot!greenbot@faise-50934D94.lan JOIN :#opers
+[21:04:48] :lagopus.tamalin.org 353 greenbot = #opers :~greenbot 
+[21:04:48] :lagopus.tamalin.org 366 greenbot #opers :End of /NAMES list.
+[21:04:53] :greenfox!quytelda@faise-50934D94.lan PRIVMSG #tamalin :`help
+* Connection lost ([Failure instance: Traceback (failure with no frames): <class 'twisted.internet.error.ConnectionLost'>: Connection to the other side was lost in a non-clean fashion: Connection lost.
+]).
