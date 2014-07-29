@@ -23,6 +23,6 @@ def handle_command(bot, source, command, args, receive):
 	bot.msg(receive, "GreenBot logs all raw traffic it receives from the IRC server; A web extension allows others to view recent entries into the log (within ~24hrs).")
 	bot.msg(receive, "\x02COMMANDS:\x02 (commands marked * are available to admins only):")
 	bot.msg(receive, "\x02LINK <#chan>\x02  Returns an HTTP link to the viewable channel log for the channel \"#chan\".")
-	bot.msg(receive, "\x02PLAY <#chan>\x02  Attempts to play back the last few lines of history from the channel \"#chan\".")
+	#bot.msg(receive, "\x02PLAY <#chan>\x02  Attempts to play back the last few lines of history from the channel \"#chan\".")
 	bot.msg(receive, "Other commands: PING, RAW*, AUTH*, QUIT*, STATUS, ADMINS")
 	bot.msg(receive, "\x02*** END OF HELP ***\x02")

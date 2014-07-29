@@ -32,7 +32,7 @@ import commands.admins
 import commands.auth
 import commands.status
 import commands.raw
-import commands.play
+#import commands.play
 import commands.link
 import commands.help
 
@@ -132,7 +132,7 @@ class GreenBot(irc.IRCClient):
 		self.hooks['AUTH'] = commands.auth
 		self.hooks['STATUS'] = commands.status
 		self.hooks['RAW'] = commands.raw
-		self.hooks['PLAY'] = commands.play
+		#self.hooks['PLAY'] = commands.play
 		self.hooks['LINK'] = commands.link
 		self.hooks['HELP'] = commands.help
 
@@ -149,7 +149,7 @@ class GreenBot(irc.IRCClient):
 		if cmd in self.hooks:
 			self.hooks[cmd].handle_command(self, source, command, args, receive)
 		else:
-			self.notice(receive, "Unrecognized Command [%s]!" % cmd)
+			self.notice(receive, "Unrecognized Command [%s]; try HELP." % cmd)
 
 
 
