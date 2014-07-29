@@ -35,6 +35,7 @@ import commands.raw
 #import commands.play
 import commands.link
 import commands.help
+import commands.alias
 
 class GreenBot(irc.IRCClient):
 
@@ -133,6 +134,7 @@ class GreenBot(irc.IRCClient):
 		#self.hooks['PLAY'] = commands.play
 		self.hooks['LINK'] = commands.link
 		self.hooks['HELP'] = commands.help
+		self.hooks['ALIAS'] = commands.alias
 
 
 	def handle_command(self, source, command, receive):
