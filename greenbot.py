@@ -36,8 +36,6 @@ import commands.raw
 import commands.link
 import commands.help
 
-from buffer import IRCBuffer
-
 class GreenBot(irc.IRCClient):
 
 	nickname = "greenbot"
