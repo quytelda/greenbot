@@ -107,7 +107,7 @@ class GreenBot(irc.IRCClient):
 			self.handle_command(user, message, user.split('!')[0])
 
 		# if it starts with PREFIX, it is a command
-		if message.startswith(self.prefix):
+		if message.startswith(self.prefix) and len(message) > 1:
 			self.handle_command(user, message[1:], channel)
 
 
@@ -155,7 +155,7 @@ class GreenBot(irc.IRCClient):
 
 class GreenbotFactory(ClientFactory):
 
-	autojoin = '#green,#opers'
+	autojoin = '#green'
 
 	def __init__(self, filename):
 		self.filename = filename

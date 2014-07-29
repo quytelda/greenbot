@@ -21,6 +21,8 @@
 # You should have received a copy of the GNU General Public License
 # along with greenbot.  If not, see <http://www.gnu.org/licenses/>.
 
+import sys
+
 def handle_command(bot, source, command, args, receive):
 	
 	# check if this is from the actual owner
@@ -32,3 +34,6 @@ def handle_command(bot, source, command, args, receive):
 	
 	# send a quit message
 	bot.quit(message)
+	
+	# exit the program
+	sys.exit(0)

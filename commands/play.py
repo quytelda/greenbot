@@ -20,4 +20,36 @@
 
 def handle_command(bot, source, command, args, receive):
 
-	bot.msg(receive, "The PLAY command is temporarily unavailable; please use \"LINK <#chan>\" for the time being.")
+	channel = None
+	if source.split('!')[0] != receive:
+		# this will be true if the target is a channel
+		channel = receive
+	elif len(args) > 0:
+		channel = args[0]
+	else:
+		bot.msg(receive, "PLAY takes a 1 parameter. Syntax: LINK <#chan>")
+		return
+
+	lines = readn(bot.factory.filename, 15)
+	
+	for line in lines:
+		bot.msg(receive)
+
+def readn(file, n = 0):
+	f = open(file, 'r')
+	
+	f.seek(0, 2) # go to end
+	
+	lines = []
+	buff = ""
+	while (f.tell() >= 2) and len(lines) < n:
+		f.seek(-2, 1)
+		next = f.read(1)
+		
+		if(next == "\n"):
+			lines.insert(0, buff[::-1])
+			buff = ""
+		else:
+			buff += next
+
+	return lines
