@@ -27,8 +27,9 @@ def handle_command(bot, source, command, args, receive):
 	pswd = args[0]
 	
 	# add the user to the admins list
-	if pswd != 'password':
+	if pswd != bot.factory.password:
 		bot.msg(receive, 'Invalid login password.')
+		bot.notify('[auth] Failed login attempt from %s.' % source)
 		return
 
 	if source in bot.admins: return
@@ -37,3 +38,4 @@ def handle_command(bot, source, command, args, receive):
 
 	# send a welcome replay
 	bot.msg(receive, 'You are authenticated.')
+	bot.notify('[auth] Successful login from %s.' % source)

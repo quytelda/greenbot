@@ -25,6 +25,7 @@ import time
 
 from twisted.internet.protocol import ClientFactory
 from twisted.words.protocols import irc
+from twisted.internet.task import LoopingCall
 
 import commands.ping
 import commands.quit
@@ -55,8 +56,9 @@ class GreenBot(irc.IRCClient):
 		# status message
 		host = self.transport.getPeer().host
 		
-		# open the log file stream
-		self.factory.logger = open(self.factory.filename, 'a', 0)
+		# initiate the cycling log files
+		log_cycle = LoopingCall(self.factory.cycle_logfile)
+		log_cycle.start(self.factory.cycle)
 		
 		# log the new connection
 		self.factory.logger.write("* Connected established with %s.\n" % host)
@@ -76,16 +78,22 @@ class GreenBot(irc.IRCClient):
 	# ------------------- IRC Event Handlers ------------------- #
 
 	def signedOn(self):
+		# join the admin channel, if there is one
+		if self.factory.admin_channel:
+			self.join(self.factory.admin_channel)
+			self.notice(self.factory.admin_channel, "*** Registered home channel [%s]." % self.factory.admin_channel)
+	
 		# join all the channels in the autojoin list
-		self.join(self.factory.autojoin)
+		if self.factory.autojoin:
+			self.join(self.factory.autojoin)
 	
 
 	def joined(self, channel):
-		print "* joined", channel
+		self.notify("[info] joined %s" % channel)
 
 
 	def left(self, channel):
-		print "* left", channel
+		self.notify("[info] left %s" % channel)
 		
 	
 	def userQuit(self, user, quitMessage):
@@ -150,15 +158,27 @@ class GreenBot(irc.IRCClient):
 			self.hooks[cmd].handle_command(self, source, command, args, receive)
 		else:
 			self.notice(receive, "Unrecognized Command [%s]; try HELP." % cmd)
+			
+			
+	def notify(self, message):
+		# print the message to standard output
+		print message
+		
+		# echo the message to any admin channels
+		if self.factory.admin_channel:
+			self.msg(self.factory.admin_channel, message)
 
 
 
 class GreenbotFactory(ClientFactory):
 
-	autojoin = '#green'
-
-	def __init__(self, filename):
-		self.filename = filename
+	def __init__(self):
+		self.logger = None
+		self.prefix = "greenbot"
+		self.autojoin = None
+		self.cycle = 86400 # 24 hours
+		self.admin_channel = None
+		self.password = None
 
 
 	def buildProtocol(self, addr):
@@ -168,4 +188,22 @@ class GreenbotFactory(ClientFactory):
 		bot.register_hooks()
 		
 		return bot
+
+
+	def cycle_logfile(self):
+		# generate a logfile name
+		logfile = self.make_logfile_name()
+	
+		# if there is already an open logfile stream
+		if self.logger and not self.logger.closed:
+			self.logger.close()
+	
+		# open the log file stream
+		self.logger = open(logfile, 'a', 0)
 		
+		print "* cycled to new logfile:", logfile
+
+
+	def make_logfile_name(self):
+		timestamp = int(time.time())
+		return "%s_%s.log" % (self.prefix, timestamp)
