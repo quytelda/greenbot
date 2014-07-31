@@ -23,6 +23,8 @@
 
 import sys
 
+from twisted.internet import reactor
+
 def handle_command(bot, source, command, args, receive):
 	
 	# check if this is from the actual owner
@@ -35,5 +37,5 @@ def handle_command(bot, source, command, args, receive):
 	# send a quit message
 	bot.quit(message)
 	
-	# exit the program
-	sys.exit(0)
+	# stop the reactor
+	reactor.stop()
