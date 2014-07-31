@@ -23,9 +23,10 @@
 
 import time
 
-from twisted.internet.protocol import ClientFactory
+from twisted.internet.protocol import ReconnectingClientFactory
 from twisted.words.protocols import irc
 from twisted.internet.task import LoopingCall
+import twisted.internet.reactor
 
 import commands.ping
 import commands.quit
@@ -42,6 +43,7 @@ class GreenBot(irc.IRCClient):
 
 	nickname = "greenbot"
 	prefix = '`'
+	quitted = False
 
 	hooks = {}
 	
@@ -70,6 +72,10 @@ class GreenBot(irc.IRCClient):
 		
 		# log the lost connection (before we close the logs :P)
 		self.factory.logger.write("* Connection lost (%s).\n" % reason)
+		
+		# if this wasn't a manual quit, try to reconnect
+		if not self.quitted:
+			pass
 		
 		# close log file stream
 		self.factory.logger.close()
@@ -170,7 +176,9 @@ class GreenBot(irc.IRCClient):
 
 
 
-class GreenbotFactory(ClientFactory):
+class GreenbotFactory(ReconnectingClientFactory):
+
+	quitted = False
 
 	def __init__(self):
 		self.logger = None
@@ -187,7 +195,17 @@ class GreenbotFactory(ClientFactory):
 		bot.factory = self
 		bot.register_hooks()
 		
+		self.resetDelay()
+		
 		return bot
+
+	def clientConnectionLost(self, connector, reason):
+		if self.quitted: twisted.internet.reactor.stop()
+		else:
+			ReconnectingClientFactory.clientConnectionLost(self, connector, reason)
+	
+	def clientConnectionFailed(self, connector, reason):
+		ReconnectingClientFactory.clientConnectionLost(self, connector, reason)
 
 
 	def cycle_logfile(self):

@@ -36,6 +36,4 @@ def handle_command(bot, source, command, args, receive):
 	
 	# send a quit message
 	bot.quit(message)
-	
-	# stop the reactor
-	reactor.stop()
+	bot.factory.quitted = True
