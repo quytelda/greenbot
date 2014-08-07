@@ -22,11 +22,13 @@
 # along with greenbot.  If not, see <http://www.gnu.org/licenses/>.
 
 import time
+import json
+import sqlite3
 
 from twisted.internet.protocol import ReconnectingClientFactory
 from twisted.words.protocols import irc
 from twisted.internet.task import LoopingCall
-import twisted.internet.reactor
+from twisted.internet import reactor, ssl
 
 import commands.ping
 import commands.quit
@@ -41,7 +43,9 @@ import commands.alias
 
 class GreenBot(irc.IRCClient):
 
-	nickname = "greenbot"
+	nickname = None
+	username = None
+	password = None
 	prefix = '`'
 	quitted = False
 
@@ -113,6 +117,43 @@ class GreenBot(irc.IRCClient):
 			self.admins.remove(oldname)
 			self.admins.append(newname)
 
+		# log the name change so we can use ALIAS
+		# open the database
+		alias_db = sqlite3.connect('alias.db')
+		
+		# create the table if it doesn't yet exist
+		alias_db.execute('CREATE TABLE IF NOT EXISTS alias (id INTEGER PRIMARY KEY AUTOINCREMENT, nicklist TEXT)')
+		alias_db.commit()
+		
+		# execute the query
+		cursor = alias_db.execute("SELECT * FROM alias WHERE nicklist LIKE ? OR nicklist LIKE ?",
+			('%"' + oldname + '"%', '%"' + newname + '"%'))
+		
+		nicklist = []
+		
+		# retreive the results
+		for result in cursor:
+			# parse the result row
+			id = result[0]
+			nicklist += json.loads(result[1])
+
+			# remove the result from the database
+			alias_db.execute("DELETE FROM alias WHERE id = ?", (id,))
+		
+		# add the new data, if necessary
+		if not oldname in nicklist: nicklist.append(oldname)
+		if not newname in nicklist: nicklist.append(newname)
+			
+		# strip duplicates
+		nicklist = list(set(nicklist))
+		entry = json.dumps(nicklist)
+		
+		# insert the updated entry
+		alias_db.execute("INSERT INTO alias (nicklist) VALUES (?)", (entry,))
+			
+		# commit the changes
+		alias_db.commit()
+			
 
 	def privmsg(self, user, channel, message):
 		# if the private message is addressed to me, it is a command
@@ -130,9 +171,9 @@ class GreenBot(irc.IRCClient):
 	
 		# log the line
 		# we'll use the local timestamp
-		t = time.localtime()
-		timestamp = time.strftime("[%H:%M:%S]", t)
-		self.factory.logger.write(timestamp + ' ' + line + '\r\n')
+		#t = time.localtime()
+		#timestamp = time.strftime("[%H:%M:%S]", t)
+		#self.factory.logger.write(timestamp + ' ' + line + '\r\n')
 
 
 	# ------------------- Bot Command Functions ------------------- #
@@ -168,8 +209,8 @@ class GreenBot(irc.IRCClient):
 			
 	def notify(self, message):
 		# print the message to standard output
-		print message
-		
+		self.factory.logger.write(message + '\n')
+
 		# echo the message to any admin channels
 		if self.factory.admin_channel:
 			self.msg(self.factory.admin_channel, message)
@@ -182,17 +223,25 @@ class GreenbotFactory(ReconnectingClientFactory):
 
 	def __init__(self):
 		self.logger = None
+		self.alias_db = None
 		self.prefix = "greenbot"
 		self.autojoin = None
 		self.cycle = 86400 # 24 hours
 		self.admin_channel = None
 		self.password = None
+		self.nickname = "greenbot"
+		self.username = "greenbot"
+		self.srv_password = None
 
 
 	def buildProtocol(self, addr):
 		bot = GreenBot()
 		
 		bot.factory = self
+		bot.nickname = self.nickname
+		bot.username = self.username
+		bot.password = self.srv_password
+
 		bot.register_hooks()
 		
 		self.resetDelay()
@@ -225,3 +274,15 @@ class GreenbotFactory(ReconnectingClientFactory):
 	def make_logfile_name(self):
 		timestamp = int(time.time())
 		return "%s_%s.log" % (self.prefix, timestamp)
+
+
+
+def start(addr, port, factory, use_ssl = False):
+	if use_ssl:
+		reactor.connectSSL(addr, port, factory, ssl.ClientContextFactory())
+	else:
+		reactor.connectTCP(addr, port, factory)
+	
+	# now that connection is initiated, run the reactor and get off the ground
+	# basically: "Away we go!"
+	reactor.run()

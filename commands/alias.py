@@ -18,8 +18,8 @@
 # You should have received a copy of the GNU General Public License
 # along with greenbot.  If not, see <http://www.gnu.org/licenses/>.
 
-import urllib
 import json
+import sqlite3
 
 def handle_command(bot, source, command, args, receive):
 	# make sure there is a channel to join
@@ -27,18 +27,26 @@ def handle_command(bot, source, command, args, receive):
 		bot.notice(receive, "ALIAS takes one parameter; syntax: ALIAS <nickname>")
 		return
 	
-	nick = args[0]
-	
-	bot.msg(receive, "Generating alias list for %s..." % nick)
-
-	url = urllib.urlopen("http://lagopus.tamalin.org/greenbot/alias.php?nick=" + urllib.quote_plus(nick))
-	alias_list_json = url.readline();
-	
-	# output the list that was generated
-	alias_list = json.loads(alias_list_json)
-	if alias_list == None:
-		bot.msg(receive, 'There are no nick changes logged for "%s"!' % nick)
+	target = args[0]
+	if '%' in target:
+		bot.notify('[warn] Suspicious SQL query by %s (%s).' % (source, target))
 		return
 	
-	alias_list_str = ', '.join(alias_list)
-	bot.msg(receive, alias_list_str.encode('ascii'))
+	try:
+		# connect to the database
+		alias_db = sqlite3.connect('alias.db')
+
+		# query for pertinent records
+		cursor = alias_db.execute('SELECT * FROM alias WHERE nicklist LIKE ?', ('%"'+target+'"%',))
+		result = cursor.fetchone()
+		
+		# send back the results (formatted nicely)
+		if result:
+			nicklist = json.loads(result[1])
+			message = (', '.join(nicklist)).encode('ascii')
+			bot.msg(receive, message)
+		else:
+			bot.msg(receive, "No nick changes logged for %s." % target)
+		
+	except sqlite3.Error, e:
+		print "SQLite Error", e

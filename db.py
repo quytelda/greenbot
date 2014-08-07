@@ -20,3 +20,5 @@
 # along with greenbot.  If not, see <http://www.gnu.org/licenses/>.
 
 import sqlite3
+
+alias_db = None
