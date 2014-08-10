@@ -22,7 +22,17 @@
 # along with greenbot.  If not, see <http://www.gnu.org/licenses/>.
 
 def handle_command(bot, source, command, args, receive):
-	if len(args) < 1: return
+
+	nick = source.split('!')[0]
+
+	# if there is no password, it is a status query
+	if len(args) < 1:
+		if nick in bot.admins:
+			bot.msg(receive, "You are an administrator.")
+		else:
+			bot.msg(receive, "You are an not logged in.")
+
+		return
 	
 	pswd = args[0]
 	
@@ -31,8 +41,6 @@ def handle_command(bot, source, command, args, receive):
 		bot.msg(receive, 'Invalid login password.')
 		bot.notify('[auth] Failed login attempt from %s.' % source)
 		return
-
-	if source in bot.admins: return
 
 	user = source.split('!')[0]
 	bot.admins.append(user)
