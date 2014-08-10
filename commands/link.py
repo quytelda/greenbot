@@ -22,14 +22,21 @@ import urllib
 
 def handle_command(bot, source, command, args, receive):
 
+	# determine the channel name
 	channel = None
-	if source.split('!')[0] != receive:
+	if len(args) > 0:
+		channel = args[0]
+	elif source.split('!')[0] != receive:
 		# this will be true if the target is a channel
 		channel = receive
-	elif len(args) > 0:
-		channel = args[0]
 	else:
 		bot.msg(receive, "LINK takes a 1 parameter. Syntax: LINK <#chan>")
 		return
-		
-	bot.msg(receive, "http://lagopus.tamalin.org/buffer.php?target=" + urllib.quote_plus(channel))
+
+	# we must have been in that channel recently
+	if not channel in bot.channels:
+		bot.msg(receive, "The logs for %s are unavailable." % channel)
+		return
+
+	# message back a valid URL
+	bot.msg(receive, "http://lagopus.tamalin.org/viewlog.php?target=" + urllib.quote_plus(channel))

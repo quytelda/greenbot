@@ -34,8 +34,13 @@ def handle_command(bot, source, command, args, receive):
 
 	if source in bot.admins: return
 
-	bot.admins.append(source.split('!')[0])
+	user = source.split('!')[0]
+	bot.admins.append(user)
 
-	# send a welcome replay
+	# send a welcome reply
 	bot.msg(receive, 'You are authenticated.')
 	bot.notify('[auth] Successful login from %s.' % source)
+
+	# attempt to voice the person in the home channel, if there are any
+	if bot.factory.admin_channel:
+		bot.mode(bot.factory.admin_channel, True, 'v', user = user)

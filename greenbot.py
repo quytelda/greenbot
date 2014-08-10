@@ -1,6 +1,5 @@
 #!/usr/bin/python
 
-# 
 #
 # greenbot.py - Primary entry point for greenbot software
 #
@@ -24,11 +23,14 @@
 import time
 import json
 import sqlite3
+import re
 
 from twisted.internet.protocol import ReconnectingClientFactory
 from twisted.words.protocols import irc
 from twisted.internet.task import LoopingCall
 from twisted.internet import reactor, ssl
+
+import log
 
 import commands.ping
 import commands.quit
@@ -51,7 +53,10 @@ class GreenBot(irc.IRCClient):
 
 	hooks = {}
 	
+	channels = {}
 	admins = []
+
+	start_time = None
 	
 	# ------------------- Connection Event Handlers ------------------- #
 	
@@ -63,11 +68,13 @@ class GreenBot(irc.IRCClient):
 		host = self.transport.getPeer().host
 		
 		# initiate the cycling log files
-		log_cycle = LoopingCall(self.factory.cycle_logfile)
+		self.factory.logger = log.BufferLogger(self.factory.prefix)
+		log_cycle = LoopingCall(self.factory.logger.cycle_all)
 		log_cycle.start(self.factory.cycle)
 		
 		# log the new connection
-		self.factory.logger.write("* Connected established with %s.\n" % host)
+		self.factory.logger.open_buffer('greenbot') # TODO null that
+		self.factory.logger.log('greenbot', "* Connection established with %s.\n" % host)
 
 
 	def connectionLost(self, reason):
@@ -75,47 +82,108 @@ class GreenBot(irc.IRCClient):
 		irc.IRCClient.connectionMade(self)
 		
 		# log the lost connection (before we close the logs :P)
-		self.factory.logger.write("* Connection lost (%s).\n" % reason)
-		
-		# if this wasn't a manual quit, try to reconnect
-		if not self.quitted:
-			pass
+		self.factory.logger.log('greenbot', "* Connection lost (%s).\n" % reason)
 		
 		# close log file stream
-		self.factory.logger.close()
+		self.factory.logger.close_all()
 
 
 	# ------------------- IRC Event Handlers ------------------- #
 
 	def signedOn(self):
+		# record sign-on time for calculating uptime
+		self.start_time = time.time()
+
+		# identify myself
+		self.transport.write("MODE %s +B\r\n" % self.nickname)
+
 		# join the admin channel, if there is one
+		# the admin channel will have special properties for the bot
 		if self.factory.admin_channel:
-			self.join(self.factory.admin_channel)
-			self.notice(self.factory.admin_channel, "*** Registered home channel [%s]." % self.factory.admin_channel)
+			self.register_admin_channel(self.factory.admin_channel)
 	
 		# join all the channels in the autojoin list
 		if self.factory.autojoin:
 			self.join(self.factory.autojoin)
-	
+
 
 	def joined(self, channel):
 		self.notify("[info] joined %s" % channel)
+		self.channels[channel] = None
+		
+		# open a buffer for this channel
+		self.factory.logger.open_buffer(channel)
+
+
+	def names(self, channel):
+		self.transport.write("NAMES %s\r\n" % channel)
 
 
 	def left(self, channel):
 		self.notify("[info] left %s" % channel)
-		
-	
+		del channels[channel]
+
+		# close the buffer for this channel
+		self.factory.logger.close_buffer(channel)
+
+
+	### actions the bot sees other users doing
+
 	def userQuit(self, user, quitMessage):
 		# if the user is an admin, remove them from the list
 		if user in self.admins:
 			self.admins.remove(user)
-			
+
+		# log the quit message
+		for channel in self.channels:
+			if self.nick_in_channel(user, channel):
+				self.factory.logger.log(channel, "* %s has quit (%s)." % (user, quitMessage))
+				self.names(channel)
+
+
+	def userJoined(self, user, channel):
+		# if this is an administrative channel, we send a welcome message
+		if (channel == self.factory.admin_channel) and (user not in self.admins):
+			self.notice(user, "Welcome to %s! For help with %s, try '/MSG %s HELP' or just '`help'." % (channel, self.nickname, self.nickname))
+	
+		# add user to the channel list
+		self.names(channel)
+
+		# log the JOIN
+		self.factory.logger.log(channel, "%s has joined %s." % (user, channel))
+
+
+	def userLeft(self, user, channel):
+		# update the names list
+		self.names(channel)
+
+		# log the PART
+		self.factory.logger.log(channel, "%s has left %s." % (user, channel))
+
+
+	def irc_RPL_NAMREPLY(self, prefix, params):
+		# parse the parameters
+		target = params[0]
+		chan_type = params[1]
+		channel = params[2]
+
+		names = params[-1]
+
+		# parse the names list
+		namlist = names.strip().split(' ')
+		self.channels[channel] = namlist
+		
 	
 	def userRenamed(self, oldname, newname):		
 		if oldname in self.admins:
 			self.admins.remove(oldname)
 			self.admins.append(newname)
+
+		# log the name change to the buffer logs
+		for channel in self.channels:
+			if self.nick_in_channel(oldname, channel) or self.nick_in_channel(newname, channel):
+				self.factory.logger.log(channel, "* %s is now known as %s." % (oldname, newname))
+				self.names(channel)
 
 		# log the name change so we can use ALIAS
 		# open the database
@@ -124,13 +192,13 @@ class GreenBot(irc.IRCClient):
 		# create the table if it doesn't yet exist
 		alias_db.execute('CREATE TABLE IF NOT EXISTS alias (id INTEGER PRIMARY KEY AUTOINCREMENT, nicklist TEXT)')
 		alias_db.commit()
-		
+
 		# execute the query
 		cursor = alias_db.execute("SELECT * FROM alias WHERE nicklist LIKE ? OR nicklist LIKE ?",
 			('%"' + oldname + '"%', '%"' + newname + '"%'))
-		
+
 		nicklist = []
-		
+
 		# retreive the results
 		for result in cursor:
 			# parse the result row
@@ -139,11 +207,11 @@ class GreenBot(irc.IRCClient):
 
 			# remove the result from the database
 			alias_db.execute("DELETE FROM alias WHERE id = ?", (id,))
-		
+
 		# add the new data, if necessary
 		if not oldname in nicklist: nicklist.append(oldname)
 		if not newname in nicklist: nicklist.append(newname)
-			
+
 		# strip duplicates
 		nicklist = list(set(nicklist))
 		entry = json.dumps(nicklist)
@@ -159,22 +227,27 @@ class GreenBot(irc.IRCClient):
 		# if the private message is addressed to me, it is a command
 		if channel == self.nickname:
 			self.handle_command(user, message, user.split('!')[0])
+			return
 
 		# if it starts with PREFIX, it is a command
 		if message.startswith(self.prefix) and len(message) > 1:
 			self.handle_command(user, message[1:], channel)
 
+		# log the channel message
+		self.factory.logger.log(channel, "<%s> %s" % (user.split('!')[0], message))
 
-	def lineReceived(self, line):
-		# keep parent functionality
-		irc.IRCClient.lineReceived(self, line)
-	
-		# log the line
-		# we'll use the local timestamp
-		#t = time.localtime()
-		#timestamp = time.strftime("[%H:%M:%S]", t)
-		#self.factory.logger.write(timestamp + ' ' + line + '\r\n')
 
+	def action(self, user, channel, data):
+		# log the channel message
+		self.factory.logger.log(channel, "* %s %s" % (user.split('!')[0], data))
+
+
+	def noticed(self, user, channel, message):
+		# ignore private notices
+		if channel == self.nickname: return
+
+		# log the channel notice
+		self.factory.logger.log(channel, "-%s/%s- %s" % (user.split('!')[0], channel, message))
 
 	# ------------------- Bot Command Functions ------------------- #
 
@@ -206,15 +279,29 @@ class GreenBot(irc.IRCClient):
 		else:
 			self.notice(receive, "Unrecognized Command [%s]; try HELP." % cmd)
 			
+	
+	# ------------------- Convenience Functions ------------------- #
 			
 	def notify(self, message):
 		# print the message to standard output
-		self.factory.logger.write(message + '\n')
+		self.factory.logger.log('greenbot', message + '\n')
 
 		# echo the message to any admin channels
 		if self.factory.admin_channel:
 			self.msg(self.factory.admin_channel, message)
 
+
+	def nick_in_channel(self, nick, channel):
+		namlist = self.channels[channel]
+		for name in namlist:
+			if re.match("[+%@&~]*" + nick, name): return True
+
+		return False
+
+
+	def register_admin_channel(self, channel):
+		self.join(self.factory.admin_channel)
+		self.notice(self.factory.admin_channel, "*** Registering home channel [%s]" % channel)
 
 
 class GreenbotFactory(ReconnectingClientFactory):
@@ -249,32 +336,13 @@ class GreenbotFactory(ReconnectingClientFactory):
 		return bot
 
 	def clientConnectionLost(self, connector, reason):
-		if self.quitted: twisted.internet.reactor.stop()
+		if self.quitted:
+			reactor.stop()
 		else:
 			ReconnectingClientFactory.clientConnectionLost(self, connector, reason)
 	
 	def clientConnectionFailed(self, connector, reason):
 		ReconnectingClientFactory.clientConnectionLost(self, connector, reason)
-
-
-	def cycle_logfile(self):
-		# generate a logfile name
-		logfile = self.make_logfile_name()
-	
-		# if there is already an open logfile stream
-		if self.logger and not self.logger.closed:
-			self.logger.close()
-	
-		# open the log file stream
-		self.logger = open(logfile, 'a', 0)
-		
-		print "* cycled to new logfile:", logfile
-
-
-	def make_logfile_name(self):
-		timestamp = int(time.time())
-		return "%s_%s.log" % (self.prefix, timestamp)
-
 
 
 def start(addr, port, factory, use_ssl = False):

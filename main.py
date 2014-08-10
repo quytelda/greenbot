@@ -73,7 +73,7 @@ def main(argv):
 			factory.srv_password = parser.get("server", "password")
 		if parser.has_option("server", "username"):
 			factory.username = parser.get("server", "username")
-		if parser.has_option("server", "address") and (not port):
+		if parser.has_option("server", "port") and (not port):
 			port = parser.getint("server", "port")
 		if parser.has_option("bot", "autojoin"):
 			factory.autojoin = parser.get("bot", "autojoin")
@@ -83,6 +83,8 @@ def main(argv):
 			factory.password = parser.get("bot", "password")
 		if parser.has_option("bot", "cycle"):
 			factory.cycle = parser.getint("bot", "cycle")
+		if parser.has_option("bot", "admin-channel-modes"):
+			factory.admin_channel_modes = parser.getint("bot", "admin-channel-modes")
 
 	# can't continue without a target address and port
 	# the default port is 6667
