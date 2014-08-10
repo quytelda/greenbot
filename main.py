@@ -37,7 +37,7 @@ def main(argv):
 	foreground = False
 
 	# parse command line arguments
-	i = 0
+	i = 1
 	while i < len(argv):
 		if arg_matches(argv[i], '--ssl', '-s'):
 			ssl = True
@@ -83,8 +83,6 @@ def main(argv):
 			factory.password = parser.get("bot", "password")
 		if parser.has_option("bot", "cycle"):
 			factory.cycle = parser.getint("bot", "cycle")
-		if parser.has_option("bot", "admin-channel-modes"):
-			factory.admin_channel_modes = parser.getint("bot", "admin-channel-modes")
 
 	# can't continue without a target address and port
 	# the default port is 6667
