@@ -31,5 +31,5 @@ def handle_command(bot, source, command, args, receive):
 	uptime = datetime.timedelta(seconds = int(elapsed))
 
 	bot.msg(receive, "Uptime: %s" % uptime)
-	bot.msg(receive, "Channels (%d): %s" % (len(bot.channels), bot.channels))
+	bot.msg(receive, "Channels (%d): %s" % (len(bot.channels), bot.channels.keys()))
 	bot.msg(receive, "Administrators (%d): %s" % (len(bot.admins), bot.admins))
