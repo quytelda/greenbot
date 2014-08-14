@@ -1,0 +1,49 @@
+=== GREENBOT ===
+Greenbot is a modular Python based IRC bot that uses the Twisted framework.
+Greenbot's primary built-in function is simple message logging.  A separate PHP script allows
+other people to view the most recent of these messages.  Greenbot will not share logs for channels
+it is not currently joined in or that are older than a day or two.  Greenbot should
+recognize channel operators and allow them to control the logs for their channel (NOTE: due to
+maintenancing this currently disabled, but will be re-enabled in the near future).
+
+=== COMMANDS ===
+* ALIAS <nickname>
+The ALIAS command returns of nicknames changed to or from recently by <nickname>.
+
+* AUTH [<password>]
+The AUTH command is used to log into the bot with the bot's administration password.
+The password is given in the config file.  If no password is supplied the command returns
+the user's current login status
+
+* CLEAR [<channel>] (NOTE: currently disabled)
+The CLEAR command clears the viewable logs for the given channel in case something occurs that
+should not be publicly viewable.  The log files still exist, but are cycled twice to create an
+empty buffer.  A channel operator, admin, or owner may invoke this command for their channel.
+
+* HELP
+The HELP command returns a short list of commands that greenbot supports with brief descriptions.
+
+* LINK [<channel>]
+The LINK command returns an HTTP link to a webpage for viewing the bots most recent logs
+of <channel>.
+
+* LOGOUT (NOTE: currently disabled)
+The LOGOUT command terminates an existing login session with the bot.
+
+* PING
+The PING command simply replies with a pong to verify that it and the caller are still connected.
+
+* QUIT [<message>]
+Causes the bot to disconnect from the IRC server and terminate the daemon.  An option quit message
+may be supplied as <message>.
+
+* PLAY <channel> (NOTE: currently disabled)
+The PLAY command reads back the last few lines of history for <channel>
+
+* RAW <message>
+The RAW command sends an appropriately CR-LF padded raw IRC message to the server.
+For example "RAW JOIN #channel" would cause the bot to join #channel.
+
+* STATUS
+The STATUS command prints the current status of the bot, including uptime, current channels,
+and logged in administrators.

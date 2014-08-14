@@ -1,8 +1,5 @@
-#!/usr/bin/python
-
-# 
 #
-# commands/ping.py - Simple PING command
+# commands/logout.py - Log out admin
 #
 # Copyright (C) 2014 Quytelda Gaiwin <admin@tamalin.org>
 #
@@ -21,17 +18,13 @@
 # You should have received a copy of the GNU General Public License
 # along with greenbot.  If not, see <http://www.gnu.org/licenses/>.
 
-import time
-import datetime
-
 def handle_command(bot, source, command, args, receive):
+	nick = source.split('!')[0]
 	
-	# calculate uptime
-	elapsed = time.time() - bot.start_time
-	uptime = datetime.timedelta(seconds = int(elapsed))
+	if not nick in bot.admins:
+		bot.msg(receive, "You are not logged in.")
+		return
 
-	bot.msg(receive, "Uptime: %s" % uptime)
-	bot.msg(receive, "Channels (%d): %s" % (len(bot.channels), bot.channels.keys()))
-	
-	if source.split('!')[0] in bot.admins:
-		bot.msg(receive, "Administrators (%d): %s" % (len(bot.admins), bot.admins))
+	bot.admins.remove(nick)
+	bot.msg(receive, "Succesfully logged out.")
+	bot.notify("[auth] Logout by %s." % source)

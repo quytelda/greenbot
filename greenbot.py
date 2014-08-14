@@ -42,6 +42,7 @@ import commands.raw
 import commands.link
 import commands.help
 import commands.alias
+import commands.logout
 
 class GreenBot(irc.IRCClient):
 
@@ -144,7 +145,9 @@ class GreenBot(irc.IRCClient):
 	def userJoined(self, user, channel):
 		# if this is an administrative channel, we send a welcome message
 		if (channel == self.factory.admin_channel) and (user not in self.admins):
-			self.notice(user, "Welcome to %s! For help with %s, try '/MSG %s HELP' or just '`help'." % (channel, self.nickname, self.nickname))
+			self.notice(user,
+				"Welcome to %s, %s! For help with %s, try '/MSG %s HELP' or just type '`help'." %
+				(channel, user, self.nickname, self.nickname))
 	
 		# add user to the channel list
 		self.names(channel)
@@ -245,6 +248,7 @@ class GreenBot(irc.IRCClient):
 	def noticed(self, user, channel, message):
 		# ignore private notices
 		if channel == self.nickname: return
+		if (channel == "AUTH") or (channel == "*"): return # don't complain about server messages
 
 		# log the channel notice
 		self.factory.logger.log(channel, "-%s/%s- %s" % (user.split('!')[0], channel, message))
@@ -263,11 +267,12 @@ class GreenBot(irc.IRCClient):
 		self.hooks['LINK'] = commands.link
 		self.hooks['HELP'] = commands.help
 		self.hooks['ALIAS'] = commands.alias
+		self.hooks['LOGOUT'] = commands.logout
 
 
 	def handle_command(self, source, command, receive):
 		# split into components by ' '
-		elems = command.split(' ')
+		elems = command.strip().split(' ')
 
 		# parse the command
 		if len(elems) < 1: return
@@ -277,7 +282,7 @@ class GreenBot(irc.IRCClient):
 		if cmd in self.hooks:
 			self.hooks[cmd].handle_command(self, source, command, args, receive)
 		else:
-			self.notice(receive, "Unrecognized Command [%s]; try HELP." % cmd)
+			self.msg(receive, "Unrecognized Command [%s]; try HELP." % cmd)
 			
 	
 	# ------------------- Convenience Functions ------------------- #
@@ -295,6 +300,14 @@ class GreenBot(irc.IRCClient):
 		namlist = self.channels[channel]
 		for name in namlist:
 			if re.match("[+%@&~]*" + nick, name): return True
+
+		return False
+
+
+	def privileged_in_channel(self, nick, channel):
+		namlist = self.channels[channel]
+		for name in namlist:
+			if re.match('[%@&~]' + nick, name): return True
 
 		return False
 
