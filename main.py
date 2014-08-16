@@ -22,7 +22,6 @@
 
 import sys
 import os
-import ConfigParser
 
 import greenbot
 
@@ -61,28 +60,12 @@ def main(argv):
 
 	factory = greenbot.GreenbotFactory()
 	
-	# load configuration properties
-	parser = ConfigParser.ConfigParser()
-	parser.read(config_path)
-	
 	# parse the config file entries
 	if parser.has_section("server"):
 		if parser.has_option("server", "address") and (not addr):
 			addr = parser.get("server", "address")
-		if parser.has_option("server", "password"):
-			factory.srv_password = parser.get("server", "password")
-		if parser.has_option("server", "username"):
-			factory.username = parser.get("server", "username")
 		if parser.has_option("server", "port") and (not port):
 			port = parser.getint("server", "port")
-		if parser.has_option("bot", "autojoin"):
-			factory.autojoin = parser.get("bot", "autojoin")
-		if parser.has_option("bot", "admin-channel"):
-			factory.admin_channel = parser.get("bot", "admin-channel")
-		if parser.has_option("bot", "password"):
-			factory.password = parser.get("bot", "password")
-		if parser.has_option("bot", "cycle"):
-			factory.cycle = parser.getint("bot", "cycle")
 
 	# can't continue without a target address and port
 	# the default port is 6667
