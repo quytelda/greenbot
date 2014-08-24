@@ -20,21 +20,81 @@
 
 import ConfigParser
 
-# load configuration properties
-parser = ConfigParser.ConfigParser()
-parser.read(config_path) 
+config_path = 'greenbot.conf'
+parser = None
 
-def load_mutable_properties(factory):
-		if parser.has_option("server", "password"):
-			factory.srv_password = parser.get("server", "password")
-		if parser.has_option("server", "username"):
-			factory.username = parser.get("server", "username")
-		if parser.has_option("bot", "autojoin"):
-			factory.autojoin = parser.get("bot", "autojoin")
-		if parser.has_option("bot", "admin-channel"):
-			factory.admin_channel = parser.get("bot", "admin-channel")
-		if parser.has_option("bot", "password"):
-			factory.password = parser.get("bot", "password")
-		if parser.has_option("bot", "cycle"):
-			factory.cycle = parser.getint("bot", "cycle")
+def load():
+	"""
+	Load the configuration file into memory (but don't apply it yet).
+	"""
+	global parser
 
+	parser = ConfigParser.ConfigParser()
+	parser.read(config_path) 
+
+
+def configure(factory):
+	"""
+	Apply a runtime configuration from the configuration information in memory.
+	All properties loaded by this function must be mutable during runtime, as it is called by rehash.
+
+	config.load() must be called before this function can be used.
+	"""
+	if parser.has_option("self", "autojoin"):
+		factory.autojoin = parser.get("self", "autojoin")
+
+	if parser.has_option("self", "admin-channel"):
+		factory.admin_channel = parser.get("self", "admin-channel")
+	
+	if parser.has_option("self", "admin-channel-modes"):
+		factory.admin_channel_modes = parser.get("self", "admin-channel-modes")
+
+	if parser.has_option("self", "password"):
+		factory.password = parser.get("self", "password")
+
+	if parser.has_option("self", "cycle"):
+		factory.cycle = parser.getint("self", "cycle")
+
+
+def connection(connection):
+	"""
+	Loads connection details from configuration file.
+	Details passed as command line args override config file params.
+
+	config.load() must be called before this function can be used.
+	"""
+
+	if (not connection['addr']) and parser.has_option("connection", "address"):
+		connection['addr'] = parser.get("connection", "address")
+
+	if (not connection['port']) and parser.has_option("connection", "port"):
+		# port must be an integer
+		try: connection['port'] = parser.getint("connection", "port")
+		except ValueError: print "* Invalid port in config file: %s (must be an integer)" % port
+
+	if (not connection['ssl']) and parser.has_option("connection", "ssl"):
+		# ssl is boolean (on = True, anything else = False)
+		mode = parser.getint("connection", "ssl")
+		if ssl.lower() == 'on': connection['ssl'] = True
+		else: connection['ssl'] = False
+
+	if (not connection['password']) and parser.has_option("connection", "password"):
+		connection['password'] = parser.get("connection", "password")
+
+	if (not connection['username']) and parser.has_option("connection", "username"):
+		connection['username'] = parser.get("connection", "username")
+
+	if (not connection['modes']) and parser.has_option("connection", "modes"):
+		connection['modes'] = parser.get("connection", "modes")
+		
+	return connection
+
+
+def rehash(factory):
+	"""
+	Attempts to reload and re-apply the runtime configuration without interrupting service.
+
+	config.load() does *not* need to be called before using this function.
+	"""
+	self.load()
+	self.configure(factory)

@@ -1,5 +1,3 @@
-#!/usr/bin/python
-
 #
 # greenbot.py - Primary entry point for greenbot software
 #
@@ -38,18 +36,18 @@ import commands.admins
 import commands.auth
 import commands.status
 import commands.raw
-#import commands.play
 import commands.link
 import commands.help
 import commands.alias
 import commands.logout
+
+VERSION = 3.1
 
 class GreenBot(irc.IRCClient):
 
 	nickname = None
 	username = None
 	password = None
-	prefix = '`'
 	quitted = False
 
 	hooks = {}
@@ -69,7 +67,7 @@ class GreenBot(irc.IRCClient):
 		host = self.transport.getPeer().host
 		
 		# initiate the cycling log files
-		self.factory.logger = log.BufferLogger(self.factory.prefix)
+		self.factory.logger = log.BufferLogger(self.factory.log_path)
 		log_cycle = LoopingCall(self.factory.logger.cycle_all)
 		log_cycle.start(self.factory.cycle)
 		
@@ -89,7 +87,7 @@ class GreenBot(irc.IRCClient):
 		self.factory.logger.close_all()
 
 
-	# ------------------- IRC Event Handlers ------------------- #
+	# ------------------- IRC Message Event Handlers ------------------- #
 
 	def signedOn(self):
 		# record sign-on time for calculating uptime
@@ -114,6 +112,10 @@ class GreenBot(irc.IRCClient):
 		
 		# open a buffer for this channel
 		self.factory.logger.open_buffer(channel)
+		
+		# set modes on admin channel /after/ joining
+		if channel == self.factory.admin_channel:
+			self.mode(self.factory.admin_channel, True, self.factory.admin_channel_modes)
 
 
 	def names(self, channel):
@@ -233,7 +235,7 @@ class GreenBot(irc.IRCClient):
 			return
 
 		# if it starts with PREFIX, it is a command
-		if message.startswith(self.prefix) and len(message) > 1:
+		if message.startswith(self.factory.prefix) and len(message) > 1:
 			self.handle_command(user, message[1:], channel)
 
 		# log the channel message
@@ -263,7 +265,6 @@ class GreenBot(irc.IRCClient):
 		self.hooks['AUTH'] = commands.auth
 		self.hooks['STATUS'] = commands.status
 		self.hooks['RAW'] = commands.raw
-		#self.hooks['PLAY'] = commands.play
 		self.hooks['LINK'] = commands.link
 		self.hooks['HELP'] = commands.help
 		self.hooks['ALIAS'] = commands.alias
@@ -322,21 +323,26 @@ class GreenbotFactory(ReconnectingClientFactory):
 	quitted = False
 
 	def __init__(self):
-		self.logger = None
-		self.alias_db = None
-		self.prefix = "greenbot"
-		self.autojoin = None
-		self.cycle = 86400 # 24 hours
-		self.admin_channel = None
-		self.password = None
+		### global properties (defaults)
 		self.nickname = "greenbot"
 		self.username = "greenbot"
 		self.srv_password = None
+		self.password = None
+
+		self.prefix = "`"
+		self.autojoin = None
+		self.admin_channel = None
+		self.admin_channel_modes = "+mnst"
+
+		self.log_path = "greenbot"
+		self.logger = None
+		self.cycle = 86400 # 24 hours
 
 
 	def buildProtocol(self, addr):
 		bot = GreenBot()
 		
+		# set needed properties
 		bot.factory = self
 		bot.nickname = self.nickname
 		bot.username = self.username
@@ -344,17 +350,21 @@ class GreenbotFactory(ReconnectingClientFactory):
 
 		bot.register_hooks()
 		
-		self.resetDelay()
+		self.resetDelay() # required for reconnecting clients
 		
 		return bot
 
 	def clientConnectionLost(self, connector, reason):
+		print "* Disconnected from server."
 		if self.quitted:
+			print "* Exiting main loop."
 			reactor.stop()
 		else:
+			print "* Reconnecting..."
 			ReconnectingClientFactory.clientConnectionLost(self, connector, reason)
 	
 	def clientConnectionFailed(self, connector, reason):
+		print "* Connection failed.  Retrying..."
 		ReconnectingClientFactory.clientConnectionLost(self, connector, reason)
 
 

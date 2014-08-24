@@ -70,7 +70,7 @@ class BufferLogger:
 
 	def cycle_all(self):
 		for buffer in self.buffers:
-			cycle(buffer)
+			self.cycle(buffer)
 
 
 	def close_all(self):
