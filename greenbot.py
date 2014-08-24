@@ -32,7 +32,6 @@ import log
 
 import commands.ping
 import commands.quit
-import commands.admins
 import commands.auth
 import commands.status
 import commands.raw
@@ -40,6 +39,7 @@ import commands.link
 import commands.help
 import commands.alias
 import commands.logout
+import commands.clear
 
 VERSION = 3.1
 
@@ -164,7 +164,19 @@ class GreenBot(irc.IRCClient):
 
 		# log the PART
 		self.factory.logger.log(channel, "%s has left %s." % (user, channel))
+		
+	def modeChanged(self, user, channel, set, modes, args):
+		# update the names list
+		self.names(channel)
+		
+		nick = user.split('!')[0]
+		mode_string = '+' if set else '-'
+		mode_string += modes
+		if len(args) > 0: mode_string += ' ' + ' '.join(str(x) for x in args)
 
+		# log the MODE
+		self.factory.logger.log(channel, "%s sets modes [%s] on %s." % (nick, mode_string, channel))
+		#print user, channel, set, modes, args
 
 	def irc_RPL_NAMREPLY(self, prefix, params):
 		# parse the parameters
@@ -261,7 +273,6 @@ class GreenBot(irc.IRCClient):
 		# register hooks
 		self.hooks['PING'] = commands.ping
 		self.hooks['QUIT'] = commands.quit
-		self.hooks['ADMINS'] = commands.admins
 		self.hooks['AUTH'] = commands.auth
 		self.hooks['STATUS'] = commands.status
 		self.hooks['RAW'] = commands.raw
@@ -269,6 +280,7 @@ class GreenBot(irc.IRCClient):
 		self.hooks['HELP'] = commands.help
 		self.hooks['ALIAS'] = commands.alias
 		self.hooks['LOGOUT'] = commands.logout
+		self.hooks['CLEAR'] = commands.clear
 
 
 	def handle_command(self, source, command, receive):

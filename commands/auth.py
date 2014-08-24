@@ -49,6 +49,6 @@ def handle_command(bot, source, command, args, receive):
 	bot.msg(receive, 'You are authenticated.')
 	bot.notify('[auth] Successful login from %s.' % source)
 
-	# attempt to voice the person in the home channel, if there are any
+	# attempt to op the person in the home channel, if there are any
 	if bot.factory.admin_channel:
-		bot.mode(bot.factory.admin_channel, True, 'v', user = user)
+		bot.mode(bot.factory.admin_channel, True, 'o', user = user)
