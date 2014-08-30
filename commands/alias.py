@@ -1,5 +1,5 @@
 #
-# commands/help.py - HELP command for outputting usage info
+# commands/help.py - ALIAS command for outputting usage info
 #
 # Copyright (C) 2014 Quytelda Gaiwin <admin@tamalin.org>
 #
