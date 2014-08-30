@@ -1,6 +1,6 @@
 # 
 #
-# commands/clear.py - Simple PING command
+# commands/clear.py - CLEAR command to clear channel buffer
 #
 # Copyright (C) 2014 Quytelda Gaiwin <admin@tamalin.org>
 #
