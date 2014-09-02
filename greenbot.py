@@ -293,7 +293,8 @@ class GreenBot(irc.IRCClient):
 		args = elems[1:]
 
 		if cmd in self.hooks:
-			self.hooks[cmd].handle_command(self, source, command, args, receive)
+			try: self.hooks[cmd].handle_command(self, source, command, args, receive)
+			except Exception as e: self.msg(receive, "Internal error! Please fix me.")
 		else:
 			self.msg(receive, "Unrecognized Command [%s]; try HELP." % cmd)
 			
