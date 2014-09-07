@@ -19,27 +19,13 @@
 # along with greenbot.  If not, see <http://www.gnu.org/licenses/>.
 
 import time
-import json
-import sqlite3
-import re
+import os
 
 from twisted.internet.protocol import ReconnectingClientFactory
 from twisted.words.protocols import irc
-from twisted.internet.task import LoopingCall
 from twisted.internet import reactor, ssl
 
-import log
-
-import commands.ping
-import commands.quit
-import commands.auth
-import commands.status
-import commands.raw
-import commands.link
-import commands.help
-import commands.alias
-import commands.logout
-import commands.clear
+from modules import *
 
 VERSION = 3.1
 
@@ -50,7 +36,7 @@ class GreenBot(irc.IRCClient):
 	password = None
 	quitted = False
 
-	hooks = {}
+	mods = []
 	
 	channels = {}
 	admins = []
@@ -101,7 +87,7 @@ class GreenBot(irc.IRCClient):
 		pass
 
 	def userRenamed(self, oldname, newname):
-			
+		pass
 
 	def privmsg(self, user, channel, message):
 		# if the private message is addressed to me, it is a command
@@ -138,12 +124,20 @@ class GreenBot(irc.IRCClient):
 		namlist = names.strip().split(' ')
 		self.channels[channel] = namlist
 		
-	
+	# ------------------- Module functions ------------------- #
 
 	# ------------------- Bot Command Functions ------------------- #
 
 	def register_hooks(self):
-		pass
+		for module in dir(modules):
+			if module.startswith('__'): continue
+
+			print "* loading module:", module
+
+			# add the module's hook to the dictionary
+			mod = sys.modules['modules.%s' % module]
+
+			mods.append(mod)
 
 
 	def handle_command(self, source, command, receive):
@@ -243,3 +237,6 @@ def start(addr, port, factory, use_ssl = False):
 	# now that connection is initiated, run the reactor and get off the ground
 	# basically: "Away we go!"
 	reactor.run()
+	
+if __name__ == "__main__":
+	register_hooks()
