@@ -19,12 +19,14 @@
 # along with greenbot.  If not, see <http://www.gnu.org/licenses/>.
 
 import time
+import sys
 import os
 
 from twisted.internet.protocol import ReconnectingClientFactory
 from twisted.words.protocols import irc
 from twisted.internet import reactor, ssl
 
+import modules
 from modules import *
 
 VERSION = 3.1
@@ -36,13 +38,14 @@ class GreenBot(irc.IRCClient):
 	password = None
 	quitted = False
 
-	mods = []
+	modules = []
 	
 	channels = {}
 	admins = []
 
 	start_time = None
-	
+
+
 	# ------------------- Connection Event Handlers ------------------- #
 	
 	def connectionMade(self):
@@ -65,47 +68,15 @@ class GreenBot(irc.IRCClient):
 		self.start_time = time.time()
 
 
-	def joined(self, channel):
-		pass
-
-
-	def left(self, channel):
-		pass
-
-	### actions the bot sees other users doing
-
-	def userQuit(self, user, quitMessage):
-		pass
-
-	def userJoined(self, user, channel):
-		pass
-
-	def userLeft(self, user, channel):
-		pass
-		
-	def modeChanged(self, user, channel, set, modes, args):
-		pass
-
-	def userRenamed(self, oldname, newname):
-		pass
-
 	def privmsg(self, user, channel, message):
 		# if the private message is addressed to me, it is a command
 		if channel == self.nickname:
-			self.handle_command(user, message, user.split('!')[0])
+			self.handle_bot_command(user, message, user.split('!')[0])
 			return
 
 		# if it starts with PREFIX, it is a command
 		if message.startswith(self.factory.prefix) and len(message) > 1:
-			self.handle_command(user, message[1:], channel)
-
-
-	def action(self, user, channel, data):
-		pass
-
-
-	def noticed(self, user, channel, message):
-		pass
+			self.handle_bot_command(user, message[1:], channel)
 
 
 	def names(self, channel):
@@ -128,32 +99,45 @@ class GreenBot(irc.IRCClient):
 
 	# ------------------- Bot Command Functions ------------------- #
 
-	def register_hooks(self):
+	def load_modules(self):
+		print dir(modules)
 		for module in dir(modules):
 			if module.startswith('__'): continue
 
 			print "* loading module:", module
-
-			# add the module's hook to the dictionary
 			mod = sys.modules['modules.%s' % module]
+			
+			# put in master list
+			self.modules.append(mod)
 
-			mods.append(mod)
+			# connect module-declared hooks
+			pass
 
 
-	def handle_command(self, source, command, receive):
-		# split into components by ' '
-		elems = command.strip().split(' ')
+	def handleCommand(self, command, prefix, params):
 
-		# parse the command
-		if len(elems) < 1: return
-		cmd = elems[0].upper()
-		args = elems[1:]
+		# execute pre-command module hooks
+		for mod in self.modules:
+			hook = getattr(mod, "pre_irc_%s" % command, None)
+			if hook: hook(self, prefix, params)
 
-		if cmd in self.hooks:
-			try: self.hooks[cmd].handle_command(self, source, command, args, receive)
-			except Exception as e: self.msg(receive, "Internal error! Please fix me.")
-		else:
-			self.msg(receive, "Unrecognized Command [%s]; try HELP." % cmd)
+		# regular handling (superclass)
+		irc.IRCClient.handleCommand(self, command, prefix, params)
+		
+		# execute post-command module hooks
+		for mod in self.modules:
+			hook = getattr(mod, "irc_%s" % command, None)
+			if hook: hook(self, prefix, params)
+
+
+	def handle_bot_command(self, source, message, receive):
+
+		# we haven't parsed the message yet
+		msg = self.parse_message(message)
+	
+		for mod in self.modules:
+			hook = getattr(mod, "bot_%s" % msg['command'], None)
+			if hook: hook(self, source, msg['params'], receive)
 			
 	
 	# ------------------- Convenience Functions ------------------- #
@@ -176,6 +160,30 @@ class GreenBot(irc.IRCClient):
 			if re.match('[%@&~]' + nick, name): return True
 
 		return False
+		
+	def parse_message(self, raw):
+		"""
+		Parses a raw bot command message into a dictionary representing it's compository elements.
+		Bot commands are in the format: COMMAND (SINGLE PARAM) (:TRAILING PARAM)
+		Single params are space separated, while a trailing param may contain spaces.
+		"""
+		message = {}
+	
+		elems = raw.strip().split(' ')
+	
+		message['command'] = elems.pop(0).upper()
+	
+		# parse the parameters
+		message['params'] = []
+
+		for i in range(0, len(elems)):
+			if elems[i].startswith(':'):
+				message['params'].append(' '.join(elems[i:]))
+				break
+
+			message['params'].append(elems[i])
+
+		return message
 
 
 class GreenbotFactory(ReconnectingClientFactory):
@@ -208,7 +216,7 @@ class GreenbotFactory(ReconnectingClientFactory):
 		bot.username = self.username
 		bot.password = self.srv_password
 
-		bot.register_hooks()
+		bot.load_modules()
 		
 		self.resetDelay() # required for reconnecting clients
 		
