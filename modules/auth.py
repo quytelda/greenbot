@@ -42,3 +42,4 @@ def bot_AUTH(bot, source, args, receive):
 
 	user = source.split('!')[0]
 	bot.admins.append(user)
+	bot.msg(receive, "You are authenticated.")
