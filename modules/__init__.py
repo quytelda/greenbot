@@ -1,1 +1,1 @@
-__all__ = ['ping', 'auth', 'channels']
+__all__ = ['ping', 'auth', 'channels', 'actions']
