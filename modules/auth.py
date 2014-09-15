@@ -1,5 +1,5 @@
 #
-# commands/auth.py - Bot authentication/login over IRC module
+# modules/auth.py - Bot authentication/login over IRC module
 # This module is essential for greenbot.  Do not remove it or things won't work!
 #
 # Copyright (C) 2014 Quytelda Gaiwin <admin@tamalin.org>
@@ -44,7 +44,7 @@ def bot_AUTH(bot, source, args, receive):
 	bot.admins.append(user)
 	bot.msg(receive, "You are authenticated.")
 	
-def def bot_LOGOUT(bot, source, args, receive):
+def bot_LOGOUT(bot, source, args, receive):
 	nick = source.split('!')[0]
 	
 	if not nick in bot.admins:

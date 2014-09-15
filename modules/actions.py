@@ -1,5 +1,5 @@
 #
-# commands/actions.py - Bot action commands
+# modules/actions.py - Bot action commands
 # This module is essential for greenbot.  Do not remove it or things won't work!
 #
 # Copyright (C) 2014 Quytelda Gaiwin <admin@tamalin.org>
