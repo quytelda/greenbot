@@ -51,3 +51,16 @@ def bot_SAY(bot, source, args, receive):
 	
 	# now, actually send the message
 	bot.msg(target, message)
+
+
+def bot_RAW(bot, source, args, receive):
+	if len(args) < 1: return
+	
+	# check if this is from the actual owner
+	if not source.split('!')[0] in bot.admins:
+		bot.notice(receive, "You are not authorized.")
+		return
+	
+	message = ' '.join(args)
+
+	bot.transport.write(message + '\r\n')
