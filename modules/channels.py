@@ -71,6 +71,38 @@ def bot_JOIN(bot, source, args, receive):
 	
 	# send join request
 	bot.join(chan)
+	
+
+def bot_PART(bot, source, args, receive):
+
+	if len(args) < 1:
+		bot.msg(receive, 'PART takes one parameter!')
+		return
+
+	nick = source.split('!')[0]
+	chan = args[0]
+
+	# Is the caller authorized?
+	if not nick in bot.admins:
+		bot.msg(receive, 'You are not authorized.')
+		return
+	
+	# send part request
+	bot.part(chan)
+	
+
+def bot_QUIT(bot, source, args, receive):
+
+	nick = source.split('!')[0]
+	reason = args[0] if len(args) > 0 else "Received QUIT from %s" % nick
+
+	# Is the caller authorized?
+	if not nick in bot.admins:
+		bot.msg(receive, 'You are not authorized.')
+		return
+	
+	# send quit notice
+	bot.quit(reason)
 
 
 def bot_DNAM(bot, source, args, receive):
