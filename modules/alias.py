@@ -73,7 +73,7 @@ def bot_ALIAS(bot, source, args, receive):
 	target = args[0]
 
 	# only admins can use wildcards
-	if (not nick in bot.admins) and ('%' in target):
+	if (not source.split('!')[0] in bot.admins) and ('%' in target):
 		bot.msg(receive, 'You are not authorized.')
 		return
 
