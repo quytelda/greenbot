@@ -81,19 +81,6 @@ class GreenBot(irc.IRCClient):
 
 	def names(self, channel):
 		self.transport.write("NAMES %s\r\n" % channel)
-
-
-	def irc_RPL_NAMREPLY(self, prefix, params):
-		# parse the parameters
-		target = params[0]
-		chan_type = params[1]
-		channel = params[2]
-
-		names = params[-1]
-
-		# parse the names list
-		namlist = names.strip().split(' ')
-		self.channels[channel] = namlist
 		
 	# ------------------- Module functions ------------------- #
 
