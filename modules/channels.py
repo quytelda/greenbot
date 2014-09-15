@@ -24,19 +24,29 @@
 def irc_JOIN(bot, prefix, params):
 
 	# update names list
-	bot.names()
+	chan = params[0]
+	bot.names(chan)
 
 
 def irc_PART(bot, prefix, params):
 
 	# update names list
-	bot.names()
+	chan = params[0]
+	bot.names(chan)
 
 
 def irc_QUIT(bot, prefix, params):
 	
 	# update names list
-	bot.names()
+	chan = params[0]
+	bot.names(chan)
+
+
+def irc_MODE(bot, prefix, params):
+	
+	# update names list
+	chan = params[0]
+	bot.names(chan)
 
 	
 def irc_RPL_NAMREPLY(bot, prefix, params):
@@ -103,6 +113,7 @@ def bot_QUIT(bot, source, args, receive):
 	
 	# send quit notice
 	bot.quit(reason)
+	bot.factory.quitted = True
 
 
 def bot_DNAM(bot, source, args, receive):
@@ -123,4 +134,4 @@ def bot_DNAM(bot, source, args, receive):
 		return
 		
 	# dump names list
-	bot.msg(receive, bot.channels[chan])
+	bot.msg(receive, str(bot.channels[chan]))

@@ -3,3 +3,4 @@ greenbot:
 
 clean:
 	find . -name "*.py[co]" -delete
+	find . -name "*~" -delete
