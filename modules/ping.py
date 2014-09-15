@@ -1,5 +1,5 @@
 #
-# commands/logout.py - Log out admin
+# modules/ping.py - Simple PING command
 #
 # Copyright (C) 2014 Quytelda Gaiwin <admin@tamalin.org>
 #
@@ -18,13 +18,5 @@
 # You should have received a copy of the GNU General Public License
 # along with greenbot.  If not, see <http://www.gnu.org/licenses/>.
 
-def handle_command(bot, source, command, args, receive):
-	nick = source.split('!')[0]
-	
-	if not nick in bot.admins:
-		bot.msg(receive, "You are not logged in.")
-		return
-
-	bot.admins.remove(nick)
-	bot.msg(receive, "Succesfully logged out.")
-	bot.notify("[auth] Logout by %s." % source)
+def bot_PING(bot, source, args, receive):
+	bot.msg(receive, "PONG")

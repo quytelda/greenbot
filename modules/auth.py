@@ -1,8 +1,6 @@
-#!/usr/bin/python
-
-# 
 #
-# commands/ping.py - Simple PING command
+# commands/auth.py - Bot authentication/login over IRC module
+# This module is essential for greenbot.  Do not remove it or things won't work!
 #
 # Copyright (C) 2014 Quytelda Gaiwin <admin@tamalin.org>
 #
@@ -21,7 +19,7 @@
 # You should have received a copy of the GNU General Public License
 # along with greenbot.  If not, see <http://www.gnu.org/licenses/>.
 
-def handle_command(bot, source, command, args, receive):
+def bot_AUTH(bot, source, args, receive):
 
 	nick = source.split('!')[0]
 
@@ -37,18 +35,11 @@ def handle_command(bot, source, command, args, receive):
 	pswd = args[0]
 	
 	# add the user to the admins list
-	if pswd != bot.factory.password:
-		bot.msg(receive, 'Invalid login password.')
-		bot.notify('[auth] Failed login attempt from %s.' % source)
-		return
+	#if pswd != bot.factory.password:
+	#	bot.msg(receive, 'Invalid login password.')
+	#	bot.notify('[auth] Failed login attempt from %s.' % source)
+	#	return
 
 	user = source.split('!')[0]
 	bot.admins.append(user)
-
-	# send a welcome reply
-	bot.msg(receive, 'You are authenticated.')
-	bot.notify('[auth] Successful login from %s.' % source)
-
-	# attempt to op the person in the home channel, if there are any
-	if bot.factory.admin_channel:
-		bot.mode(bot.factory.admin_channel, True, 'o', user = user)
+	bot.msg(receive, "You are authenticated.")
