@@ -49,7 +49,40 @@ def bot_SAY(bot, source, args, receive):
 	
 	message = ' '.join(args)
 	
+def bot_ACT(bot, source, args, receive):
+	"""
+	This is the command hook that tells the bot to send a CTCP action message.
+	"""
+
+	nick = source.split('!')[0]
+	target = None
+	message = None
+
+	if len(args) < 1:
+		bot.msg(receive, "SAY requires more parameters. Syntax: SAY [<#channel>] <message>")
+		return
+
+	# check if the request is authorized
+	if not nick in bot.admins:
+		bot.msg(receive, 'You are not authorized.')
+		return
+
+	# figure out the intended target
+	if (len(args) > 1) and (args[0].startswith('#')):
+		target = args.pop(0)
+	elif nick != receive:
+		# this will be true if the target is a channel
+		target = receive
+	else:
+		bot.msg(receive, "SAY requires a target in this context. Syntax: SAY <#channel> <message>")
+		return
+
+	message = ' '.join(args)
+
 	# now, actually send the message
+	# ACTION messages are CTCP denoted by special unicode blocks
+	# However, twisted only handles ASCII, so we have to convert
+	message = 'ACTION ' + message + ''.encode('ascii')
 	bot.msg(target, message)
 
 

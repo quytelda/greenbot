@@ -97,9 +97,6 @@ class GreenBot(irc.IRCClient):
 			# put in master list
 			self.modules.append(mod)
 
-			# connect module-declared hooks
-			pass
-
 
 	def handleCommand(self, command, prefix, params):
 
