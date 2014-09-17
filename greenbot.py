@@ -43,8 +43,6 @@ class GreenBot(irc.IRCClient):
 	channels = {}
 	admins = []
 
-	start_time = None
-
 
 	# ------------------- Connection Event Handlers ------------------- #
 	

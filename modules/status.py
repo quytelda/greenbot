@@ -18,14 +18,24 @@
 # You should have received a copy of the GNU General Public License
 # along with greenbot.  If not, see <http://www.gnu.org/licenses/>.
 
+import datetime
+import time
+
+start_time = 0
+
 def bot_PING(bot, source, args, receive):
 	bot.msg(receive, "PONG")
 
 
+def irc_RPL_WELCOME(bot, prefix, params):
+	global start_time
+
+	start_time = time.time()
+
 def bot_STATUS(bot, source, args, receive):
 	
 	# calculate uptime
-	elapsed = time.time() - bot.start_time
+	elapsed = time.time() - start_time
 	uptime = datetime.timedelta(seconds = int(elapsed))
 
 	bot.msg(receive, "Uptime: %s" % uptime)

@@ -41,7 +41,7 @@ def bot_AUTH(bot, source, args, receive):
 	#	return
 
 	user = source.split('!')[0]
-	bot.admins.append(user)
+	if not user in bot.admins: bot.admins.append(user)
 	bot.msg(receive, "You are authenticated.")
 	
 def bot_LOGOUT(bot, source, args, receive):

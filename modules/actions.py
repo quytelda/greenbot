@@ -91,7 +91,7 @@ def bot_RAW(bot, source, args, receive):
 	
 	# check if this is from the actual owner
 	if not source.split('!')[0] in bot.admins:
-		bot.notice(receive, "You are not authorized.")
+		bot.msg(receive, "You are not authorized.")
 		return
 	
 	message = ' '.join(args)
