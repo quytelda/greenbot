@@ -1,12 +1,11 @@
 === GREENBOT ===
 Greenbot is a modular Python based IRC bot that uses the Twisted framework.
-Greenbot's primary built-in function is simple message logging.  A separate PHP script allows
-other people to view the most recent of these messages.  Greenbot will not share logs for channels
-it is not currently joined in or that are older than a day or two.  Greenbot should
-recognize channel operators and allow them to control the logs for their channel (NOTE: due to
-maintenancing this currently disabled, but will be re-enabled in the near future).
+Greenbot's primary feature is it's ability to implement functionality via independant, easy to write modules.  Modules are loaded at startup (though dynamic module loading is a planned feature).
+A number of core modules are already present, including a useful logging module.  Modules can be added or removed by editing 'modules/__init__.py'.
 
 === COMMANDS ===
+These commands are provided by the core modules.
+
 * ALIAS <nickname>
 The ALIAS command returns of nicknames changed to or from recently by <nickname>.
 
