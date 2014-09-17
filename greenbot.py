@@ -80,7 +80,6 @@ class GreenBot(irc.IRCClient):
 	# ------------------- Bot Command Functions ------------------- #
 
 	def load_modules(self):
-		print dir(modules)
 		for module in dir(modules):
 			if module.startswith('__'): continue
 
