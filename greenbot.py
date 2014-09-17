@@ -63,11 +63,6 @@ class GreenBot(irc.IRCClient):
 
 	# ------------------- IRC Message Event Handlers ------------------- #
 
-	def signedOn(self):
-		# record sign-on time for calculating uptime
-		self.start_time = time.time()
-
-
 	def privmsg(self, user, channel, message):
 		# if the private message is addressed to me, it is a command
 		if channel == self.nickname:
