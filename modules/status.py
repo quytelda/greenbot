@@ -24,7 +24,10 @@ import time
 start_time = 0
 
 def bot_PING(bot, source, args, receive):
-	bot.msg(receive, "PONG")
+	bot.msg(receive, "pong")
+
+def bot_PONG(bot, source, args, receive):
+	bot.msg(receive, "ping")
 
 
 def irc_RPL_WELCOME(bot, prefix, params):
@@ -33,13 +36,13 @@ def irc_RPL_WELCOME(bot, prefix, params):
 	start_time = time.time()
 
 def bot_STATUS(bot, source, args, receive):
-	
+
 	# calculate uptime
 	elapsed = time.time() - start_time
 	uptime = datetime.timedelta(seconds = int(elapsed))
 
 	bot.msg(receive, "Uptime: %s" % uptime)
 	bot.msg(receive, "Channels (%d): %s" % (len(bot.channels), bot.channels.keys()))
-	
+
 	if source.split('!')[0] in bot.admins:
 		bot.msg(receive, "Administrators (%d): %s" % (len(bot.admins), bot.admins))
