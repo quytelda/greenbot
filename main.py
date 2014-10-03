@@ -28,7 +28,7 @@ import config
 
 connection = {
 	'addr' : None,		# host address
-	'port' : None,		# connection port 
+	'port' : None,		# connection port
 	'ssl' : None,		# use SSL?
 	'username' : None,	# username
 	'password' : None,	# connection password

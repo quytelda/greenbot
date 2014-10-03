@@ -39,17 +39,17 @@ class GreenBot(irc.IRCClient):
 	quitted = False
 
 	modules = []
-	
+
 	channels = {}
 	admins = []
 
 
 	# ------------------- Connection Event Handlers ------------------- #
-	
+
 	def connectionMade(self):
 		# call the parent method
 		irc.IRCClient.connectionMade(self)
-		
+
 		# status message
 		host = self.transport.getPeer().host
 
@@ -67,17 +67,20 @@ class GreenBot(irc.IRCClient):
 			self.handle_bot_command(user, message, user.split('!')[0])
 			return
 
-		# if it starts with PREFIX, it is a command
+		# if it starts with our designated command prefix,
+		# it is a command given in a channel
 		if message.startswith(self.factory.prefix) and len(message) > 1:
 			self.handle_bot_command(user, message[1:], channel)
 
 
 	def names(self, channel):
+		"""
+		Send a NAMES command to the server, to query for the members of the given channel.
+		"""
 		self.transport.write("NAMES %s\r\n" % channel)
-		
-	# ------------------- Module functions ------------------- #
 
-	# ------------------- Bot Command Functions ------------------- #
+
+	# ------------------- Command/Module Handling ------------------- #
 
 	def load_modules(self):
 		for module in dir(modules):
@@ -85,8 +88,8 @@ class GreenBot(irc.IRCClient):
 
 			print "* loading module:", module
 			mod = sys.modules['modules.%s' % module]
-			
-			# put in master list
+
+			# modules are added to the master list
 			self.modules.append(mod)
 
 
@@ -97,30 +100,27 @@ class GreenBot(irc.IRCClient):
 			hook = getattr(mod, "pre_irc_%s" % command, None)
 			if hook: hook(self, prefix, params)
 
-		# regular handling (superclass)
+		# regular handling (handled by parent class)
 		irc.IRCClient.handleCommand(self, command, prefix, params)
-		
+
 		# execute post-command module hooks
 		for mod in self.modules:
 			hook = getattr(mod, "irc_%s" % command, None)
-			if hook: hook(self, prefix, params)
+			if hook is not None:
+				hook(self, prefix, params)
 
 
 	def handle_bot_command(self, source, message, receive):
 
 		# we haven't parsed the message yet
-		msg = self.parse_message(message)
-	
+		msg = self.parse_command(message)
+
 		for mod in self.modules:
 			hook = getattr(mod, "bot_%s" % msg['command'], None)
 			if hook: hook(self, source, msg['params'], receive)
-			
-	
-	# ------------------- Convenience Functions ------------------- #
-			
-	def notify(self, message):
-		pass
 
+
+	# ------------------- Convenience Functions ------------------- #
 
 	def nick_in_channel(self, nick, channel):
 		namlist = self.channels[channel]
@@ -136,19 +136,23 @@ class GreenBot(irc.IRCClient):
 			if re.match('[%@&~]' + nick, name): return True
 
 		return False
-		
-	def parse_message(self, raw):
+
+	def parse_command(self, raw):
 		"""
-		Parses a raw bot command message into a dictionary representing it's compository elements.
-		Bot commands are in the format: COMMAND (SINGLE PARAM) (:TRAILING PARAM)
-		Single params are space separated, while a trailing param may contain spaces.
+		Parses a raw bot command message into a dictionary representing
+		it's compository elements.
+		Bot commands are in the format:
+		    COMMAND (SINGLE PARAM) (:TRAILING PARAM)
+
+		Single params are space separated, while a trailing param may
+		contain spaces.
 		"""
 		message = {}
-	
+
 		elems = raw.strip().split(' ')
-	
+
 		message['command'] = elems.pop(0).upper()
-	
+
 		# parse the parameters
 		message['params'] = []
 
@@ -185,7 +189,7 @@ class GreenbotFactory(ReconnectingClientFactory):
 
 	def buildProtocol(self, addr):
 		bot = GreenBot()
-		
+
 		# set needed properties
 		bot.factory = self
 		bot.nickname = self.nickname
@@ -193,9 +197,9 @@ class GreenbotFactory(ReconnectingClientFactory):
 		bot.password = self.srv_password
 
 		bot.load_modules()
-		
+
 		self.resetDelay() # required for reconnecting clients
-		
+
 		return bot
 
 	def clientConnectionLost(self, connector, reason):
@@ -206,7 +210,7 @@ class GreenbotFactory(ReconnectingClientFactory):
 		else:
 			print "* Reconnecting..."
 			ReconnectingClientFactory.clientConnectionLost(self, connector, reason)
-	
+
 	def clientConnectionFailed(self, connector, reason):
 		print "* Connection failed.  Retrying..."
 		ReconnectingClientFactory.clientConnectionLost(self, connector, reason)
@@ -217,10 +221,10 @@ def start(addr, port, factory, use_ssl = False):
 		reactor.connectSSL(addr, port, factory, ssl.ClientContextFactory())
 	else:
 		reactor.connectTCP(addr, port, factory)
-	
+
 	# now that connection is initiated, run the reactor and get off the ground
 	# basically: "Away we go!"
 	reactor.run()
-	
+
 if __name__ == "__main__":
 	register_hooks()
