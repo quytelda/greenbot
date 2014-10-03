@@ -4,6 +4,8 @@ Greenbot is a modular Python based IRC bot that uses the Twisted framework.
 Greenbot's primary feature is it's ability to implement functionality via independant, easy to write modules.  Modules are loaded at startup (though dynamic module loading is a planned feature).
 A number of core modules are already present, including a useful logging module.  Modules can be added or removed by editing 'modules/__init__.py'.
 
+The current stable version is 3.1 (https://github.com/quytelda/greenbot/tree/v3.1)
+
 # Getting Greenbot
 Greenbot requires Python 2; it will not work with Python 3.
 Greenbot depends on the Twisted framework, as well as pyOpenSSL.
