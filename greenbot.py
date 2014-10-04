@@ -116,8 +116,20 @@ class GreenBot(irc.IRCClient):
 		msg = self.parse_command(message)
 
 		for mod in self.modules:
-			hook = getattr(mod, "bot_%s" % msg['command'], None)
-			if hook: hook(self, source, msg['params'], receive)
+			hook = None
+			params = None
+
+			# get reference to function hook
+			if (msg['command'] == 'HELP') and (len(msg['params']) > 0):
+				hook = getattr(mod, "help_%s" % msg['params'][0].upper(), None)
+				params = msg['params'][1:]
+			else:
+				hook = getattr(mod, "bot_%s" % msg['command'], None)
+				params = msg['params']
+
+			# execute hook
+			if hook is not None:
+				hook(self, source, params, receive)
 
 
 	# ------------------- Convenience Functions ------------------- #
