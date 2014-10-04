@@ -22,23 +22,31 @@ import modules
 import sys
 
 def bot_HELP(bot, source, args, receive):
+	"""
+	Handler for the HELP bot command.  Outputs useful information about available capabilities.
+
+	Use the following conventions:
+	The program name should appear in bold.
+	All command names should appear in all caps, and in bold.
+	"""
+
 	bot.msg(receive, "\x02greenbot\x02 4.0 [http://github.com/quytelda/greenbot]");
 
-	print dir(modules)
-
-	commands = __lookup_commands()
-
 	# send back a list of supported commands
+	commands = __lookup_commands()
 	bot.msg(receive, "\x02greenbot\x02 supports the following commands:")
 	bot.msg(receive, (' ' * 4 + '\x02') + '\x02, \x02'.join(commands) + '\x02')
 	bot.msg(receive, "To see help/usage for any command, use \x02HELP\x02 <command>");
 
 def __lookup_commands():
+	"""
+	Checks all modules currently loaded for functions of with the name
+	"bot_*" to enumerate all the bot commands that can be called.
+	"""
 	commands = []
 	for module in dir(modules):
 		if module.startswith('__'): continue
 
-		print "* loading module:", module
 		mod = sys.modules['modules.%s' % module]
 
 		# find every bot command handler
