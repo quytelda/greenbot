@@ -26,6 +26,7 @@ start_time = 0
 def bot_PING(bot, source, args, receive):
 	bot.msg(receive, "pong")
 
+
 def bot_PONG(bot, source, args, receive):
 	bot.msg(receive, "ping")
 
@@ -34,6 +35,7 @@ def irc_RPL_WELCOME(bot, prefix, params):
 	global start_time
 
 	start_time = time.time()
+
 
 def bot_STATUS(bot, source, args, receive):
 
@@ -46,3 +48,17 @@ def bot_STATUS(bot, source, args, receive):
 
 	if source.split('!')[0] in bot.admins:
 		bot.msg(receive, "Administrators (%d): %s" % (len(bot.admins), bot.admins))
+
+
+def help_PING(bot, source, args, receive):
+	bot.msg(receive, "Syntax: PING (or PONG)")
+	bot.msg(receive, "PING and PONG reply with a ping/pong to verify that both the bot and the caller are still connected.")
+
+
+def help_PONG(bot, source, args, receive):
+	help_PING(bot, source, args, receive)
+
+
+def help_STATUS(bot, source, args, receive):
+	bot.msg(receive, "Syntax: STATUS")
+	bot.msg(receive, "Outputs information about the status of the bot, including uptime, current channels, and logged in administrators.")

@@ -23,20 +23,20 @@ def bot_SAY(bot, source, args, receive):
 	"""
 	This is the command hook that tells the bot to send a message.
 	"""
-	
+
 	nick = source.split('!')[0]
 	target = None
 	message = None
-	
+
 	if len(args) < 1:
 		bot.msg(receive, "SAY requires more parameters. Syntax: SAY [<#channel>] <message>")
 		return
-	
+
 	# check if the request is authorized
 	if not nick in bot.admins:
 		bot.msg(receive, 'You are not authorized.')
 		return
-	
+
 	# figure out the intended target
 	if (len(args) > 1) and (args[0].startswith('#')):
 		target = args.pop(0)
@@ -46,9 +46,9 @@ def bot_SAY(bot, source, args, receive):
 	else:
 		bot.msg(receive, "SAY requires a target in this context. Syntax: SAY <#channel> <message>")
 		return
-	
+
 	message = ' '.join(args)
-	
+
 def bot_ACT(bot, source, args, receive):
 	"""
 	This is the command hook that tells the bot to send a CTCP action message.
@@ -88,12 +88,27 @@ def bot_ACT(bot, source, args, receive):
 
 def bot_RAW(bot, source, args, receive):
 	if len(args) < 1: return
-	
+
 	# check if this is from the actual owner
 	if not source.split('!')[0] in bot.admins:
 		bot.msg(receive, "You are not authorized.")
 		return
-	
+
 	message = ' '.join(args)
 
 	bot.transport.write(message + '\r\n')
+
+
+def help_RAW(bot, source, args, receive):
+	bot.msg(receive, "Syntax: RAW <message>")
+	bot.msg(receive, "Sends an appropriately CR-LF padded raw IRC message to the server.")
+
+
+def help_SAY(bot, source, args, receive):
+	bot.msg(receive, "Syntax: SAY <channel> <message>")
+	bot.msg(receive, "Sends a message to <channel>.")
+
+
+def help_ACT(bot, source, args, receive):
+	bot.msg(receive, "Syntax: ACT <channel> <message>")
+	bot.msg(receive, "Sends a CTCP action message to <channel>.")

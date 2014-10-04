@@ -36,19 +36,19 @@ def irc_PART(bot, prefix, params):
 
 
 def irc_QUIT(bot, prefix, params):
-	
+
 	# update names list
 	chan = params[0]
 	bot.names(chan)
 
 
 def irc_MODE(bot, prefix, params):
-	
+
 	# update names list
 	chan = params[0]
 	bot.names(chan)
 
-	
+
 def irc_RPL_NAMREPLY(bot, prefix, params):
 	# parse the parameters
 	target = params[0]
@@ -78,10 +78,10 @@ def bot_JOIN(bot, source, args, receive):
 	if not nick in bot.admins:
 		bot.msg(receive, 'You are not authorized.')
 		return
-	
+
 	# send join request
 	bot.join(chan)
-	
+
 
 def bot_PART(bot, source, args, receive):
 
@@ -96,10 +96,10 @@ def bot_PART(bot, source, args, receive):
 	if not nick in bot.admins:
 		bot.msg(receive, 'You are not authorized.')
 		return
-	
+
 	# send part request
 	bot.part(chan)
-	
+
 
 def bot_QUIT(bot, source, args, receive):
 
@@ -110,7 +110,7 @@ def bot_QUIT(bot, source, args, receive):
 	if not nick in bot.admins:
 		bot.msg(receive, 'You are not authorized.')
 		return
-	
+
 	# send quit notice
 	bot.quit(reason)
 	bot.factory.quitted = True
@@ -120,7 +120,7 @@ def bot_DNAM(bot, source, args, receive):
 	if len(args) < 1:
 		bot.msg(receive, 'DNAM takes one parameter!')
 		return
-		
+
 	nick = source.split('!')[0]
 	chan = args[0]
 
@@ -128,10 +128,31 @@ def bot_DNAM(bot, source, args, receive):
 	if not nick in bot.admins:
 		bot.msg(receive, 'You are not authorized.')
 		return
-		
+
 	if not chan in bot.channels:
 		bot.msg(receive, 'Bot is not in %s.' % chan)
 		return
-		
+
 	# dump names list
 	bot.msg(receive, str(bot.channels[chan]))
+
+
+def help_JOIN(bot, source, args, receive):
+	bot.msg(receive, "Syntax: JOIN <channel>")
+	bot.msg(receive, "JOIN instructs the bot to attempt joining <channel>.")
+
+
+def help_PART(bot, source, args, receive):
+	bot.msg(receive, "Syntax: PART <channel>")
+	bot.msg(receive, "PART instructs the bot to attempt parting <channel>.")
+
+
+def help_QUIT(bot, source, args, receive):
+	bot.msg(receive, "Syntax: QUIT [quit message]")
+	bot.msg(receive, "QUIT instructs the bot to quit (disconnect from) the network.")
+	bot.msg(receive, "An optional quit message may be provided.")
+
+
+def help_DNAM(bot, source, args, receive):
+	bot.msg(receive, "Syntax: DNAM <channel>")
+	bot.msg(receive, "DNAM dumps the bot's NAMES list for <channel>; useful for debugging.")
