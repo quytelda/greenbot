@@ -30,30 +30,13 @@ def load():
 	global parser
 
 	parser = ConfigParser.ConfigParser()
-	parser.read(config_path) 
+	parser.read(config_path)
 
 
-def configure(factory):
-	"""
-	Apply a runtime configuration from the configuration information in memory.
-	All properties loaded by this function must be mutable during runtime, as it is called by rehash.
+def get_property(section, option):
+	if not parser.has_option(section, option): return None
 
-	config.load() must be called before this function can be used.
-	"""
-	if parser.has_option("self", "autojoin"):
-		factory.autojoin = parser.get("self", "autojoin")
-
-	if parser.has_option("self", "admin-channel"):
-		factory.admin_channel = parser.get("self", "admin-channel")
-	
-	if parser.has_option("self", "admin-channel-modes"):
-		factory.admin_channel_modes = parser.get("self", "admin-channel-modes")
-
-	if parser.has_option("self", "password"):
-		factory.password = parser.get("self", "password")
-
-	if parser.has_option("self", "cycle"):
-		factory.cycle = parser.getint("self", "cycle")
+	return parser.get(section, option)
 
 
 def connection(connection):
@@ -86,7 +69,7 @@ def connection(connection):
 
 	if (not connection['modes']) and parser.has_option("connection", "modes"):
 		connection['modes'] = parser.get("connection", "modes")
-		
+
 	return connection
 
 

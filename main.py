@@ -77,7 +77,6 @@ def main(argv):
 		else:
 			print "Unrecognized argument:", argv[i]
 
-		# *NEXT*!!
 		i += 1
 
 	factory = greenbot.GreenbotFactory()
@@ -119,6 +118,8 @@ def main(argv):
 		greenbot.start(connection['addr'], connection['port'], factory, connection['ssl'])
 
 
+
+# ----------------- Other Stuff ------------------ #
 
 def arg_matches(value, longer, shorter = None):
 	return (value == longer) or (value == shorter)

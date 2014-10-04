@@ -69,7 +69,7 @@ class GreenBot(irc.IRCClient):
 
 		# if it starts with our designated command prefix,
 		# it is a command given in a channel
-		if message.startswith(self.factory.prefix) and len(message) > 1:
+		if message.startswith(self.factory.properties['prefix']) and len(message) > 1:
 			self.handle_bot_command(user, message[1:], channel)
 
 
@@ -181,36 +181,31 @@ class GreenBot(irc.IRCClient):
 class GreenbotFactory(ReconnectingClientFactory):
 
 	quitted = False
+	properties = {
+		'nickname' : 'greenbot',
+		'username' : 'greenbot',
+		'server-password': None,
 
-	def __init__(self):
-		### global properties (defaults)
-		self.nickname = "greenbot"
-		self.username = "greenbot"
-		self.srv_password = None
-		self.password = None
-
-		self.prefix = "`"
-		self.autojoin = None
-		self.admin_channel = None
-		self.admin_channel_modes = "+mnst"
-
-		self.log_path = "greenbot"
-		self.logger = None
-		self.cycle = 86400 # 24 hours
-
+		'prefix' : '`',
+		'password' : None,
+		'autojoin' : None,
+		'admin-channel' : None
+	}
 
 	def buildProtocol(self, addr):
 		bot = GreenBot()
 
-		# set needed properties
+		# set necessary properties
+		# we need to set these before we connect
 		bot.factory = self
-		bot.nickname = self.nickname
-		bot.username = self.username
-		bot.password = self.srv_password
+		bot.nickname = self.properties['nickname']
+		bot.username = self.properties['username']
+		bot.password = self.properties['server-password']
 
 		bot.load_modules()
 
-		self.resetDelay() # required for reconnecting clients
+		# required for reconnecting clients
+		self.resetDelay()
 
 		return bot
 
