@@ -31,9 +31,9 @@ def bot_AUTH(bot, source, args, receive):
 			bot.msg(receive, "You are an not logged in.")
 
 		return
-	
+
 	pswd = args[0]
-	
+
 	# add the user to the admins list
 	#if pswd != bot.factory.password:
 	#	bot.msg(receive, 'Invalid login password.')
@@ -43,13 +43,18 @@ def bot_AUTH(bot, source, args, receive):
 	user = source.split('!')[0]
 	if not user in bot.admins: bot.admins.append(user)
 	bot.msg(receive, "You are authenticated.")
-	
+
 def bot_LOGOUT(bot, source, args, receive):
 	nick = source.split('!')[0]
-	
+
 	if not nick in bot.admins:
 		bot.msg(receive, "You are not logged in.")
 		return
 
 	bot.admins.remove(nick)
 	bot.msg(receive, "Succesfully logged out.")
+
+def help_AUTH(bot, source, args, receive):
+ 	bot.msg(receive, "Syntax: AUTH [password]")
+	bot.msg(receive, "AUTH is used to log into the bot with the bot's administration password.")
+	bot.msg(receive, "If no password is supplied, the command returns the user's current login status.")

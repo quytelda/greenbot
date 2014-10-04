@@ -39,7 +39,7 @@ def irc_NICK(bot, prefix, params):
 		('%"' + oldname + '"%', '%"' + newname + '"%'))
 
 	nicklist = []
-	
+
 	# retreive the results
 	for result in cursor:
 		# parse the result row
@@ -96,3 +96,7 @@ def bot_ALIAS(bot, source, args, receive):
 
 	except sqlite3.Error, e:
 		print "SQLite Error", e
+
+def help_ALIAS(bot, source, args, receive):
+	bot.msg(receive, "Syntax: ALIAS <nickname>")
+	bot.msg(receive, "ALIAS returns a list of nicknames changed to or from recently by <nickname>.")
