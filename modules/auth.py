@@ -58,3 +58,7 @@ def help_AUTH(bot, source, args, receive):
  	bot.msg(receive, "Syntax: AUTH [password]")
 	bot.msg(receive, "AUTH is used to log into the bot with the bot's administration password.")
 	bot.msg(receive, "If no password is supplied, the command returns the user's current login status.")
+
+def help_LOGOUT(bot, source, args, receive):
+	bot.msg(receive, "Syntax: LOGOUT")
+	bot.msg(receive, "LOGOUT terminates an existing login session with the bot.")
