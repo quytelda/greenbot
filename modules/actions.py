@@ -97,3 +97,18 @@ def bot_RAW(bot, source, args, receive):
 	message = ' '.join(args)
 
 	bot.transport.write(message + '\r\n')
+
+
+def help_RAW(bot, source, args, receive):
+	bot.msg(receive, "Syntax: RAW <message>")
+	bot.msg(receive, "Sends an appropriately CR-LF padded raw IRC message to the server.")
+
+
+def help_SAY(bot, source, args, receive):
+	bot.msg(receive, "Syntax: SAY <channel> <message>")
+	bot.msg(receive, "Sends a message to <channel>.")
+
+
+def help_ACT(bot, source, args, receive):
+	bot.msg(receive, "Syntax: ACT <channel> <message>")
+	bot.msg(receive, "Sends a CTCP action message to <channel>.")
