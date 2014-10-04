@@ -22,14 +22,20 @@ import sys
 
 def bot_RELOAD(bot, source, args, receive):
 	if len(args) < 1: return
-	
+
 	# check if this is from the actual owner
 	if not source.split('!')[0] in bot.admins:
 		bot.msg(receive, "You are not authorized.")
 		return
-	
+
 	# TODO: if no args, complain
 	module_name = args[0]
 
 	module = sys.modules[module_name]
 	reload(module)
+
+
+def help_RELOAD(bot, source, args, receive):
+	bot.msg(receive, "Syntax: RELOAD <module name>")
+	bot.msg(receive, "Reloads a module during runtime.")
+	bot.msg(receive, "All data associated with that module may be lost.")
