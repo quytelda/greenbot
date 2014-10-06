@@ -36,8 +36,9 @@ connection = {
 }
 
 runtime = {
-	'verbose' : False,		# verbose mode
-	'foreground' : False	# run in foreground?
+	'verbose' : False,		   # verbose mode
+	'foreground' : False,      # run in foreground?
+	'config' : 'greenbot.conf' # config file
 }
 
 def main(argv):
@@ -50,62 +51,56 @@ def main(argv):
 			i += 1
 			try: connection['port'] = int(argv[i])
 			except ValueError: print "* Ignoring invalid port number:", argv[i]
+
 		elif arg_matches(argv[i], '--ssl', '-s'):
 			connection['ssl'] = True
-		elif arg_matches(argv[i], '--username', '-u'):
-			i += 1
-			connection['username'] = argv[i]
-		elif arg_matches(argv[i], '--password', '-P'):
-			i += 1
-			connection['password'] = argv[i]
-		elif arg_matches(argv[i], '--modes', '-m'):
-			i += 1
-			connection['modes'] = argv[i]
-		elif arg_matches(argv[i], '--config', '-c'):
-			i += 1
-			config.config_path = argv[i]
+
 		elif arg_matches(argv[i], '--foreground', '-f'):
 			runtime['foreground'] = True
+
+		elif arg_matches(argv[i], '--config', '-c'):
+			i += 1
+			runtime['config'] = argv[i]
+
 		elif arg_matches(argv[i], '--help', '-h'):
 			print_help()
 			return
+
 		elif arg_matches(argv[i], '--version'):
 			version()
 			return
+
 		elif (i == len(argv) - 1):
 			connection['addr'] = argv[i]
+
 		else:
 			print "Unrecognized argument:", argv[i]
 
 		i += 1
 
-	factory = greenbot.GreenbotFactory()
-
 	############### Configuration ###############
 
-	config.load() # read configuration file
-	connection = config.connection(connection) # connection properties
-	config.configure(factory) # runtime properties
+	config.load(runtime['config'])
 
-	# we need some connection information to initiate a connection
-	# the default port is 6667
-	# the dafault username is 'greenbot'
-	if not connection['addr']:
-		print "* Unable to connect to the address you didn't provide."
-		return
+	# connection details need to be resolved before we can do anything!
+
+	if connection['addr'] is None:
+		connection['addr'] = config.get("server", "address")
+
+	# complain if we still don't have an address, then we die
+	if connection['addr'] is None:
+		print "Error: telepathy failed, unable to connect to the address you didn't provide."
+		return 1
 
 	if not connection['port']:
-		print "* No port specified; using 6667"
-		port = 6667
-
-	if not connection['username']:
-		print "* No username specified; using 'greenbot'"
-		username = 'greenbot'
-
-	if connection['ssl']:
-		print "* Using SSL"
+		try:
+			connection['port'] = int(config.get_default("server", "port", '6667'))
+		except ValueError:
+			print "Error: parameter to --port (-p) must be an integer."
+			return 1
 
 	############### Real Work ###############
+	factory = greenbot.GreenbotFactory()
 
 	if not runtime['foreground']: # this is a daemon; get forking...
 		print "* Forking into background..."

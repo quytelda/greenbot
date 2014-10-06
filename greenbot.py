@@ -26,7 +26,7 @@ from twisted.internet.protocol import ReconnectingClientFactory
 from twisted.words.protocols import irc
 from twisted.internet import reactor, ssl
 
-import modules
+import modules, config
 from modules import *
 
 VERSION = 3.1
@@ -69,7 +69,7 @@ class GreenBot(irc.IRCClient):
 
 		# if it starts with our designated command prefix,
 		# it is a command given in a channel
-		if message.startswith(self.factory.properties['prefix']) and len(message) > 1:
+		if message.startswith(self.factory.prefix) and len(message) > 1:
 			self.handle_bot_command(user, message[1:], channel)
 
 
@@ -181,16 +181,11 @@ class GreenBot(irc.IRCClient):
 class GreenbotFactory(ReconnectingClientFactory):
 
 	quitted = False
-	properties = {
-		'nickname' : 'greenbot',
-		'username' : 'greenbot',
-		'server-password': None,
 
-		'prefix' : '`',
-		'password' : None,
-		'autojoin' : None,
-		'admin-channel' : None
-	}
+
+	def __init__(self):
+		self.prefix = config.get_default("bot", "prefix", '`')
+
 
 	def buildProtocol(self, addr):
 		bot = GreenBot()
@@ -198,9 +193,9 @@ class GreenbotFactory(ReconnectingClientFactory):
 		# set necessary properties
 		# we need to set these before we connect
 		bot.factory = self
-		bot.nickname = self.properties['nickname']
-		bot.username = self.properties['username']
-		bot.password = self.properties['server-password']
+		bot.nickname = config.get_default("bot", "nickname", "greenbot")
+		bot.username = config.get_default("bot", "username", "greenbot")
+		bot.password = config.get("server", "password")
 
 		bot.load_modules()
 
