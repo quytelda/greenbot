@@ -26,7 +26,7 @@ from twisted.internet.protocol import ReconnectingClientFactory
 from twisted.words.protocols import irc
 from twisted.internet import reactor, ssl
 
-import modules
+import modules, config
 from modules import *
 
 VERSION = 3.1
@@ -182,35 +182,25 @@ class GreenbotFactory(ReconnectingClientFactory):
 
 	quitted = False
 
+
 	def __init__(self):
-		### global properties (defaults)
-		self.nickname = "greenbot"
-		self.username = "greenbot"
-		self.srv_password = None
-		self.password = None
-
-		self.prefix = "`"
-		self.autojoin = None
-		self.admin_channel = None
-		self.admin_channel_modes = "+mnst"
-
-		self.log_path = "greenbot"
-		self.logger = None
-		self.cycle = 86400 # 24 hours
+		self.prefix = config.get_default("bot", "prefix", '`')
 
 
 	def buildProtocol(self, addr):
 		bot = GreenBot()
 
-		# set needed properties
+		# set necessary properties
+		# we need to set these before we connect
 		bot.factory = self
-		bot.nickname = self.nickname
-		bot.username = self.username
-		bot.password = self.srv_password
+		bot.nickname = config.get_default("bot", "nickname", "greenbot")
+		bot.username = config.get_default("bot", "username", "greenbot")
+		bot.password = config.get("server", "password")
 
 		bot.load_modules()
 
-		self.resetDelay() # required for reconnecting clients
+		# required for reconnecting clients
+		self.resetDelay()
 
 		return bot
 
