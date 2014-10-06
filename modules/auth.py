@@ -19,6 +19,8 @@
 # You should have received a copy of the GNU General Public License
 # along with greenbot.  If not, see <http://www.gnu.org/licenses/>.
 
+import config
+
 def bot_AUTH(bot, source, args, receive):
 
 	nick = source.split('!')[0]
@@ -35,10 +37,9 @@ def bot_AUTH(bot, source, args, receive):
 	pswd = args[0]
 
 	# add the user to the admins list
-	#if pswd != bot.factory.password:
-	#	bot.msg(receive, 'Invalid login password.')
-	#	bot.notify('[auth] Failed login attempt from %s.' % source)
-	#	return
+	if pswd != config.get("bot", "password"):
+		bot.msg(receive, 'Invalid password.')
+		return
 
 	user = source.split('!')[0]
 	if not user in bot.admins: bot.admins.append(user)
