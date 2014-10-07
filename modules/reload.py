@@ -29,7 +29,11 @@ def bot_RELOAD(bot, source, args, receive):
 		return
 
 	# TODO: if no args, complain
-	module_name = args[0]
+	if len(args) < 1:
+		bot.msg("RELOAD requires at least one parameter.")
+		return
+
+	module_name = 'modules.' + args[0]
 
 	module = sys.modules[module_name]
 	reload(module)
