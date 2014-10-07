@@ -6,15 +6,15 @@ A number of core modules are already present, including several useful logging m
 
 The current stable version is v3.1 (https://github.com/quytelda/greenbot/tree/v3.1)
 
-# Getting Greenbot
+## Getting Greenbot
 * Greenbot needs Python 2.7+ (it doesn't work with Python 3, currently)
 * Greenbot depends on the Twisted framework and pyOpenSSL.
 
 Install dependancies using apt:
-		$ sudo apt-get install python-twisted pyOpenSSL
+		`$ sudo apt-get install python-twisted pyOpenSSL`
 
 
-# Command-Line Options
+## Command-Line Options
 greenbot can be launched with the following usage:
 ```
 Usage: greenbot [options] [URL]
@@ -30,7 +30,7 @@ Usage: greenbot [options] [URL]
 --help		 -h				  Print help information
 ```
 
-# Configuration Options
+## Configuration Options
 greenbot's reads configuration files of traditional INI format, located by default in `./greenbot.conf`.  Here is an introduction to the INI format: http://en.wikipedia.org/wiki/INI_file#Format
 
 Configuration of the greenbot core is divided into two sections: `[server]` and `[bot]`
@@ -48,5 +48,5 @@ username: greenbot		; username to use when connecting
 password: password		; password for authenticating to the bot (per the `auth` module)
 ```
 
-# Adding Modules
+## Adding Modules
 To add a module to greenbot, put the .py file in the `modules` directory.  Then edit `modules/__init__.py` and add the new modules name to the `__all__` list.  Assuming everything works, the module will be loaded at start-time.
