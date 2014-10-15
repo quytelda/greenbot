@@ -90,7 +90,10 @@ class GreenBot(irc.IRCClient):
 			mod = sys.modules['modules.%s' % module]
 
 			# modules are added to the master list
-			self.modules.append(mod)
+			# this function is sometimes called on reload,
+			# so we don't add duplicate modules
+			if not mod in self.modules:
+				self.modules.append(mod)
 
 
 	def handleCommand(self, command, prefix, params):

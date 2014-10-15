@@ -19,20 +19,42 @@
 # You should have received a copy of the GNU General Public License
 # along with greenbot.  If not, see <http://www.gnu.org/licenses/>.
 
+import config
+
+admin_channel = None
+
 # ---------- IRC Command Hooks ---------- #
+
+def irc_RPL_WELCOME(bot, prefix, params):
+	global admin_channel
+	admin_channel = config.get("bot", "admin-channel")
 
 def irc_JOIN(bot, prefix, params):
 
 	# update names list
 	chan = params[0]
+	nick = prefix.split('!')[0]
 	bot.names(chan)
+
+	# on self join
+	if nick == bot.nickname:
+		notify(bot, "info", "Joined %s" % chan)
+
+	# admin channel
+	if chan == admin_channel:
+		bot.notice(chan, "*** Registered home channel (%s) ***" % chan)
 
 
 def irc_PART(bot, prefix, params):
 
 	# update names list
 	chan = params[0]
+	nick = prefix.split('!')[0]
 	bot.names(chan)
+
+	# on self join
+	if nick == bot.nickname:
+		notify(bot, "info", "Left %s" % chan)
 
 
 def irc_QUIT(bot, prefix, params):
@@ -156,3 +178,10 @@ def help_QUIT(bot, source, args, receive):
 def help_DNAM(bot, source, args, receive):
 	bot.msg(receive, "Syntax: DNAM <channel>")
 	bot.msg(receive, "DNAM dumps the bot's NAMES list for <channel>; useful for debugging.")
+
+
+def notify(bot, mtype, message):
+	if admin_channel is not None:
+		bot.msg(admin_channel, "[%s] %s" % (mtype, message))
+
+	print "* [%s] %s" % (mtype, message)

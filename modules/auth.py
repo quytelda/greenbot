@@ -20,6 +20,7 @@
 # along with greenbot.  If not, see <http://www.gnu.org/licenses/>.
 
 import config
+import modules.channels
 
 def bot_AUTH(bot, source, args, receive):
 
@@ -39,11 +40,13 @@ def bot_AUTH(bot, source, args, receive):
 	# add the user to the admins list
 	if pswd != config.get("bot", "password"):
 		bot.msg(receive, 'Invalid password.')
+		modules.channels.notify(bot, "auth", "Failed login from %s" % source)
 		return
 
 	user = source.split('!')[0]
 	if not user in bot.admins: bot.admins.append(user)
 	bot.msg(receive, "You are authenticated.")
+	modules.channels.notify(bot, "auth", "Successful login from %s" % source)
 
 def bot_LOGOUT(bot, source, args, receive):
 	nick = source.split('!')[0]
