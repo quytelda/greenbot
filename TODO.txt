@@ -1,5 +1,10 @@
 === CORE ===
-[ ] Startup fails to load address/port if none is provided via CLI args.
+[*] Startup fails to load address/port if none is provided via CLI args.
 
 === MODULES ===
 [ ] Module parameter checking; many modules/hooks just assume they have been passed good parameters.
+[ ] SET commands
+  [ ] SET HOME
+  [ ] SET CONFIG
+  [ ] SET PREFIX
+[ ] Logger multi-channel QUIT handling
