@@ -19,6 +19,8 @@
 # along with greenbot.  If not, see <http://www.gnu.org/licenses/>.
 
 import sys
+import config
+import main
 
 def bot_RELOAD(bot, source, args, receive):
 	if len(args) < 1: return
@@ -39,7 +41,21 @@ def bot_RELOAD(bot, source, args, receive):
 	reload(module)
 
 
+def bot_REHASH(bot, source, args, receive):
+
+	# check if this is from the actual owner
+	if not source.split('!')[0] in bot.admins:
+		bot.msg(receive, "You are not authorized.")
+		return
+
+	config.load(main.runtime['config'])
+
+
 def help_RELOAD(bot, source, args, receive):
 	bot.msg(receive, "Syntax: RELOAD <module name>")
 	bot.msg(receive, "Reloads a module during runtime.")
 	bot.msg(receive, "All data associated with that module may be lost.")
+
+def help_REHASH(bot, source, args, receive):
+	bot.msg(receive, "Syntax: REHASH")
+	bot.msg(receive, "Reload configuration during runtime.")
