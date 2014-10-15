@@ -50,7 +50,7 @@ class BufferLogger:
 
 	def log(self, buffer, message):
 		# if the buffer file doesn't exist
-		if not buffer in self.buffers:
+		if not buffer in self.buffers or self.buffers[buffer].closed:
 			print "* Buffer %s does not exist." % buffer
 			return
 
@@ -126,6 +126,22 @@ def irc_PART(bot, prefix, params):
 		logger.close_buffer(channel)
 
 
+def irc_KICK(bot, prefix, params):
+	"""
+	Close the buffer for this channel.
+	"""
+	nick = prefix.split('!')[0]
+	channel = params[0]
+
+	# log the KICK
+	logger.log(channel, "%s was kicked from %s." % (nick, channel))
+
+	# when the bot joins a channel
+	# it should open a new buffer for it
+	if nick == bot.nickname:
+		logger.close_buffer(channel)
+
+
 def irc_NICK(bot, prefix, params):
 	"""
 	Close the buffer for this channel.
@@ -138,6 +154,22 @@ def irc_NICK(bot, prefix, params):
 		if bot.nick_in_channel(oldnick, channel):
 			logger.log(channel, "%s is now known as %s." % (oldnick, newnick))
 			bot.names(channel)
+
+
+def irc_MODE(bot, prefix, params):
+	"""
+	Close the buffer for this channel.
+	"""
+	nick = prefix.split('!')[0]
+	target = params[0]
+	modes = ' '.join(params[1:])
+
+	# ignore modes set on the bot (user modes)
+	if(target == bot.nickname): return
+
+	# log the MODE
+	logger.log(target, "%s sets modes [%s]" % (nick, modes))
+	bot.names(target)
 
 
 def irc_QUIT(bot, prefix, params):
@@ -207,8 +239,10 @@ def bot_LINK(bot, source, args, receive):
 		bot.msg(receive, "The logs for %s are unavailable." % channel)
 		return
 
-	# message back a valid URL
-	bot.msg(receive, "http://zerda.tamalin.org/viewlog.php?target=" + urllib.quote_plus(channel))
+	# message back a URL
+	base_url = config.get("log", "base-url")
+	if base_url is not None:
+		bot.msg(receive, base_url + urllib.quote_plus(channel))
 
 
 def bot_CLEAR(bot, source, args, receive):
