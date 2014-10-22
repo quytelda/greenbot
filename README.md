@@ -32,9 +32,9 @@ Usage: greenbot [options] [URL]
 ```
 
 ## Configuration Options
-greenbot's reads configuration files of traditional INI format, located by default in `./greenbot.conf`.  Here is an introduction to the INI format: http://en.wikipedia.org/wiki/INI_file#Format
+greenbot's reads configuration files of traditional INI format, located by default in `./greenbot.conf`.
 
-Configuration of the greenbot core is divided into two sections: `[server]` and `[bot]`
+Configuration of the greenbot core is divided into two sections: `[server]` and `[bot]`.
 `[server]` contains configuration relevent to the IRC server (such as the address, port, and password), while `[bot]` contains configuration relative to the bot (such as nickname, username, and administrative password).  Here is an example base configuration file:
 ```
 ; server/connection details section
@@ -46,7 +46,11 @@ port: 6667						; IRC server port (defaults to 6667)
 [bot]
 nickname: greenbot		; nickname to use when connecting
 username: greenbot		; username to use when connecting
-password: password		; password for authenticating to the bot (per the `auth` module)
+password: password		; password for authenticating to the bot (used by the `auth` module)
+autojoin: #tamalin		; automatically join the given channels
+		  				; multiple channels should be comma separated
+
+admin-channel: #greenbot  ; the bot's administrative channel (per the `channels` module)
 ```
 
 ## Adding Modules
