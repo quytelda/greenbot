@@ -28,6 +28,13 @@ admin_channel = None
 def irc_RPL_WELCOME(bot, prefix, params):
 	global admin_channel
 	admin_channel = config.get("bot", "admin-channel")
+	autojoin = config.get("bot", "autojoin")
+
+	# autojoin channels
+	if autojoin is not None:
+		bot.join(autojoin);
+	if admin_channel is not None:
+		bot.join(admin_channel)
 
 def irc_JOIN(bot, prefix, params):
 

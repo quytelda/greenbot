@@ -1,1 +1,1 @@
-__all__ = ['status', 'auth', 'channels', 'actions', 'alias', 'reload', "help", "log"]
+__all__ = ['status', 'auth', 'channels', 'actions', 'alias', 'state', "help", "log"]
