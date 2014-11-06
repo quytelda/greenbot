@@ -18,11 +18,12 @@
 # You should have received a copy of the GNU General Public License
 # along with greenbot.  If not, see <http://www.gnu.org/licenses/>.
 
-import urllib
-import time
-import os
+import os, time, urllib
+
+from twisted.internet.task import LoopingCall
 
 import config
+import modules
 
 logger = None
 
@@ -34,6 +35,16 @@ class BufferLogger:
 
 		# if the log directory doesn't exist, create it
 		if not os.path.isdir(prefix): os.mkdir(prefix)
+
+		cycle_task = LoopingCall(self.cycle_all)
+
+		duration = 0;
+		try:
+			duration = config.get_default("log", "cycle-duration", 3600*24)
+		except ValueError:
+			duration = 3600*24;
+
+		cycle_task.start(duration);
 
 
 	def open_buffer(self, name):
@@ -81,7 +92,6 @@ class BufferLogger:
 	def close_all(self):
 		for buffer in self.buffers:
 			self.close_buffer(buffer)
-
 
 # ---------- Event Logging Hooks ---------- #
 
@@ -188,6 +198,7 @@ def irc_QUIT(bot, prefix, params):
 	# when the bot quits
 	# it should close all it's buffers
 	if nick == bot.nickname:
+		modules.channels.notify(bot, "info", "* QUIT received, closing open connections.")
 		logger.close_all()
 
 
