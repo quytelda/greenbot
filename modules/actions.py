@@ -49,6 +49,9 @@ def bot_SAY(bot, source, args, receive):
 
 	message = ' '.join(args)
 
+	# now, actually send the message
+	bot.msg(target, message)
+
 def bot_ACT(bot, source, args, receive):
 	"""
 	This is the command hook that tells the bot to send a CTCP action message.
@@ -59,7 +62,7 @@ def bot_ACT(bot, source, args, receive):
 	message = None
 
 	if len(args) < 1:
-		bot.msg(receive, "SAY requires more parameters. Syntax: SAY [<#channel>] <message>")
+		bot.msg(receive, "ACT requires more parameters. Syntax: ACT [<#channel>] <message>")
 		return
 
 	# check if the request is authorized
@@ -74,7 +77,7 @@ def bot_ACT(bot, source, args, receive):
 		# this will be true if the target is a channel
 		target = receive
 	else:
-		bot.msg(receive, "SAY requires a target in this context. Syntax: SAY <#channel> <message>")
+		bot.msg(receive, "ACT requires a target in this context. Syntax: ACT <#channel> <message>")
 		return
 
 	message = ' '.join(args)
