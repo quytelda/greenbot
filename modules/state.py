@@ -22,11 +22,15 @@ import sys
 import config
 import main
 
+import modules.channels
+
 def bot_RELOAD(bot, source, args, receive):
 	if len(args) < 1: return
 
+	nick = source.split('!')[0];
+
 	# check if this is from the actual owner
-	if not source.split('!')[0] in bot.admins:
+	if not nick in bot.admins:
 		bot.msg(receive, "You are not authorized.")
 		return
 
@@ -37,18 +41,28 @@ def bot_RELOAD(bot, source, args, receive):
 
 	module_name = 'modules.' + args[0]
 
+	if not module_name in sys.modules:
+		bot.msg(receive, "No module '%s' is loaded." % module_name);
+		return
 	module = sys.modules[module_name]
+
+	modules.channels.notify(bot, "info", "Module '%s' reloaded by %s" % (args[0], nick))
 	reload(module)
 
 
 def bot_REHASH(bot, source, args, receive):
 
+	nick = source.split('!')[0];
+
 	# check if this is from the actual owner
-	if not source.split('!')[0] in bot.admins:
+	if not nick in bot.admins:
 		bot.msg(receive, "You are not authorized.")
 		return
 
 	config.load(main.runtime['config'])
+
+	# announce rehash to admin channel
+	modules.channels.notify(bot, "info", "Configuration rehashed by %s" % nick);
 
 
 def help_RELOAD(bot, source, args, receive):
