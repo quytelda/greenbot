@@ -36,6 +36,7 @@ def irc_RPL_WELCOME(bot, prefix, params):
 	if admin_channel is not None:
 		bot.join(admin_channel)
 
+
 def irc_JOIN(bot, prefix, params):
 
 	# update names list
@@ -43,13 +44,18 @@ def irc_JOIN(bot, prefix, params):
 	nick = prefix.split('!')[0]
 	bot.names(chan)
 
-	# on self join
+	# when the bot joins a channel
 	if nick == bot.nickname:
 		notify(bot, "info", "Joined %s" % chan)
 
-	# admin channel
+	# administrative channel greetings
+	admin_chan_greeting = config.get("bot", "admin-chan-greeting")
+
 	if chan == admin_channel:
-		bot.notice(chan, "*** Registered home channel (%s) ***" % chan)
+		if nick == bot.nickname:
+			bot.notice(chan, "*** Registered home channel (%s) ***" % chan)
+		elif admin_chan_greeting is not None:
+			bot.notice(nick, admin_chan_greeting);
 
 
 def irc_PART(bot, prefix, params):
