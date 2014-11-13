@@ -1,0 +1,10 @@
+* Core
++ [ ] module parameter checking
++ [ ] runtime configuration changes
++ [ ] load new modules during runtime
+
+* Modules
++ state.py
+  - [ ] add SET command
++ log.py
+  - [ ] fix QUIT handling across channels
