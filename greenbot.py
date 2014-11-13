@@ -186,23 +186,32 @@ class GreenbotFactory(ReconnectingClientFactory):
 	quitted = False
 
 
-	def __init__(self):
+	def __init__(self, properties):
 		self.prefix = config.get_default("bot", "prefix", '`')
+		self.properties = properties
 
 
 	def buildProtocol(self, addr):
 		bot = GreenBot()
 
-		# set necessary properties
-		# we need to set these before we connect
+		# set session properties that should be set /before/ we connect
+		# the value is chosen from several according to this precedence order:
+		# 	defaults < configuration file entries < command line arguments
 		bot.factory = self
-		bot.nickname = config.get_default("bot", "nickname", "greenbot")
-		bot.username = config.get_default("bot", "username", "greenbot")
-		bot.password = config.get("server", "password")
+
+		bot.nickname = config.get_default("bot", "nickname", "greenbot") \
+					   if (self.properties['nickname'] is None) \
+					   else self.properties['nickname'];
+		bot.username = config.get_default("bot", "username", "greenbot") \
+					   if (self.properties['username'] is None) \
+					   else self.properties['username'];
+		bot.password = config.get_default("server", "password", "greenbot") \
+					   if (self.properties['password'] is None) \
+					   else self.properties['password'];
 
 		bot.load_modules()
 
-		# required for reconnecting clients
+		# reset delay timer for reconnecting clients
 		self.resetDelay()
 
 		return bot

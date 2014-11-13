@@ -31,6 +31,7 @@ connection = {
 	'port' : None,		# connection port
 	'ssl' : None,		# use SSL?
 	'username' : None,	# username
+	'nickname' : None,  # nickname
 	'password' : None,	# connection password
 	'modes' : None		# modes to set on connection
 }
@@ -54,6 +55,18 @@ def main(argv):
 
 		elif arg_matches(argv[i], '--ssl', '-s'):
 			connection['ssl'] = True
+
+		elif arg_matches(argv[i], '--username', '-u'):
+			i += 1
+			connection['username'] = argv[i]
+
+		elif arg_matches(argv[i], '--nickname', '-n'):
+			i += 1
+			connection['nickname'] = argv[i]
+
+		elif arg_matches(argv[i], '--password', '-P'):
+			i += 1
+			connection['password'] = argv[i]
 
 		elif arg_matches(argv[i], '--foreground', '-f'):
 			runtime['foreground'] = True
@@ -100,7 +113,7 @@ def main(argv):
 			return 1
 
 	############### Real Work ###############
-	factory = greenbot.GreenbotFactory()
+	factory = greenbot.GreenbotFactory(connection)
 
 	if not runtime['foreground']: # this is a daemon; get forking...
 		print "* Forking into background..."
