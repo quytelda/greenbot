@@ -1,4 +1,5 @@
 * Core
++ [ ] format ACTION message logging
 + [ ] module parameter checking
 + [ ] runtime configuration changes
 + [ ] load new modules during runtime
