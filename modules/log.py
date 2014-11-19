@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with greenbot.  If not, see <http://www.gnu.org/licenses/>.
 
-import os, time, urllib
+import os, time, urllib, re
 
 from twisted.internet.task import LoopingCall
 
@@ -210,8 +210,13 @@ def irc_PRIVMSG(bot, prefix, params):
 	# ignore private message
 	if channel == bot.nickname: return
 
-	# log the channel message
-	logger.log(channel, "<%s> %s" % (nick, message))
+	# translate CTCP ACTION messages
+	action_match = re.search("(?<=\x01ACTION).*(?=\x01)", message)
+	if action_match is not None:
+		message = action_match.group(0)
+		logger.log(channel, "* %s %s" % (nick, message.strip()))
+	else:
+		logger.log(channel, "<%s> %s" % (nick, message))
 
 
 def irc_NOTICE(bot, prefix, params):
