@@ -134,7 +134,7 @@ def arg_matches(value, longer, shorter = None):
 
 
 def version():
-	print "greenbot %s, Copyright(C) 2014 Quytelda Gaiwin (GPLv3)" % greenbot.VERSION
+	print "greenbot 4.0-rc, (C) 2014 Quytelda (GPLv3)"
 
 
 def print_help():
@@ -147,7 +147,9 @@ def print_help():
 	print "-P  --password <password>  Connect using a password"
 	print "-s  --ssl                  Use SSL to connect to server"
 	print "-u  --username <username>  Connect with the username <username>"
+	print "-n  --nickname <nickname>  Connect with the nickname <nickname>"
 	print "    --version              Display version and copyright information"
+
 
 # entry point
 if __name__ == '__main__':

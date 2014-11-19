@@ -29,8 +29,6 @@ from twisted.internet import reactor, ssl
 import modules, config
 from modules import *
 
-VERSION = 3.1
-
 class GreenBot(irc.IRCClient):
 
 	nickname = None
