@@ -281,15 +281,15 @@ def bot_CLEAR(bot, source, args, receive):
 		bot.msg(receive, "There is no open buffer for %s because I have not joined." % channel)
 		return
 
-	# must be a chanop at least
+	# must be a chanop at least or a bot administrator
 	if (not bot.privileged_in_channel(nick, channel)) and (not nick in bot.admins):
 		bot.msg(receive, "You are not sufficient privileges." % channel)
 		return
 
 	# cycle the channel twice now
-	bot.factory.logger.cycle(channel)
+	logger.cycle(channel)
 	time.sleep(0.5)
-	bot.factory.logger.cycle(channel)
+	logger.cycle(channel)
 
 	bot.msg(receive, "Finished cycling logs for %s." % channel)
 	bot.notify("[info] %s cleared logs for %s. " % (nick, channel))
