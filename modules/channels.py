@@ -138,7 +138,7 @@ def bot_PART(bot, source, args, receive):
 def bot_QUIT(bot, source, args, receive):
 
 	nick = source.split('!')[0]
-	reason = args[0] if len(args) > 0 else "Received QUIT from %s" % nick
+	reason = ' '.join(args) if (len(args) > 0) else "Received QUIT from %s" % nick
 
 	# Is the caller authorized?
 	if not nick in bot.admins:
