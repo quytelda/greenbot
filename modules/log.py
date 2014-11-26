@@ -25,6 +25,8 @@ from twisted.internet.task import LoopingCall
 import config
 import modules
 
+import channels
+
 NO_RELOAD = True
 logger = None
 
@@ -283,7 +285,7 @@ def bot_CLEAR(bot, source, args, receive):
 
 	# must be a chanop at least or a bot administrator
 	if (not bot.privileged_in_channel(nick, channel)) and (not nick in bot.admins):
-		bot.msg(receive, "You are not sufficient privileges." % channel)
+		bot.msg(receive, "You must be at least channel operator.")
 		return
 
 	# cycle the channel twice now
@@ -292,7 +294,7 @@ def bot_CLEAR(bot, source, args, receive):
 	logger.cycle(channel)
 
 	bot.msg(receive, "Finished cycling logs for %s." % channel)
-	bot.notify("[info] %s cleared logs for %s. " % (nick, channel))
+	modules.channels.notify("[info] %s cleared logs for %s. " % (nick, channel))
 
 
 def help_LINK(bot, source, args, receive):
