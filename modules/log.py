@@ -25,6 +25,7 @@ from twisted.internet.task import LoopingCall
 import config
 import modules
 
+NO_RELOAD = True
 logger = None
 
 class BufferLogger:

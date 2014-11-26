@@ -34,7 +34,7 @@ def bot_RELOAD(bot, source, args, receive):
 		bot.msg(receive, "You are not authorized.")
 		return
 
-	# TODO: if no args, complain
+	# if no args, complain
 	if len(args) < 1:
 		bot.msg("RELOAD requires at least one parameter.")
 		return
@@ -45,6 +45,10 @@ def bot_RELOAD(bot, source, args, receive):
 		bot.msg(receive, "No module '%s' is loaded." % module_name);
 		return
 	module = sys.modules[module_name]
+
+	# skip if the module has been marked as reload disabled
+	if hasattr(module, "NO_RELOAD"):
+		return
 
 	modules.channels.notify(bot, "info", "Module '%s' reloaded by %s" % (args[0], nick))
 	reload(module)

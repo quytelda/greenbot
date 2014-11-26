@@ -50,7 +50,6 @@ def irc_JOIN(bot, prefix, params):
 
 	# administrative channel greetings
 	admin_chan_greeting = config.get("bot", "admin-chan-greeting")
-
 	if chan == admin_channel:
 		if nick == bot.nickname:
 			bot.notice(chan, "*** Registered home channel (%s) ***" % chan)
