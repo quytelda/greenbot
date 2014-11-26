@@ -147,7 +147,7 @@ class GreenBot(irc.IRCClient):
 		"""
 		namlist = self.channels[channel]
 		for name in namlist:
-			if re.match("[+%@&~]*" + nick, name): return True
+			if re.match("[+%@&~]*" + nick, name, re.IGNORECASE): return True
 
 		return False
 
@@ -159,7 +159,7 @@ class GreenBot(irc.IRCClient):
 		"""
 		namlist = self.channels[channel]
 		for name in namlist:
-			if re.match('[%@&~]' + nick, name): return True
+			if re.match('[%@&~]' + nick, name, re.IGNORECASE): return True
 
 		return False
 
