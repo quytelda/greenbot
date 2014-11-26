@@ -45,10 +45,9 @@ class GreenBot(irc.IRCClient):
 	# ------------------- Connection Event Handlers ------------------- #
 
 	def connectionMade(self):
-		# call the parent method
 		irc.IRCClient.connectionMade(self)
 
-		# status message
+		# for status message
 		host = self.transport.getPeer().host
 
 
@@ -73,7 +72,8 @@ class GreenBot(irc.IRCClient):
 
 	def names(self, channel):
 		"""
-		Send a NAMES command to the server, to query for the members of the given channel.
+		Send a NAMES message to the server, to query for the members on a given channel.
+		For some reason, this method is missing from the twisted framework, so it is defined here.
 		"""
 		self.transport.write("NAMES %s\r\n" % channel)
 
@@ -81,6 +81,12 @@ class GreenBot(irc.IRCClient):
 	# ------------------- Command/Module Handling ------------------- #
 
 	def load_modules(self):
+		"""
+		Enumerates the modules in the `modules` package.
+
+		Modules from the enumerated list contain hooks that
+		will be executed on certain IRC events.
+		"""
 		for module in dir(modules):
 			if module.startswith('__'): continue
 
@@ -136,6 +142,9 @@ class GreenBot(irc.IRCClient):
 	# ------------------- Convenience Functions ------------------- #
 
 	def nick_in_channel(self, nick, channel):
+		"""
+		Test if some nickname is present in some channel.
+		"""
 		namlist = self.channels[channel]
 		for name in namlist:
 			if re.match("[+%@&~]*" + nick, name): return True
@@ -144,6 +153,10 @@ class GreenBot(irc.IRCClient):
 
 
 	def privileged_in_channel(self, nick, channel):
+		"""
+		Test if some nickname is present in some channel, and is at least a half-op.
+		TODO: Assumes prefixes [%@&~] are used, should instead use output from RPL_ISUPPORT
+		"""
 		namlist = self.channels[channel]
 		for name in namlist:
 			if re.match('[%@&~]' + nick, name): return True
