@@ -1,7 +1,7 @@
 #
 # modules/reload.py - Reloads bot modules during runtime
 #
-# Copyright (C) 2014 Quytelda Gaiwin <admin@tamalin.org>
+# Copyright (C) 2014 Quytelda <quytelda@tamalin.org>
 #
 # This file is part of greenbot, the python IRC logging bot.
 #
