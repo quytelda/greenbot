@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <title>Greenbot by quytelda</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Greenbot</h1>
+        <h2>A modular Python based IRC bot that uses the Twisted framework.</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/quytelda/greenbot/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/quytelda/greenbot/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/quytelda/greenbot" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+<a id="greenbot" class="anchor" href="#greenbot" aria-hidden="true"><span class="octicon octicon-link"></span></a>Greenbot</h1>
+
+<p>Greenbot's primary feature is it's ability to implement functionality via independant, easy to write modules. Modules are loaded at startup, and can be reloaded during runtime (dynamic module loading is a planned feature). A number of core modules are already present, including several useful logging modules. Modules can be added or removed by editing 'modules/init.py'.</p>
+
+<p>The current stable version is v3.1 (<a href="https://github.com/quytelda/greenbot/tree/v3.1">https://github.com/quytelda/greenbot/tree/v3.1</a>)</p>
+
+<h2>
+<a id="getting-greenbot" class="anchor" href="#getting-greenbot" aria-hidden="true"><span class="octicon octicon-link"></span></a>Getting Greenbot</h2>
+
+<ul>
+<li>Greenbot needs Python 2.7+ (it doesn't work with Python 3, currently)</li>
+<li>Greenbot depends on the Twisted framework and pyOpenSSL.</li>
+</ul>
+
+<p>Install dependancies using apt:
+        <code>$ sudo apt-get install python-twisted pyOpenSSL</code></p>
+
+<h2>
+<a id="command-line-options" class="anchor" href="#command-line-options" aria-hidden="true"><span class="octicon octicon-link"></span></a>Command-Line Options</h2>
+
+<p>greenbot can be launched with the following usage:</p>
+
+<pre><code>Usage: greenbot [options] [URL]
+--port     -p [port]          Port number to connect on (must be an integer)
+--ssl      -s                 Connect using SSL
+--password -P [password]      Connect to the server with this password
+--config   -c [config]        Use a different configuration file at the given path.
+--username -u [username]      Connect with the given username
+--nickname -n [nickname]      Connect with the given nickname
+
+--foreground -f               Do not fork into the background
+--version    -v               Print version information
+--help       -h               Print help information
+</code></pre>
+
+<h2>
+<a id="configuration-options" class="anchor" href="#configuration-options" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configuration Options</h2>
+
+<p>greenbot's reads configuration files of traditional INI format, located by default in <code>./greenbot.conf</code>.</p>
+
+<p>Configuration of the greenbot core is divided into two sections: <code>[server]</code> and <code>[bot]</code>.
+<code>[server]</code> contains configuration relevent to the IRC server (such as the address, port, and password), while <code>[bot]</code> contains configuration relative to the bot (such as nickname, username, and administrative password).  Here is an example base configuration file:</p>
+
+<pre><code>; server/connection details section
+[server]
+address: irc.example.org        ; IRC server address
+port: 6667                      ; IRC server port (defaults to 6667)
+
+; bot properties section
+[bot]
+nickname: greenbot      ; nickname to use when connecting
+username: greenbot      ; username to use when connecting
+password: password      ; password for authenticating to the bot (used by the `auth` module)
+autojoin: #tamalin      ; automatically join the given channels
+                ; multiple channels should be comma separated
+admin-channel: #greenbot  ; the bot's administrative channel (per the `channels` module)
+</code></pre>
+
+<h2>
+<a id="adding-modules" class="anchor" href="#adding-modules" aria-hidden="true"><span class="octicon octicon-link"></span></a>Adding Modules</h2>
+
+<p>To add a module to greenbot, put the .py file in the <code>modules</code> directory.  Then edit <code>modules/__init__.py</code> and add the new modules name to the <code>__all__</code> list.  Assuming everything works, the module will be loaded at start-time.</p>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
